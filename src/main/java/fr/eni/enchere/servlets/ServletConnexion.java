@@ -17,7 +17,7 @@ import fr.eni.enchere.bo.Utilisateur;
 @WebServlet("/connexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,6 +35,8 @@ public class ServletConnexion extends HttpServlet {
 		String action = request.getParameter("action");
 		Utilisateur user = null;
 		
+		System.out.println("action : " + action);
+
 		switch (action) {
 		case "connexion":
 			try {
@@ -46,22 +48,17 @@ public class ServletConnexion extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
 			}
 			break;
-			
+
 		case "inscription":
-			try {
-				user = UtilisateurManager.getInstance().seConnecter(login, mdp);
-				request.getSession().setAttribute("user", user);
-				response.sendRedirect("http://www.google.com");
-			} catch (BusinessException e) {
-				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
-			}
+			response.sendRedirect(request.getContextPath() + "/inscription");
+			
+			
 			break;
 
 		default:
 			break;
 		}
-		
+
 
 	}
 
