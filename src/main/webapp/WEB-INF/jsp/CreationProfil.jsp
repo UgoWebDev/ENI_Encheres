@@ -51,6 +51,8 @@
 				
 				<div>
 					<button type="submit" name="action" value="creation">Créer</button>
+					<button type="submit" name="action" value="suppression">Supprimer</button>
+					<button type="submit" name="action" value="modification">Modifier</button>
 					<button type="submit" name="action" value="annulation">Annuler</button>
 				</div>
 			</form>
