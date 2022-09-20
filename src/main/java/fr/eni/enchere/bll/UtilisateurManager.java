@@ -63,10 +63,19 @@ public class UtilisateurManager {
 			}
 		}
 	}
-	public  Utilisateur setInstance(Utilisateur user) throws BusinessException {
+	public  Utilisateur insererUtilisateur(Utilisateur user) throws BusinessException {
 
 			user = utilisateurDAO.insertUtilisateur(user);
 
 		return user;
+	}
+	public void compareMdp(String mdp, String password) throws BusinessException {
+		BusinessException be = null;
+
+		if (mdp != password) {
+			be = new BusinessException();
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PASSWORD_DIFF);
+			throw be;
+		} 
 	}
 }

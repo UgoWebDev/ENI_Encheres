@@ -22,7 +22,7 @@ public class ServletGestionProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/CreationProfil.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 	}
 
 	/**
@@ -47,15 +47,18 @@ public class ServletGestionProfil extends HttpServlet {
 
 		switch (action) {
 		case "creation":
+
 			try {
+				UtilisateurManager.getInstance().compareMdp(mdp,password);	// Vérifie que les deux mots de passe sont identiques
 				UtilisateurManager.getInstance().exists(login, email);		// vérifie si un utilisateur de même mdp ou de même pseudo existe, si oui, lève une exception
-				user = new Utilisateur(login, nom, prenom, email, tel, rue, codepostal, ville, action, 0, false);
-				user = UtilisateurManager.setInstance(user);
+				user = new Utilisateur(login, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false);
+				user = UtilisateurManager.getInstance().insererUtilisateur(user);
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect("http://www.google.com");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 			}
 			break;
 

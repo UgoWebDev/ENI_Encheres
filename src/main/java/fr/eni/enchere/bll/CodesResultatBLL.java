@@ -15,5 +15,6 @@ public abstract class CodesResultatBLL {
 
 	public static final int UTILISATEUR_CREATION_EMAIL_DUP = 20002;
 	public static final int UTILISATEUR_CREATION_PSEUDO_DUP = 20003;
+	public static final int UTILISATEUR_CREATION_PASSWORD_DIFF = 20004;
 	
 }

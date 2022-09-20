@@ -33,7 +33,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("erreur de connection ligne 34 UtilisateurDAOJdbcImpl");
 			e.printStackTrace();
 		}
 		return user;
@@ -53,22 +52,77 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public Utilisateur insertUtilisateur(Utilisateur user) throws BusinessException {
 		if (user == null) {
 			BusinessException be = new BusinessException();
-			be.ajouterErreur(Cod);
+			be.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw be;
 		}
-		try (Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = cnx.prepareStatement(requete)
-				) {
-			pstmt.setString(1, login);
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					user = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
-							rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
-							rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
-							rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+		try (Connection cnx = ConnectionProvider.getConnection()) 
+		{
+			int idAdresse=0;
+			try 			// enregistrement de l'adresse
+			{
+				cnx.setAutoCommit(false);
+				PreparedStatement pstmt;
+				ResultSet rs;
+				if (user.getNoUtilisateur()==null) 
+				{
+					pstmt = cnx.prepareStatement(INSERT_ADRESSE,PreparedStatement.RETURN_GENERATED_KEYS);
+					pstmt.setString(0, user.getRue());
+					pstmt.setString(1, user.getCodePostal());
+					pstmt.setString(2, user.getVille());
+					pstmt.executeUpdate();
+					rs = pstmt.getGeneratedKeys();
+					if (rs.next()) {
+						idAdresse = rs.getInt(1);
+					}
+					rs.close();
+					pstmt.close();
 				}
 			}
-		} catch (SQLException e) {
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				cnx.rollback();
+				throw e;
+			}
+			try 
+			{
+				cnx.setAutoCommit(false);
+				PreparedStatement pstmt;
+				ResultSet rs;
+				if (idAdresse != 0) 
+				{
+					pstmt = cnx.prepareStatement(INSERT_UTILISATEUR,PreparedStatement.RETURN_GENERATED_KEYS);
+					pstmt.setString(0, user.getPseudo());
+					pstmt.setString(1, user.getNom());
+					pstmt.setString(2, user.getPrenom());
+					pstmt.setString(3, user.getEmail());
+					pstmt.setString(4, user.getTelephone());
+					pstmt.setInt(5, idAdresse);
+					pstmt.setString(6, user.getMotDePasse());
+					pstmt.setInt(7, user.getCredit());
+					pstmt.setBoolean(8, user.isAdministrateur());
+					pstmt.executeUpdate();
+					rs = pstmt.getGeneratedKeys();
+					if (rs.next()) {
+						user.setNoUtilisateur(rs.getInt(1));
+					}
+					rs.close();
+					pstmt.close();
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				cnx.rollback();
+				throw e;
+			}
+		}
+		catch(Exception e)
+		{
 			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			throw businessException;
 		}
 
 		return user;
