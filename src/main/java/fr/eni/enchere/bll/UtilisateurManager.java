@@ -38,4 +38,35 @@ public class UtilisateurManager {
 		
 		return user;
 	}
+	
+	/**
+	 * 
+	 * @param login
+	 * @param email
+	 * @throws BusinessException
+	 * 
+	 * Vérifie l'unicité par email ou pseudo
+	 */
+	public void exists(String login, String email) throws BusinessException {
+
+		BusinessException be = null;
+
+		if (utilisateurDAO.getUtilisateurByMail(email)!=null) {
+			be = new BusinessException();
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL_DUP);
+			throw be;
+		} else {
+			if (utilisateurDAO.getUtilisateurByPseudo(login)!=null) {
+				be = new BusinessException();
+				be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO_DUP);
+				throw be;
+			}
+		}
+	}
+	public  Utilisateur setInstance(Utilisateur user) throws BusinessException {
+
+			user = utilisateurDAO.insertUtilisateur(user);
+
+		return user;
+	}
 }

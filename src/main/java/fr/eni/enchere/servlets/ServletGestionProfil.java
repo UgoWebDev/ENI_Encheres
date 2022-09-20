@@ -14,8 +14,8 @@ import fr.eni.enchere.bo.Utilisateur;
 /**
  * Servlet implementation class ServletInscription
  */
-@WebServlet("/inscription")
-public class ServletInscription extends HttpServlet {
+@WebServlet("/gestion")
+public class ServletGestionProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -31,15 +31,26 @@ public class ServletInscription extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String  login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
+		String prenom = request.getParameter("prenom");
+		String tel = request.getParameter("tel");
+		String codepostal = request.getParameter("codepostal");
+		String nom = request.getParameter("nom");
+		String email = request.getParameter("email");
+		String rue = request.getParameter("rue");
+		String ville = request.getParameter("ville");
+		String password = request.getParameter("password");
+
 		String action = request.getParameter("action");
 		Utilisateur user = null;
 
 		System.out.println("action : " + action);
 
 		switch (action) {
-		case "connexion":
+		case "creation":
 			try {
-				user = UtilisateurManager.getInstance().seConnecter(login, mdp);
+				UtilisateurManager.getInstance().exists(login, email);		// vérifie si un utilisateur de même mdp ou de même pseudo existe, si oui, lève une exception
+				user = new Utilisateur(login, nom, prenom, email, tel, rue, codepostal, ville, action, 0, false);
+				user = UtilisateurManager.setInstance(user);
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect("http://www.google.com");
 			} catch (BusinessException e) {
@@ -48,8 +59,20 @@ public class ServletInscription extends HttpServlet {
 			}
 			break;
 
-		case "inscription":
-			response.sendRedirect(request.getContextPath() + "/inscription");
+		case "suppression":
+			request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
+
+
+			break;
+			
+		case "modification":
+			request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
+
+
+			break;
+			
+		case "annulation":
+			request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
 
 
 			break;

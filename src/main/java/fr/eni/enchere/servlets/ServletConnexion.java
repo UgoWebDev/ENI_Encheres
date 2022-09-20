@@ -50,7 +50,7 @@ public class ServletConnexion extends HttpServlet {
 			break;
 
 		case "inscription":
-			response.sendRedirect(request.getContextPath() + "/inscription");
+			response.sendRedirect(request.getContextPath() + "/gestion");
 			
 			
 			break;

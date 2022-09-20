@@ -23,10 +23,10 @@
 						<input type="tel" name="tel" id="tel"><br>
 						
 						<label for="cp">Code postal</label>
-						<input type="number" name="number" id="cp" min="01000" max="99999"><br>
+						<input type="number" name="codepostal" id="cp" min="01000" max="99999"><br>
 						
 						<label for="mdp">Mot de passe</label>
-						<input type="password" name="password" id="mdp"><br>
+						<input type="password" name="mdp" id="mdp"><br>
 					</div>
 					
 					<div>

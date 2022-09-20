@@ -12,7 +12,8 @@ public abstract class CodesResultatBLL {
 	/**
 	 * Echec le nom de l'article ne respecte pas les règles définies
 	 */
-	public static final int UTILISATEUR_MDP_KO = 20001;
 
+	public static final int UTILISATEUR_CREATION_EMAIL_DUP = 20002;
+	public static final int UTILISATEUR_CREATION_PSEUDO_DUP = 20003;
 	
 }
