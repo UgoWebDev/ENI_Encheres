@@ -42,12 +42,36 @@ h1
 {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 70px;
+}
+
+.gauche
+{
+	width: 360px;
+}
+
+.droite
+{
+	width: 360px;
+}
+
+p
+{
+	width: 360px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.bouton
+{
+	text-align: center;
+	margin-top: 100px;
 }
 
 a
 {
 	height: 25px;
-	width: 100px;
+	width: 150px;
 	background: url('images/fond_degraderouge.png') repeat-x;
 	border-radius: 5px;
 	text-align: center;
