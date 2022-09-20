@@ -24,7 +24,7 @@
 		<label for="mdp">Mot de passe</label> 
 		<input type="password" id="mdp" name="mdp">
 		<button type="submit" name="action" value="connexion">se connecter</button>
-		<a href="/jsp/inscription.jsp">Pas encore inscrit : </a>
+		<button type="submit" name="action" value="inscription">s'inscrire</button>
 
 	</form>
 

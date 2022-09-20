@@ -23,7 +23,7 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
 	}
 
 	/**
@@ -37,6 +37,17 @@ public class ServletConnexion extends HttpServlet {
 		
 		switch (action) {
 		case "connexion":
+			try {
+				user = UtilisateurManager.getInstance().seConnecter(login, mdp);
+				request.getSession().setAttribute("user", user);
+				response.sendRedirect("http://www.google.com");
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+			}
+			break;
+			
+		case "inscription":
 			try {
 				user = UtilisateurManager.getInstance().seConnecter(login, mdp);
 				request.getSession().setAttribute("user", user);
