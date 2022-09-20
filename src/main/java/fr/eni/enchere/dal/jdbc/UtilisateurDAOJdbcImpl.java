@@ -10,14 +10,18 @@ import fr.eni.enchere.dal.ConnectionProvider;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
-    public static final String SELECT_BY_MAIL = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit, administrateur FROM UTILISATEURS WHERE email = ?";
-    public static final String SELECT_BY_PSEUDO = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe,credit, administrateur FROM UTILISATEURS WHERE pseudo = ?";
+
+    public static final String SELECT_BY_MAIL   = "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,rue ,code_postal ,ville ,mot_de_passe ,credit ,administrateur "
+    										    + "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND email = ?";
+    public static final String SELECT_BY_PSEUDO = "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,rue ,code_postal ,ville ,mot_de_passe ,credit ,administrateur "
+			  									+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND pseudo = ?";
 
 
     private Utilisateur getUtilisateurByLogin(String login,String requete) {
         Utilisateur user = null;
         try (Connection cnx = ConnectionProvider.getConnection();
-                PreparedStatement pstmt = cnx.prepareStatement(requete)) {
+                PreparedStatement pstmt = cnx.prepareStatement(requete)
+                		) {
             pstmt.setString(1, login);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -28,6 +32,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                 }
             }
         } catch (SQLException e) {
+        	System.out.println("erreur de connection ligne 34 UtilisateurDAOJdbcImpl");
             e.printStackTrace();
         }
         return user;

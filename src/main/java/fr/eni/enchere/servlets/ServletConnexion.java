@@ -43,7 +43,7 @@ public class ServletConnexion extends HttpServlet {
 				response.sendRedirect("http://www.google.com");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
 			}
 			break;
 			
@@ -54,7 +54,7 @@ public class ServletConnexion extends HttpServlet {
 				response.sendRedirect("http://www.google.com");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
 			}
 			break;
 
