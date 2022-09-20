@@ -19,9 +19,9 @@
 			  </ul>
 			</div>
 		</c:if>
-		<label for="login">Login</label>
+		<labelfor"login">login</label>
 		<input type="text" id="login" name="login"> 
-		<label for="mdp">Mot de passe</label> 
+		<labelfor"mdp">mot de passe</label> 
 		<input type="password" id="mdp" name="mdp">
 		<button type="submit" name="action" value="connexion">se connecter</button>
 		<a href="/jsp/inscription.jsp">Pas encore inscrit : </a>
