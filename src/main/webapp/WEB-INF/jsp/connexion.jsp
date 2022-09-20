@@ -19,9 +19,9 @@
 			  </ul>
 			</div>
 		</c:if>
-		<labelfor"login">login</label>
+		<label for="login">Login</label>
 		<input type="text" id="login" name="login"> 
-		<labelfor"mdp">mot de passe</label> 
+		<label for="mdp">Mot de passe</label> 
 		<input type="password" id="mdp" name="mdp">
 		<button type="submit">se connecter</button>
 	</form>
