@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class ServletInscription
  */
@@ -25,7 +29,33 @@ public class ServletInscription extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
-	}
+		String  login = request.getParameter("login");
+		String mdp = request.getParameter("mdp");
+		String action = request.getParameter("action");
+		Utilisateur user = null;
 
+		System.out.println("action : " + action);
+
+		switch (action) {
+		case "connexion":
+			try {
+				user = UtilisateurManager.getInstance().seConnecter(login, mdp);
+				request.getSession().setAttribute("user", user);
+				response.sendRedirect("http://www.google.com");
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
+			}
+			break;
+
+		case "inscription":
+			response.sendRedirect(request.getContextPath() + "/inscription");
+
+
+			break;
+
+		default:
+			break;
+		}
+	}
 }
