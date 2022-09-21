@@ -30,7 +30,7 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String  login = request.getParameter("login");
+		String login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
 		String action = request.getParameter("action");
 		Utilisateur user = null;
@@ -50,7 +50,7 @@ public class ServletConnexion extends HttpServlet {
 			break;
 
 		case "inscription":
-			response.sendRedirect(request.getContextPath() + "/gestion");
+			response.sendRedirect(request.getContextPath() + "/profil");
 			
 			
 			break;
