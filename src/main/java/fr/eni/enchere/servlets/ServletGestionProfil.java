@@ -43,36 +43,15 @@ public class ServletGestionProfil extends HttpServlet {
 		String action = request.getParameter("action");
 		
 
-		System.out.println("action : "+ " | "  + action + "données : " + login + " | " + mdp + " | " +  prenom + " | " +  nom + " | " +  tel + " | " +  codepostal + " | " +  email + " | " +  rue + " | " +  ville );
+		System.out.println("action : "+ " | "  + action + "données : " + login + " | " + mdp + " | " +  prenom + " | " +  nom + " | " +  tel + " | " +  codepostal + " | " +  email + " | " +  rue + " | " +  ville + " | " +  password + " | " );
 		Utilisateur user = null;
 		
-//		login = "testlogin";
-//		mdp = "testmdp";
-//		prenom  = "testprenom";
-//		tel = "testtel";
-//		codepostal = "13500";
-//		nom = "testnom";
-//		email = "testmail@test.com";
-//		rue = "testrue";
-//		ville = "testville";
-//		password = "testmdp";
-//		action = "creation";
-//		
-//		System.out.println("action : " + action + "données : " + login + " | " + mdp + " | " +  prenom + " | " +  nom + " | " +  tel + " | " +  codepostal + " | " +  email + " | " +  rue + " | " +  ville );
-
-
 		switch (action) {
 		case "creation":
 
 			try {
-				UtilisateurManager.getInstance().compareMdp(mdp,password);	// Vérifie que les deux mots de passe sont identiques
-				System.out.println("Mdp OK");
-				UtilisateurManager.getInstance().exists(login, email);		// vérifie si un utilisateur de même mdp ou de même pseudo existe, si oui, lève une exception
-				System.out.println("unicité OK");
 				user = new Utilisateur(login, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false);
-				System.out.println("création user OK");
-				user = UtilisateurManager.getInstance().insertUtilisateur(user);
-				System.out.println("insertion OK");
+				user = UtilisateurManager.getInstance().insertUtilisateur(user,password);
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect("http://www.google.com");
 			} catch (BusinessException e) {

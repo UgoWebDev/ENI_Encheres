@@ -4,6 +4,8 @@ import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
+import fr.eni.javaee.gestionlistescourses.bo.Article;
+import fr.eni.javaee.gestionlistescourses.bo.ListeCourse;
 
 public class UtilisateurManager {
 	// Utilisation du pattern Singleton
@@ -39,6 +41,28 @@ public class UtilisateurManager {
 		return user;
 	}
 	
+	public  Utilisateur insertUtilisateur(Utilisateur user, String password) throws BusinessException {
+		BusinessException be = new BusinessException();
+		
+		this.compareMdp(user.getMotDePasse(), password, be);
+		this.exists(user.getPseudo(), user.getEmail(), be);
+		this.valideUtilisateur(user,be);
+		
+		
+		if(!be.hasErreurs())
+		{
+			user = utilisateurDAO.insertUtilisateur(user);
+			System.out.println("insertUtilisateur OK");
+		}
+		else
+		{
+			throw be;
+		}
+
+
+
+		return user;
+	}
 	/**
 	 * 
 	 * @param login
@@ -47,36 +71,35 @@ public class UtilisateurManager {
 	 * 
 	 * Vérifie l'unicité par email ou pseudo
 	 */
-	public void exists(String login, String email) throws BusinessException {
-
-		BusinessException be = null;
-
+	private void exists(String login, String email, BusinessException be) throws BusinessException {
+	
 		if (utilisateurDAO.getUtilisateurByMail(email)!=null) {
-			be = new BusinessException();
 			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL_DUP);
-			throw be;
 		} else {
 			if (utilisateurDAO.getUtilisateurByPseudo(login)!=null) {
-				be = new BusinessException();
 				be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO_DUP);
-				throw be;
 			}
 		}
 	}
-	public  Utilisateur insertUtilisateur(Utilisateur user) throws BusinessException {
-
-			user = utilisateurDAO.insertUtilisateur(user);
-			System.out.println("insertUtilisateur OK");
-
-		return user;
-	}
-	public void compareMdp(String mdp, String password) throws BusinessException {
-		BusinessException be = null;
-
+	private void compareMdp(String mdp, String password, BusinessException be) throws BusinessException {
+		
+		
+		System.out.println("Mot de passe : " + mdp);
+		System.out.println("Mot de passe : " + password);
+		
 		if (mdp != password) {
-			be = new BusinessException();
 			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PASSWORD_DIFF);
-			throw be;
 		} 
+	}
+	private void valideUtilisateur(Utilisateur user, BusinessException be) {
+		if (user.getNom() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_NOM);}
+		if (user.getPrenom() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PRENOM);}
+		if (user.getPseudo() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
+		if (user.getEmail() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
+		if (user.getTelephone() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_TELEPHONE);}
+		if (user.getRue() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_RUE);}
+		if (user.getCodePostal() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_CODE_POSTAL);}
+		if (user.getVille() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_VILLE);}
+		if (user.getMotDePasse() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
 	}
 }

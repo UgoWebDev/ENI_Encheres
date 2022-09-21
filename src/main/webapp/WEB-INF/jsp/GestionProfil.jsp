@@ -7,12 +7,23 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/style.css">
-		<title>Insert title here</title>
+		<title>Création d'un utilisateur</title>
 	</head>
 	<body>
 		<h1>Création profil</h1>
 		
-		<form method="post"  action="<%=request.getContextPath()%>/gestion">
+		<c:if test="${!empty listeCodesErreur}">
+			<div class="alert alert-danger" role="alert">
+				<strong>Erreur!</strong>
+				<ul>
+					<c:forEach var="code" items="${listeCodesErreur}">
+						<li>${LecteurMessage.getMessageErreur(code)}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</c:if>
+		
+		<form method="post"  action="<%=request.getContextPath()%>/profil">
 			<div class="form">
 					<div>
 						<label for="pseudo">Pseudo</label>
@@ -50,7 +61,7 @@
 						</div>
 					</div>
 				</div>
-				
+				<br>
 				<div>
 					<button type="submit" name="action" value="creation">Créer</button>
 					<button type="submit" name="action" value="suppression">Supprimer</button>
