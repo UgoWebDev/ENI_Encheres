@@ -63,9 +63,10 @@ public class UtilisateurManager {
 			}
 		}
 	}
-	public  Utilisateur insererUtilisateur(Utilisateur user) throws BusinessException {
+	public  Utilisateur insertUtilisateur(Utilisateur user) throws BusinessException {
 
 			user = utilisateurDAO.insertUtilisateur(user);
+			System.out.println("insertUtilisateur OK");
 
 		return user;
 	}

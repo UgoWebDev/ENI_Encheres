@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="fr.eni.enchere.messages.LecteurMessage" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,7 +12,7 @@
 	<body>
 		<h1>Création profil</h1>
 		
-		<form method="post" enctype="multipart/form-data">
+		<form method="post"  action="<%=request.getContextPath()%>/gestion">
 			<div class="form">
 					<div>
 						<label for="pseudo">Pseudo</label>

@@ -8,7 +8,7 @@
 <title>se connecter</title>
 </head>
 <body>
-	<form method="post">
+	<form method="post" action="<%=request.getContextPath()%>/connexion">
 			<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
 			  <strong>Erreur!</strong>

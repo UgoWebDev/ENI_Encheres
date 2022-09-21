@@ -1,4 +1,4 @@
-package fr.eni.enchere.dal;
+package fr.eni.enchere.dal.jdbc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.dal.CodesResultatDAL;
+import fr.eni.enchere.dal.ConnectionProvider;
+import fr.eni.enchere.dal.UtilisateurDAO;
 import fr.eni.enchere.BusinessException;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
@@ -66,9 +69,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				if (user.getNoUtilisateur()==null) 
 				{
 					pstmt = cnx.prepareStatement(INSERT_ADRESSE,PreparedStatement.RETURN_GENERATED_KEYS);
-					pstmt.setString(0, user.getRue());
-					pstmt.setString(1, user.getCodePostal());
-					pstmt.setString(2, user.getVille());
+					pstmt.setString(1, user.getRue());
+					pstmt.setString(2, user.getCodePostal());
+					pstmt.setString(3, user.getVille());
 					pstmt.executeUpdate();
 					rs = pstmt.getGeneratedKeys();
 					if (rs.next()) {
@@ -92,15 +95,15 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				if (idAdresse != 0) 
 				{
 					pstmt = cnx.prepareStatement(INSERT_UTILISATEUR,PreparedStatement.RETURN_GENERATED_KEYS);
-					pstmt.setString(0, user.getPseudo());
-					pstmt.setString(1, user.getNom());
-					pstmt.setString(2, user.getPrenom());
-					pstmt.setString(3, user.getEmail());
-					pstmt.setString(4, user.getTelephone());
-					pstmt.setInt(5, idAdresse);
-					pstmt.setString(6, user.getMotDePasse());
-					pstmt.setInt(7, user.getCredit());
-					pstmt.setBoolean(8, user.isAdministrateur());
+					pstmt.setString(1, user.getPseudo());
+					pstmt.setString(2, user.getNom());
+					pstmt.setString(3, user.getPrenom());
+					pstmt.setString(4, user.getEmail());
+					pstmt.setString(5, user.getTelephone());
+					pstmt.setInt(6, idAdresse);
+					pstmt.setString(7, user.getMotDePasse());
+					pstmt.setInt(8, user.getCredit());
+					pstmt.setBoolean(9, user.isAdministrateur());
 					pstmt.executeUpdate();
 					rs = pstmt.getGeneratedKeys();
 					if (rs.next()) {
@@ -108,6 +111,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					}
 					rs.close();
 					pstmt.close();
+					cnx.commit();
 				}
 			}
 			catch(Exception e)
@@ -124,7 +128,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
 			throw businessException;
 		}
-
+		
 		return user;
 	}
 }
