@@ -17,7 +17,7 @@ import fr.eni.enchere.bo.Utilisateur;
 @WebServlet("/connexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,8 +35,6 @@ public class ServletConnexion extends HttpServlet {
 		String action = request.getParameter("action");
 		Utilisateur user = null;
 		
-		System.out.println("action : " + action);
-
 		switch (action) {
 		case "connexion":
 			try {
@@ -48,7 +46,7 @@ public class ServletConnexion extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
 			}
 			break;
-
+			
 		case "inscription":
 			response.sendRedirect(request.getContextPath() + "/profil");
 			
@@ -58,7 +56,7 @@ public class ServletConnexion extends HttpServlet {
 		default:
 			break;
 		}
-
+		
 
 	}
 
