@@ -56,8 +56,8 @@
 						<input type="text" name="ville" id="ville"><br>
 						
 						<div>
-							<label for="confMdp">Confirmation</label>
-							<input type="password" name="password" id="confMdp"><br>
+							<label for="confirmationMdp">Confirmation</label>
+							<input type="password" name="password" id="confirmationMdp"><br>
 						</div>
 					</div>
 				</div>
