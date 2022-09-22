@@ -29,6 +29,8 @@ public abstract class CodesResultatBLL {
 	
 	//Erreurs liées à la gestion des catégories
 	public static final int CATEGORIE_NON_CONFORME = 20201;
+	public static final int CATEGORIE_DEJA_EXISTANTE = 20202;
+	public static final int CATEGORIE_NON_EXISTANTE = 20203;
 
 
 	

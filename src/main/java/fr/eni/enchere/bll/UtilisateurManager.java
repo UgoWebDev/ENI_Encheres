@@ -1,5 +1,7 @@
 package fr.eni.enchere.bll;
 
+import java.util.GregorianCalendar;
+
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
@@ -61,8 +63,6 @@ public class UtilisateurManager {
 		{
 			throw be;
 		}
-
-
 
 		return user;
 	}

@@ -24,6 +24,7 @@ public class ServletGestionCategorie extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionCategorie.jsp").forward(request, response);
 	}
 
@@ -47,9 +48,13 @@ public class ServletGestionCategorie extends HttpServlet {
 			break;
 			
 		case "suppression":
-			response.sendRedirect(request.getContextPath() + "/profil");
-			
-			
+			try {
+				CategorieManager.getInstance().deleteCategorie(libelle);
+				response.sendRedirect(request.getContextPath() + "/categorie");
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionCategorie.jsp").forward(request, response);
+			}	
 			break;
 			
 		case "annulation":
