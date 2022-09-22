@@ -52,9 +52,9 @@
 	    	<p>User n'existe pas</p>
 	    </c:if>
 	    
-        <% Utilisateur userConnecter =  (Utilisateur) session.getAttribute("user"); %>
+        <% Utilisateur userConnected =  (Utilisateur) session.getAttribute("user"); %>
        
-        <c:if test="${userConnecter.getPseudo() } == ${requestScope.user.pseudo }">
+        <c:if test="${userConnected.getPseudo() } == ${requestScope.user.pseudo }">
         	 <form method="post" action="<%= request.getContextPath()%>/visualisation">
 		        <div class="bouton">
 		           <button type="submit" name="action" value="modifier">Modifier</button>
