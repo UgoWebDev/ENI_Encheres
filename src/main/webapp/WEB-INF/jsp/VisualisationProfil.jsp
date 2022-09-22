@@ -12,49 +12,48 @@
     </head>
     <body>
     
-   		<c:if test="${!empty user}">
+   		<c:if test="${!empty profil}">
 	        <div class="affichePseudo">
 	            <h1>
-	                Pseudo: ${user.pseudo }
+	                Pseudo: ${profil.pseudo }
 	            </h1>
 	
 	            <p>
-	                NOM: ${user.nom }
+	                NOM: ${profil.nom }
 	            </p>
 	
 	            <p>
-	                Prénom: ${user.prenom }
+	                Prénom: ${profil.prenom }
 	            </p>
 	
 	            <p>
-	                Email: ${user.email }
+	                Email: ${profil.email }
 	            </p>
 	
 	            <p>
-	                Téléphone: ${user.telephone }
+	                Téléphone: ${profil.telephone }
 	            </p>
 	
 	            <p>
-	                Rue: ${user.rue }
+	                Rue: ${profil.rue }
 	            </p>
 	
 	            <p>
-	                Code postal: ${user.codePostal }
+	                Code postal: ${profil.codePostal }
 	            </p>
 	
 	            <p>
-	                Ville: ${user.ville }
+	                Ville: ${profil.ville }
 	            </p>
 	        </div>
 	    </c:if> 
 	    
-	    <c:if test="${empty user }">
-	    	<p>User n'existe pas</p>
+	    <c:if test="${empty profil }">
+	    	<p>Ce profil n'existe pas</p>
 	    </c:if>
 	    
-        <% Utilisateur userConnected =  (Utilisateur) session.getAttribute("user"); %>
        
-        <c:if test="${userConnected.getPseudo() } == ${requestScope.user.pseudo }">
+        <c:if test="${user.pseudo } == ${profil.pseudo }">
         	 <form method="post" action="<%= request.getContextPath()%>/visualisation">
 		        <div class="bouton">
 		           <button type="submit" name="action" value="modifier">Modifier</button>

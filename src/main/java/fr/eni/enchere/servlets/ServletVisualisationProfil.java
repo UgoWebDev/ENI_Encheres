@@ -1,11 +1,16 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletVisualisationProfil
@@ -19,7 +24,15 @@ public class ServletVisualisationProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Utilisateur profil;
+		try {
+			profil = UtilisateurManager.getInstance().getUtilisateur(request.getParameter("profil"));
+		} catch (BusinessException e) {
+			profil = null;
+		}
+		request.setAttribute("profil", profil) ;
 		request.getRequestDispatcher("/WEB-INF/jsp/VisualisationProfil.jsp").forward(request, response);
+		
 	}
 
 	/**
