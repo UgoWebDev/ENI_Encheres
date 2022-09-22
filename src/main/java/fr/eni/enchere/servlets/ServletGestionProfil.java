@@ -84,7 +84,7 @@ public class ServletGestionProfil extends HttpServlet {
 			break;
 			
 		case "annulation":
-			request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 
 
 			break;
