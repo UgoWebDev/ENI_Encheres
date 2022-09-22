@@ -29,7 +29,7 @@ public class ServletGestionProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
+		String login = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		String prenom = request.getParameter("prenom");
 		String tel = request.getParameter("tel");

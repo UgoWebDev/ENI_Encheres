@@ -87,7 +87,7 @@ public class UtilisateurManager {
 		System.out.println("Mot de passe : " + mdp);
 		System.out.println("Mot de passe : " + password);
 		
-		if (mdp != password) {
+		if (!mdp.equals(password)) {
 			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PASSWORD_DIFF);
 		} 
 	}
