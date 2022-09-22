@@ -1,5 +1,7 @@
 package fr.eni.enchere.bo;
 
+import java.util.List;
+
 public class Utilisateur {
 
     private Integer noUtilisateur;		// pour pouvoir être null
@@ -7,13 +9,23 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
+	private String telephone;
+    private String rue;
+    private String codePostal;
+    private String ville;
+    private String motDePasse;
+    private int credit;
+    private boolean administrateur;
+    private List<Enchere> encheresSoumises;
+    private List<Article> vendArticles;
+    
     public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
-			this( null,pseudo,  nom,  prenom,  email,  telephone,  rue,	 codePostal,  ville,  motDePasse,  credit,  administrateur);
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<Enchere> encheresSoumises, List<Article> vendArticles ) {
+			this( null,pseudo,  nom,  prenom,  email,  telephone,  rue,	 codePostal,  ville,  motDePasse,  credit,  administrateur, encheresSoumises, vendArticles);
 
 	}
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<Enchere> encheresSoumises, List<Article> vendArticles ) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -27,7 +39,10 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.encheresSoumises = encheresSoumises;
+		this.vendArticles = vendArticles;
 	}
+	
 	public Integer getNoUtilisateur() {
 		return noUtilisateur;
 	}
@@ -100,12 +115,18 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-	private String telephone;
-    private String rue;
-    private String codePostal;
-    private String ville;
-    private String motDePasse;
-    private int credit;
-    private boolean administrateur;
+	public List<Enchere> getEncheresSoumises() {
+		return encheresSoumises;
+	}
+	public void setEncheresSoumises(List<Enchere> encheresSoumises) {
+		this.encheresSoumises = encheresSoumises;
+	}
+	public List<Article> getVendArticles() {
+		return vendArticles;
+	}
+	public void setVendArticles(List<Article> vendArticles) {
+		this.vendArticles = vendArticles;
+	}
+
 	
 }
