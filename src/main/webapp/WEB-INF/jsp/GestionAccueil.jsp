@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,24 +19,35 @@
 	<!-- header section starts  -->
 
 	<header>
-
 		<input type="checkbox" name="" id="toggler"> <label
 			for="toggler" class="fas fa-bars"></label> <a href="#" class="logo">ENI-ENCHERE<span>.</span></a>
 
+		<c:if test="${!empty user}">							
 		<nav class="navbar">
+		
 			<ul>
 				<li><a href="#encheres">Enchères</a></li>
 				<li><a href="#vendre">Ventes</a></li>
-				<li><a href="#profil">Mon profil</a></li>
+				<li><a href="${pageContext.request.contextPath}/profil?id=${c.id}">Mon profil</a></li>
 			</ul>
 		</nav>
-
+		
 		<div class="icons">
-			<a href="#" class="fa-solid fa-heart"></a>
-			<a href="#"	class="fa-solid fa-cart-shopping"></a>
-			<a href="#" class="fa-solid fa-user"></a> 
-			<a href="#" class="fa-solid fa-power-off"></a>
+			<a href="#" class="fa-solid fa-heart"></a> 
+			<a href="#" class="fa-solid fa-cart-shopping"></a> 
+			<a href="${pageContext.request.contextPath}/profil?id=${c.id}" class="fa-solid fa-user"></a> 
+			<a href="${pageContext.request.contextPath}/connexion?deconnexion" class="fa-solid fa-power-off"></a>
 		</div>
+		</c:if>
+		
+		<c:if test="${empty user}">	
+			<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off icons"></a>
+			
+								
+		</c:if>
+		
+	
+		
 
 	</header>
 
@@ -76,96 +88,56 @@
 					placeholder="Chercher un article...">
 			</div>
 
-			<select name="cat" class="cat">
-				<option value="">--Catégories--</option>
-				<option value="Ameublement">Ameublement</option>
-				<option value="Informatique">Informatique</option>
-				<option value="Sport">Sport et Loisirs</option>
-				<option value="Vêtements">Vêtements</option>
-			</select>
+			
+			<c:if test="${!empty user}">
+				<select name="cat" class="cat">
+					<c:forEach var="code" items="${listeCategories}">
+						<option value="">--Catégories--</option>
+						<option value="Ameublement">Ameublement</option>
+						<option value="Informatique">Informatique</option>
+						<option value="Sport">Sport et Loisirs</option>
+						<option value="Vêtements">Vêtements</option>
+					</c:forEach>
+				</select>
+			</c:if>
 		</div>
 
 
-
-
 		<div class="box-container">
-
-			<div class="box">
-				<div class="image">
-					<img src="css/images/article1.jpg" alt="">
-					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+			<c:choose>
+				<c:when test="${listeArticle.articles.size()>0}">
+					<div class="box">
+						<c:forEach var="article" items="${listeArticle.articles}">
+							<div class="image">
+								<img src="css/images/article1.jpg" alt="">
+								<div class="icons">
+									<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+									<a href="#" class="fa-solid fa-cart-plus"></a> 
+									<a href="#" class="fa-solid fa-share-from-square"></a>
+								</div>
+							</div>
+							<div class="content">
+								<h3>"${article.nom}"</h3>
+								<div class="price">Prix :${article.miseAPrix}</div>
+								<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
+								<div class="vendeur">Vendeur : 
+									<c:if test="${!empty user}">
+										<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}"> ${article.getVendeur().pseudo} </a>
+									</c:if>
+									<c:if test="${empty user}">
+										${article.getVendeur().pseudo}
+									</c:if>
+								</div>
+								
+							</div>
+						</c:forEach>
 					</div>
-				</div>
-				<div class="content">
-					<h3>PC Gamer pour travailler</h3>
-					<div class="price">Prix : 100.eni</div>
-					<div class="date-fin">Fin de l'enchère : date</div>
-					<div class="vendeur">
-						Vendeur : <a href="#">Vendeur</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="image">
-					<img src="css/images/article1.jpg" alt="">
-					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>Rocket stove pour riz et pâtes</h3>
-					<div class="price">100.eni</div>
-					<div class="date-fin">Fin de l'enchère : date</div>
-					<div class="vendeur">
-						Vendeur : <a href="#">vendeur</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="image">
-					<img src="css/images/article1.jpg" alt="">
-					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>Tasse renard</h3>
-					<div class="price">100.eni</div>
-					<div class="date-fin">Fin de l'enchère : date</div>
-					<div class="vendeur">
-						Vendeur : <a href="#">vendeur</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="image">
-					<img src="css/images/article1.jpg" alt="">
-					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>Enceinte Bluetooth</h3>
-					<div class="price">100.eni</div>
-					<div class="date-fin">Fin de l'enchère : date</div>
-					<div class="vendeur">
-						Vendeur : <a href="#">vendeur</a>
-					</div>
-				</div>
-			</div>
-
+				</c:when>
+				<c:otherwise>
+					<p>Pas d'articles disponibles actuellement...
+					<p>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 	</section>
@@ -449,7 +421,8 @@
 			<div class="box" id="infos">
 				<h3>infos contacts</h3>
 				<a href="#">+123-456-7890</a> <a href="#">example@gmail.com</a> <a
-					href="#">nantes, france - 44100</a> <img src="css/images/payment.png" alt="">
+					href="#">nantes, france - 44100</a> <img
+					src="css/images/payment.png" alt="">
 			</div>
 
 		</div>
