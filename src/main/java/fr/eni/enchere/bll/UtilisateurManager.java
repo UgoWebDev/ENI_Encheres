@@ -4,8 +4,6 @@ import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
-import fr.eni.javaee.gestionlistescourses.bo.Article;
-import fr.eni.javaee.gestionlistescourses.bo.ListeCourse;
 
 public class UtilisateurManager {
 	// Utilisation du pattern Singleton
