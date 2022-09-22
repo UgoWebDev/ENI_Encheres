@@ -43,6 +43,7 @@ public class UtilisateurManager {
 		return user;
 	}
 	
+
 	public  Utilisateur insertUtilisateur(Utilisateur user, String password) throws BusinessException {
 		BusinessException be = new BusinessException();
 		

@@ -8,53 +8,52 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
- * Servlet implementation class ConnexionServlet
+ * Servlet implementation class ServletGestionCategorie
  */
-@WebServlet("/connexion")
-public class ServletConnexion extends HttpServlet {
+@WebServlet("/categorie")
+public class ServletGestionCategorie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-		if (action == "deconnexion") {
-			request.getSession().setAttribute("user", null);
-			request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("/WEB-INF/jsp/GestionCategorie.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
-		String mdp = request.getParameter("mdp");
+		String libelle = request.getParameter("libelle");
 		String action = request.getParameter("action");
-		Utilisateur user = null;
+		Categorie categorie = null;
 		
 		switch (action) {
-		case "connexion":
+		case "creation":
 			try {
-				user = UtilisateurManager.getInstance().seConnecter(login, mdp);
-				request.getSession().setAttribute("user", user);
-				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
+				categorie = CategorieManager.getInstance().insertCategorie(libelle);
+				response.sendRedirect(request.getContextPath() + "/categorie");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionCategorie.jsp").forward(request, response);
 			}
 			break;
 			
-		case "inscription":
+		case "suppression":
 			response.sendRedirect(request.getContextPath() + "/profil");
+			
+			
+			break;
+			
+		case "annulation":
+			response.sendRedirect(request.getContextPath() + "/accueil");
 			
 			
 			break;
@@ -63,7 +62,6 @@ public class ServletConnexion extends HttpServlet {
 			break;
 		}
 		
-
 	}
 
 }
