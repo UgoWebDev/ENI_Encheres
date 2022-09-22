@@ -89,15 +89,16 @@ public class UtilisateurManager {
 			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PASSWORD_DIFF);
 		} 
 	}
-	private void valideUtilisateur(Utilisateur user, BusinessException be) {
-		if (user.getNom() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_NOM);}
-		if (user.getPrenom() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PRENOM);}
-		if (user.getPseudo() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
-		if (user.getEmail() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
-		if (user.getTelephone() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_TELEPHONE);}
-		if (user.getRue() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_RUE);}
-		if (user.getCodePostal() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_CODE_POSTAL);}
-		if (user.getVille() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_VILLE);}
-		if (user.getMotDePasse() == null) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
+	private void valideUtilisateur(Utilisateur user, BusinessException be) throws BusinessException{
+		
+		if (user.getNom() == null || user.getNom() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_NOM);}
+		if (user.getPrenom() == null || user.getPrenom() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PRENOM);}
+		if (user.getPseudo() == null || user.getPseudo() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
+		if (user.getEmail() == null || user.getEmail() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
+		if (user.getTelephone() == null || user.getTelephone() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_TELEPHONE);}
+		if (user.getRue() == null || user.getRue() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_RUE);}
+		if (user.getCodePostal() == null || user.getCodePostal() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_CODE_POSTAL);}
+		if (user.getVille() == null || user.getVille() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_VILLE);}
+		if (user.getMotDePasse() == null || user.getMotDePasse() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
 	}
 }

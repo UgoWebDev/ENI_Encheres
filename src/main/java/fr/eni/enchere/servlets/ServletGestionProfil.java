@@ -43,14 +43,24 @@ public class ServletGestionProfil extends HttpServlet {
 		String action = request.getParameter("action");
 		
 
-		System.out.println("action : "+ " | "  + action + "données : " + pseudo + " | " + mdp + " | " +  prenom + " | " +  nom + " | " +  tel + " | " +  codepostal + " | " +  email + " | " +  rue + " | " +  ville + " | " +  password + " | " );
+		System.out.println("action : " + action);
+		System.out.println("pseudo : " + pseudo); 
+		System.out.println("prenom : " +  prenom);
+		System.out.println("nom : " +  nom);
+		System.out.println("tel : " +  tel);
+		System.out.println("codepostal : " +  codepostal);
+		System.out.println("email : " +  email);
+		System.out.println("rue : " +  rue);
+		System.out.println("ville : " +  ville);
+		System.out.println("mdp : " + mdp);
+		System.out.println("password : " +  password);
 		Utilisateur user = null;
 		
 		switch (action) {
 		case "creation":
 
 			try {
-				user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false);
+				user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false,null,null);
 				user = UtilisateurManager.getInstance().insertUtilisateur(user,password);
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect("http://www.google.com");
