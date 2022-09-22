@@ -29,7 +29,7 @@ public class ServletGestionProfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("pseudo");
+		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		String prenom = request.getParameter("prenom");
 		String tel = request.getParameter("tel");
@@ -43,14 +43,14 @@ public class ServletGestionProfil extends HttpServlet {
 		String action = request.getParameter("action");
 		
 
-		System.out.println("action : "+ " | "  + action + "données : " + login + " | " + mdp + " | " +  prenom + " | " +  nom + " | " +  tel + " | " +  codepostal + " | " +  email + " | " +  rue + " | " +  ville + " | " +  password + " | " );
+		System.out.println("action : "+ " | "  + action + "données : " + pseudo + " | " + mdp + " | " +  prenom + " | " +  nom + " | " +  tel + " | " +  codepostal + " | " +  email + " | " +  rue + " | " +  ville + " | " +  password + " | " );
 		Utilisateur user = null;
 		
 		switch (action) {
 		case "creation":
 
 			try {
-				user = new Utilisateur(login, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false);
+				user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false);
 				user = UtilisateurManager.getInstance().insertUtilisateur(user,password);
 				request.getSession().setAttribute("user", user);
 				response.sendRedirect("http://www.google.com");
