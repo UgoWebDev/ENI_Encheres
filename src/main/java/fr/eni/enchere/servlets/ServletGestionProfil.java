@@ -63,7 +63,7 @@ public class ServletGestionProfil extends HttpServlet {
 				user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false,null,null);
 				user = UtilisateurManager.getInstance().insertUtilisateur(user,password);
 				request.getSession().setAttribute("user", user);
-				response.sendRedirect("http://www.google.com");
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.setAttribute("user", user);
