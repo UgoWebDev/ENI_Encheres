@@ -24,9 +24,9 @@ public class ServletConnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		if (action == "deconnexion") {
+		if (action != null && action.equals("deconnexion")) {
 			request.getSession().setAttribute("user", null);
-			request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/accueil");
 		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
 		}
@@ -55,8 +55,10 @@ public class ServletConnexion extends HttpServlet {
 			
 		case "inscription":
 			response.sendRedirect(request.getContextPath() + "/profil");
+			break;
 			
-			
+		case "annulation":
+			response.sendRedirect(request.getContextPath() + "/accueil");
 			break;
 
 		default:

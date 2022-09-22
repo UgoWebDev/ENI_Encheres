@@ -26,6 +26,7 @@
 		<input type="password" id="mdp" name="mdp">
 		<button type="submit" name="action" value="connexion">se connecter</button>
 		<button type="submit" name="action" value="inscription">s'inscrire</button>
+		<button type="submit" name="action" value="annulation">annuler</button>
 
 	</form>
 
