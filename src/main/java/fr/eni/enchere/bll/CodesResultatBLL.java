@@ -27,7 +27,9 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_CREATION_MOT_DE_PASSE = 20013;
 	
 	//Erreur liée à la gestion des articles
-	public static final int ARTICLE_CREATION_DATE = 20101;
+	public static final int ARTICLE_CREATION_DATE_DEBUT = 20101;
+	public static final int ARTICLE_CREATION_DATE_FIN = 20102;
+
 
 	
 }
