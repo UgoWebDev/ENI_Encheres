@@ -13,13 +13,13 @@ public class Article {
 	private int miseAPrix;
 	private int prixVente;
 	private EtatsVente etatVente;
-	private Utilisateur acheteur;
+	private Utilisateur vendeur;
 	private Categorie categorie;
 	private List<Enchere>  encherisseurs;
 	private Retrait retrait;
 	
 	public Article(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			int miseAPrix, int prixVente, EtatsVente etatVente, Utilisateur acheteur, Categorie categorie,
+			int miseAPrix, int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie,
 			List<Enchere> encherisseurs, Retrait retrait) {
 		super();
 		this.noArticle = noArticle;
@@ -30,15 +30,15 @@ public class Article {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
-		this.acheteur = acheteur;
+		this.vendeur = vendeur;
 		this.categorie = categorie;
 		this.encherisseurs = encherisseurs;
 		this.retrait = retrait;
 	}
 	
 	public Article(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres, int miseAPrix,
-			int prixVente, EtatsVente etatVente, Utilisateur acheteur, Categorie categorie, List<Enchere> encherisseurs, Retrait retrait) {
-		this( null ,nomArticle, description, dateDebutEncheres, dateFinEncheres , miseAPrix, prixVente , etatVente, acheteur, categorie, encherisseurs, retrait);
+			int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie, List<Enchere> encherisseurs, Retrait retrait) {
+		this( null ,nomArticle, description, dateDebutEncheres, dateFinEncheres , miseAPrix, prixVente , etatVente, vendeur, categorie, encherisseurs, retrait);
 	}
 
 
@@ -122,13 +122,13 @@ public class Article {
 	}
 
 
-	public Utilisateur getAcheteur() {
-		return acheteur;
+	public Utilisateur getvendeur() {
+		return vendeur;
 	}
 
 
-	public void setAcheteur(Utilisateur acheteur) {
-		this.acheteur = acheteur;
+	public void setvendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
 	}
 
 
