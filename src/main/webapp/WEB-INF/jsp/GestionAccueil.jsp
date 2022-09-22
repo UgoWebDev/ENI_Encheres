@@ -36,7 +36,7 @@
 			<a href="#" class="fa-solid fa-heart"></a> 
 			<a href="#" class="fa-solid fa-cart-shopping"></a> 
 			<a href="${pageContext.request.contextPath}/profil?id=${c.id}" class="fa-solid fa-user"></a> 
-			<a href="${pageContext.request.contextPath}/connexion?deconnexion" class="fa-solid fa-power-off"></a>
+			<a href="${pageContext.request.contextPath}/connexion?action=deconnexion" class="fa-solid fa-power-off"></a>
 		</div>
 		</c:if>
 		
