@@ -5,14 +5,11 @@ package fr.eni.enchere.bll;
  */
 public abstract class CodesResultatBLL {
 	
-	/**
-	 * Echec le nom de l'article ne respecte pas les règles définies
-	 */
+	// Erreurs liées à la connexion
 	public static final int UTILISATEUR_LOGIN_MDP_KO=20000;
-	/**
-	 * Echec le nom de l'article ne respecte pas les règles définies
-	 */
 
+
+	// Erreurs liées à l'utilisateur
 	public static final int UTILISATEUR_CREATION_EMAIL_DUP = 20002;
 	public static final int UTILISATEUR_CREATION_PSEUDO_DUP = 20003;
 	public static final int UTILISATEUR_CREATION_PASSWORD_DIFF = 20004;
@@ -26,9 +23,12 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_CREATION_VILLE = 20012;
 	public static final int UTILISATEUR_CREATION_MOT_DE_PASSE = 20013;
 	
-	//Erreur liée à la gestion des articles
+	//Erreurs liées à la gestion des articles
 	public static final int ARTICLE_CREATION_DATE_DEBUT = 20101;
 	public static final int ARTICLE_CREATION_DATE_FIN = 20102;
+	
+	//Erreurs liées à la gestion des catégories
+	public static final int CATEGORIE_NON_CONFORME = 20201;
 
 
 	
