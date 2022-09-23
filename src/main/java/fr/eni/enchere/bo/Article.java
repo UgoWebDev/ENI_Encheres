@@ -166,7 +166,8 @@ public class Article {
 		CREATION,
 		ENCOURS,
 		TERMINEE,
-		RETIREE
+		RETIREE,
+		SUPPRIME
 	}
 
 }
