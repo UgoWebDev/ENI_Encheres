@@ -467,6 +467,10 @@ header .fa-bars{
     resize: none;
 }
 
+.footer{
+	text-align:center;
+}
+
 .footer .box-container{
     display: flex;
     flex-wrap: wrap;
