@@ -3,18 +3,14 @@ package fr.eni.enchere.dal.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
 import fr.eni.enchere.bo.Categorie;
-import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.CategorieDAO;
 import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
-import fr.eni.enchere.dal.UtilisateurDAO;
 import fr.eni.enchere.BusinessException;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO {
