@@ -26,11 +26,13 @@ public abstract class CodesResultatBLL {
 	//Erreurs liées à la gestion des articles
 	public static final int ARTICLE_CREATION_DATE_DEBUT = 20101;
 	public static final int ARTICLE_CREATION_DATE_FIN = 20102;
+	public static final int ARTICLE_DATE_DEBUT_SUPERIEUR_DATE_FIN = 20203;
 	
 	//Erreurs liées à la gestion des catégories
 	public static final int CATEGORIE_NON_CONFORME = 20201;
 	public static final int CATEGORIE_DEJA_EXISTANTE = 20202;
 	public static final int CATEGORIE_NON_EXISTANTE = 20203;
+	
 
 
 	
