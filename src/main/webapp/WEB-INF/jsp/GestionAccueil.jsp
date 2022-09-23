@@ -28,14 +28,14 @@
 			<ul>
 				<li><a href="#encheres">Enchères</a></li>
 				<li><a href="#vendre">Ventes</a></li>
-				<li><a href="${pageContext.request.contextPath}/profil?id=${c.id}">Mon profil</a></li>
+				<li><a href="${pageContext.request.contextPath}/visualisation?id=${c.id}">Mon profil</a></li>
 			</ul>
 		</nav>
 		
 		<div class="icons">
 			<a href="#" class="fa-solid fa-heart"></a> 
 			<a href="#" class="fa-solid fa-cart-shopping"></a> 
-			<a href="${pageContext.request.contextPath}/profil?id=${c.id}" class="fa-solid fa-user"></a> 
+			<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}" class="fa-solid fa-user"></a> 
 			<a href="${pageContext.request.contextPath}/connexion?action=deconnexion" class="fa-solid fa-power-off"></a>
 		</div>
 		</c:if>
@@ -84,24 +84,24 @@
 				<button class="btn-search">
 					<i class="fas fa-search"></i>
 				</button>
-				<input type="text" class="input-search"
-					placeholder="Chercher un article...">
+				<input type="text" class="input-search" placeholder="Chercher un article...">
 			</div>
 
 			
 			<c:if test="${!empty user}">
 				<select name="cat" class="cat">
-					<c:forEach var="code" items="${listeCategories}">
-						<option value="">--Catégories--</option>
-						<option value="Ameublement">Ameublement</option>
-						<option value="Informatique">Informatique</option>
-						<option value="Sport">Sport et Loisirs</option>
-						<option value="Vêtements">Vêtements</option>
+					<c:forEach var="choixCat" items="${listeCategories}">
+						<option value="0">--Catégories--</option>
+						<option value="1">Ameublement</option>
+						<option value="2">Informatique</option>
+						<option value="3">Sport et Loisirs</option>
+						<option value="4">Vêtements</option>
+						<option value="5">Autres</option>
 					</c:forEach>
+					
 				</select>
 			</c:if>
 		</div>
-
 
 		<div class="box-container">
 			<c:choose>
@@ -110,11 +110,15 @@
 						<c:forEach var="article" items="${listeArticle.articles}">
 							<div class="image">
 								<img src="css/images/article1.jpg" alt="">
-								<div class="icons">
-									<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-									<a href="#" class="fa-solid fa-cart-plus"></a> 
-									<a href="#" class="fa-solid fa-share-from-square"></a>
-								</div>
+								
+								<c:if test="${!empty user}">
+									<div class="icons">
+										<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+										<a href="#" class="fa-solid fa-cart-plus"></a> 
+										<a href="#" class="fa-solid fa-share-from-square"></a>
+									</div>
+								</c:if>
+								
 							</div>
 							<div class="content">
 								<h3>"${article.nom}"</h3>
@@ -128,7 +132,6 @@
 										${article.getVendeur().pseudo}
 									</c:if>
 								</div>
-								
 							</div>
 						</c:forEach>
 					</div>
@@ -160,9 +163,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -179,9 +182,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -198,9 +201,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -217,9 +220,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -236,9 +239,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -255,9 +258,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -274,9 +277,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -293,9 +296,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -312,9 +315,9 @@
 				<div class="image">
 					<img src="css/images/article1.jpg" alt="">
 					<div class="icons">
-						<a href="#" class="fa-solid fa-heart-circle-plus"></a> <a href="#"
-							class="fa-solid fa-cart-plus"></a> <a href="#"
-							class="fa-solid fa-share-from-square"></a>
+						<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
+						<a href="#" class="fa-solid fa-cart-plus"></a> 
+						<a href="#" class="fa-solid fa-share-from-square"></a>
 					</div>
 				</div>
 				<div class="content">
@@ -347,11 +350,10 @@
 		<div class="row">
 
 			<form action="">
-				<input type="text" placeholder="Nom" class="box"> <input
-					type="email" placeholder="Email" class="box"> <input
-					type="number" placeholder="Telephone" class="box">
-				<textarea name="" class="box" placeholder="Votre message..." id=""
-					cols="30" rows="10"></textarea>
+				<input type="text" placeholder="Nom" class="box"> 
+				<input type="email" placeholder="Email" class="box"> 
+				<input type="number" placeholder="Telephone" class="box">
+				<textarea name="" class="box" placeholder="Votre message..." id="" cols="30" rows="10"></textarea>
 				<input type="submit" value="envoyer message" class="btn">
 			</form>
 
@@ -401,28 +403,39 @@
 
 			<div class="box">
 				<h3>liens rapides</h3>
-				<a href="#">enchères</a> <a href="#">ventes</a> <a href="#">articles</a>
-				<a href="#">à propos</a> <a href="#">contact</a>
+				<c:if test="${!empty user}">
+					<a href="#">enchères</a> 
+					<a href="#">ventes</a> 
+				</c:if>
+				<a href="#">articles</a>
+				<a href="#">à propos</a> 
+				<a href="#">contact</a>
 			</div>
 
-			<div class="box">
-				<h3>Espace perso</h3>
-				<a href="#">mon profil</a> <a href="#">mes ventes</a> <a href="#">mes
-					favoris</a>
+			<c:if test="${!empty user}">
+				<div class="box">
+					<h3>Espace perso</h3>
+					<a href="#">mon profil</a> 
+					<a href="#">mes ventes</a> 
+					<a href="#">mes favoris</a>
 			</div>
+			</c:if>
 
 			<div class="box">
 				<h3>Pays</h3>
-				<a href="#">france</a> <a href="#">europe</a> <a href="#">USA</a> <a
-					href="#">japon</a>
+				<a href="#">france</a> 
+				<a href="#">europe</a> 
+				<a href="#">USA</a> 
+				<a href="#">japon</a>
 
 			</div>
 
 			<div class="box" id="infos">
 				<h3>infos contacts</h3>
-				<a href="#">+123-456-7890</a> <a href="#">example@gmail.com</a> <a
-					href="#">nantes, france - 44100</a> <img
-					src="css/images/payment.png" alt="">
+				<a href="#">+123-456-7890</a> 
+				<a href="#">example@gmail.com</a> <a
+					href="#">nantes, france - 44100</a> 
+					<img src="css/images/payment.png" alt="">
 			</div>
 
 		</div>
