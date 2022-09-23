@@ -2,6 +2,8 @@ package fr.eni.enchere.bo;
 
 public class Retrait {
 	
+	private Integer noRetrait;
+
 	private String rueRetrait;
 	private String codePostalRetrait;
 	private String villeRetrait;
@@ -15,6 +17,13 @@ public class Retrait {
 		this.articleRetrait = articleRetrait;
 	}
 	
+	public Integer getNoRetrait() {
+		return noRetrait;
+	}
+
+	public void setNoRetrait(Integer noRetrait) {
+		this.noRetrait = noRetrait;
+	}
 	public String getRueRetrait() {
 		return rueRetrait;
 	}
