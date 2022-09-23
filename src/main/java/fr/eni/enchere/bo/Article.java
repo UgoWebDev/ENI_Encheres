@@ -122,12 +122,12 @@ public class Article {
 	}
 
 
-	public Utilisateur getvendeur() {
+	public Utilisateur getVendeur() {
 		return vendeur;
 	}
 
 
-	public void setvendeur(Utilisateur vendeur) {
+	public void setVendeur(Utilisateur vendeur) {
 		this.vendeur = vendeur;
 	}
 
