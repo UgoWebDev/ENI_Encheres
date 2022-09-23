@@ -3,6 +3,7 @@ package fr.eni.enchere.dal.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -15,10 +16,10 @@ import fr.eni.enchere.BusinessException;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO {
 
-	public static final String SELECT_CATEGORIE_BY_LIBELLE    	= "SELECT no_categorie ,libelle FROM CATEGORIES where libelle = ?";
-	public static final String SELECT_ALL_CATEGORIES    	= "SELECT no_categorie ,libelle FROM CATEGORIES";
-	public static final String INSERT_CATEGORIE 	= "INSERT INTO CATEGORIES (libelle) VALUES (?)";
-	public static final String DELETE_CATEGORIE 	= "DELETE FROM CATEGORIES WHERE libelle = ?";
+	public static final String SELECT_CATEGORIE_BY_LIBELLE    	= "SELECT no_categorie ,libelle FROM CATEGORIES where libelle = CATEGORIES";
+	public static final String SELECT_ALL_CATEGORIES    		= "SELECT no_categorie ,libelle FROM ?";
+	public static final String INSERT_CATEGORIE 				= "INSERT INTO CATEGORIES (libelle) VALUES (?)";
+	public static final String DELETE_CATEGORIE 				= "DELETE FROM CATEGORIES WHERE libelle = ?";
 
 	@Override
 	public Categorie getCategorie(String libelle) {
@@ -29,7 +30,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 			pstmt.setString(1, libelle);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"), null);
+					categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 
 					// il reste à ajouter le tableau d'articles de la catégorie quand ArticleManager sera prêt
 				}
@@ -45,11 +46,12 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	public List<Categorie> getCategories() {
 		ArrayList<Categorie> categories = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_CATEGORIES)
+				Statement pstmt = cnx.createStatement()
 				) {
-			try (ResultSet rs = pstmt.executeQuery()) {
+			
+			try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_CATEGORIES)) {
 				if (rs.next()) {
-					categories.add(new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"), null));
+					categories.add(new Categorie(rs.getInt("no_categorie"), rs.getString("libelle")));
 
 					// il reste à ajouter le tableau d'articles de la catégorie quand ArticleManager sera prêt
 				}
@@ -81,7 +83,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 				pstmt.executeUpdate();
 				rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
-					categorie = new Categorie(rs.getInt(1), libelle, null);
+					categorie = new Categorie(rs.getInt(1), libelle);
 				}
 				rs.close();
 				pstmt.close();
