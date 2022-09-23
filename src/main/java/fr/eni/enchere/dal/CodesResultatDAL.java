@@ -48,6 +48,12 @@ public abstract class CodesResultatDAL {
 	 * Erreur au décochage de tous les articles d'une liste
 	 */
 	public static final int DECOCHE_ARTICLES_ERREUR = 10009;
+	
+
+	/**
+	 * Echec général quand tentative d'ajouter un article null
+	 */
+	public static final int INSERT_ARTICLE_NULL = 10101;
 }
 
 

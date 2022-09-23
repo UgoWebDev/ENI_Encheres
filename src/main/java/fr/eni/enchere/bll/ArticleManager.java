@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Article;
@@ -83,6 +84,12 @@ public class ArticleManager {
 	public Article getArticle(String noArticle) throws BusinessException {
 		return articleDAO.getArticleByNoArticle(noArticle);
 	}
+	
+	public List<Article> getArticles(String categorie, String utilisateur) {
+		
+		return articleDAO.getArticles();
+	}
+	
 	
 	/**
 	
