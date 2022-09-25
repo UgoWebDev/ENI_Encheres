@@ -1,11 +1,15 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import fr.eni.enchere.bll.ArticleManager;
 
@@ -21,11 +25,17 @@ public class ServletGestionAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+		List<String> listeCategories = new ArrayList<>();
+		listeCategories.add("Ameublement");
+		listeCategories.add("Info");
+		listeCategories.add("Video");
 		
+		request.setAttribute("listeCategories",listeCategories);
+		
+		request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
-		
 		
 	}
 

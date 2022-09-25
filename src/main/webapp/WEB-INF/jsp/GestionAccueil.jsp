@@ -90,15 +90,10 @@
 			
 			<c:if test="${!empty user}">
 				<select name="cat" class="cat">
+				<option value="all">--Catégories--</option>
 					<c:forEach var="choixCat" items="${listeCategories}">
-						<option value="0">--Catégories--</option>
-						<option value="1">Ameublement</option>
-						<option value="2">Informatique</option>
-						<option value="3">Sport et Loisirs</option>
-						<option value="4">Vêtements</option>
-						<option value="5">Autres</option>
+						<option value="${choixCat}">${choixCat}</option>
 					</c:forEach>
-					
 				</select>
 			</c:if>
 		</div>
