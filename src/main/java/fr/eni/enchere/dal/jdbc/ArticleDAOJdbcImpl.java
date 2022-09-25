@@ -5,10 +5,14 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
@@ -19,6 +23,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
 	public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	public static final String INSERT_ADRESSE = "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
+	public static final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE no_article = ?";
+	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse FROM ?";
 
 	
 	@Override
@@ -107,14 +113,42 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 
 	@Override
-	public Article getArticleByNoArticle(String noArticle) {
+	public Article getArticleByNoArticle(int noArticle) {
 		return null;
 	}
 
 
 	@Override
 	public List<Article> getArticles() {
-		return null;
+		ArrayList<Article> articles = null;
+		try (Connection cnx = ConnectionProvider.getConnection();
+				Statement pstmt = cnx.createStatement()
+				) {
+			
+			try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
+				if (rs.next()) {
+					articles.add(new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getEtatsVente("etat_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), rs.getInt("no_adresse")));
+
+					// il reste à ajouter le tableau d'articles de la catégorie quand ArticleManager sera prêt
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return articles;
+	}
+	
+	@Override
+	public void deleteArticle(int noArticle) {
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE)
+				) {
+			pstmt.setInt(1, noArticle);
+			try (ResultSet rs = pstmt.executeQuery()) {
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -8,10 +8,13 @@ import fr.eni.enchere.bo.Article;
 
 public interface ArticleDAO {
 
-	Article getArticleByNoArticle(String noArticle);
+	Article getArticleByNoArticle(int noArticle);
 
 	Article insertArticle(Article article) throws BusinessException;
 
 	List<Article> getArticles();
+
+	void deleteArticle(int noArticle);
+
 
 }
