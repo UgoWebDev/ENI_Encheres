@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.ArticleManager;
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.bo.Article;
 
 /**
  * Servlet implementation class ServletGestionVente
@@ -44,7 +44,7 @@ public class ServletGestionVente extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		
-		Utilisateur article = null;
+		Article article = null;
 		
 		switch (action) {
 		case "enregistrer":
