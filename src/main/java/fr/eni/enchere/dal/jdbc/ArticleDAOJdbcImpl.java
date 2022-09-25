@@ -25,7 +25,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String INSERT_ADRESSE = "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE no_article = ?";
 	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse FROM ?";
-
+	public static final String SELECT_BY_NO_ARTICLE 	= "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse WHERE no_article = ?";
 	
 	@Override
 	public Article insertArticle(Article article) throws BusinessException {
@@ -113,10 +113,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 
 	@Override
-	public Article getArticleByNoArticle(int noArticle) {
-		return null;
+	public Article getArticleByNoArticle(String nomArticle) {
+		return getArticleByNoArticle(nomArticle, SELECT_BY_NO_ARTICLE);
 	}
-
 
 	@Override
 	public List<Article> getArticles() {
