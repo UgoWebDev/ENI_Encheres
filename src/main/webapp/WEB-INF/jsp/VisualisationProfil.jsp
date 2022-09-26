@@ -12,7 +12,7 @@
     </head>
     <body>
     
-    	<%@ include file="html/header.html" %>
+    	<%@ include file="../html/header.html" %>
     
    		<c:if test="${!empty profil}">
 	        <div class="affichePseudo">
@@ -63,7 +63,7 @@
 	       	 </form>
 	    </c:if>
        
-       <%@ include file="html/footer.html" %>
+       <%@ include file="../html/footer.html" %>
     
     </body>
 </html>

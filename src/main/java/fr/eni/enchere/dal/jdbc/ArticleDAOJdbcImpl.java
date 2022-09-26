@@ -12,8 +12,6 @@ import java.util.List;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Article;
-import fr.eni.enchere.bo.Categorie;
-import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
@@ -46,9 +44,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				if (article.getNomArticle()==null || article.getNomArticle() == "") 
 				{
 					pstmt = cnx.prepareStatement(INSERT_ADRESSE,PreparedStatement.RETURN_GENERATED_KEYS);
-					pstmt.setString(1, article.getRetrait().getRueRetrait());
-					pstmt.setString(2, article.getRetrait().getCodePostalRetrait());
-					pstmt.setString(3, article.getRetrait().getVilleRetrait());
+					pstmt.setString(1, article.getRetrait().getRue());
+					pstmt.setString(2, article.getRetrait().getCodePostal());
+					pstmt.setString(3, article.getRetrait().getVille());
 					pstmt.executeUpdate();
 					rs = pstmt.getGeneratedKeys();
 					if (rs.next()) {
@@ -86,7 +84,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					rs = pstmt.getGeneratedKeys();
 					if (rs.next()) {
 						article.setNoArticle(rs.getInt(1));
-						article.setRetrait();
+						article.;
 					}
 					rs.close();
 					pstmt.close();
@@ -183,6 +181,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			e.printStackTrace();
 		}
 		return article;
+	}
+
+	@Override
+	public Article getArticleByNoArticle(String nomArticle) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

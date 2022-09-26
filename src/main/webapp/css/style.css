@@ -42,7 +42,8 @@
 }
 
 *{
-    margin:0; padding:0;
+    margin:0; 
+    padding:0;
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     outline: none; border:none;
@@ -521,43 +522,6 @@ header .fa-bars{
 div .box #infos {
     text-transform: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* media queries  */
