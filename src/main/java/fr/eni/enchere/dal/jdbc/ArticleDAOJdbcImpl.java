@@ -13,6 +13,7 @@ import java.util.List;
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
@@ -111,12 +112,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return article;
 	}
 
-
-	@Override
-	public Article getArticleByNoArticle(String nomArticle) {
-		return getArticleByNoArticle(nomArticle, SELECT_BY_NO_ARTICLE);
-	}
-
 	@Override
 	
 	  public List<Article> getArticles() {
@@ -128,19 +123,25 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		  
 			  try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
 				  if (rs.next()){ articles.add(new Article(rs.getInt("no_article"),
-					  rs.getString("nom_article"), rs.getString("description"),
-					  rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
-					  rs.getInt("prix_initial"), rs.getInt("prix_vente"),
-					  rs.getEtatsVente("etat_vente"), rs.getInt("no_utilisateur"),
-					  rs.getInt("no_categorie"), rs.getInt("no_adresse")));
+					  rs.getString("nom_article"), 
+					  rs.getString("description"),
+					  rs.getDate("date_debut_encheres"),
+					  rs.getDate("date_fin_encheres"),
+					  rs.getInt("prix_initial"),
+					  rs.getInt("prix_vente"),
+					  rs.getEtatsVente("etat_vente"), 
+					  rs.getInt("no_utilisateur"),
+					  rs.getInt("no_categorie"), 
+					  rs.getInt("no_adresse")));
 			  
+				 
 			  // il reste à ajouter le tableau d'articles de la catégorie quandArticleManager sera prêt 
 				  } 
 				} 
 		  } catch (SQLException e) { 
 			  e.printStackTrace();
 		  } 
-		  	return articles; 
+		  	return articles;
 	  }
 	 
 	
@@ -155,6 +156,33 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private Article getArticleByNoArticle(String nomArticle,String requete) {
+		Article article = null;
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(requete)
+				) {
+			pstmt.setString(1, nomArticle);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					article = new Article (rs.getInt("no_article"),
+							  rs.getString("nom_article"), 
+							  rs.getString("description"),
+							  rs.getDate("date_debut_encheres"), 
+							  rs.getDate("date_fin_encheres"),
+							  rs.getInt("prix_initial"), 
+							  rs.getInt("prix_vente"),
+							  rs.getEtatsVente("etat_vente"),
+							  rs.getInt("no_utilisateur"),
+							  rs.getInt("no_categorie"), 
+							  rs.getInt("no_adresse"),null);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return article;
 	}
 
 }
