@@ -52,6 +52,7 @@
 	    
 	    <c:if test="${empty profil }">
 	    	<p>Ce profil n'existe pas</p>
+	    	<a href="/accueil">Retour</a>
 	    </c:if>
 	    
        
