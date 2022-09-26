@@ -11,6 +11,8 @@
         <title>état vente</title>
     </head>
     <body>
+        <%@ include file="../html/header.html" %>
+    
     
     <div>
     <c:if test="${article.etatVente == Article.EtatsVente.ENCOURS}">
@@ -74,5 +76,7 @@
 				</c:if>
 		</div>
 	
+		<%@ include file="../html/footer.html" %>
+		
     </body>
 </html>

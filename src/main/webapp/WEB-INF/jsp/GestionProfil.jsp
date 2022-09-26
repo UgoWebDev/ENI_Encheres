@@ -11,6 +11,8 @@
 		<title>Création d'un utilisateur</title>
 	</head>
 	<body>
+		  <%@ include file="../html/header.html" %>
+		
 	      <% Utilisateur user =  (Utilisateur) session.getAttribute("user"); %>
 	      <p> ${user.getPseudo() } </p>
 	
@@ -87,5 +89,8 @@
 					<button type="submit" name="action" value="annulation">Annuler</button>
 				</div>
 			</form>
+			
+			<%@ include file="../html/footer.html" %>
+			
 	</body>
 </html>

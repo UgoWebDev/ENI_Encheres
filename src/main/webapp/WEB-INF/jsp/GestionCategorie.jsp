@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+    <%@ include file="../html/header.html" %>
+
 	<form method="post" action="<%=request.getContextPath()%>/categorie">
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
@@ -40,5 +42,8 @@
 		<button type="submit" name="action" value="annulation">annuler</button>
 
 	</form>
+	
+    <%@ include file="../html/footer.html" %>
+	
 </body>
 </html>
