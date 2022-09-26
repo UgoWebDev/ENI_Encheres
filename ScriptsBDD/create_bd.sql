@@ -65,6 +65,7 @@ CREATE TABLE ARTICLES (
     date_fin_encheres             DATE NOT NULL,
     prix_initial                  INTEGER,
     prix_vente                    INTEGER,
+	etat_vente					  INTEGER NOT NULL,
     no_utilisateur                INTEGER NOT NULL,
     no_categorie                  INTEGER NOT NULL,
 	no_adresse					  INTEGER NOT NULL
