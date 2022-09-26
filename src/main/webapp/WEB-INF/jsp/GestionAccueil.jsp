@@ -20,7 +20,7 @@
 	<header>
 	
 		<c:if test="${!empty user}">							
-			<%@ include file="html/header.html" %>
+			<%@ include file="../html/header.html" %>
 		</c:if>
 		
 		<c:if test="${empty user}">	
@@ -415,5 +415,5 @@
 
 	</section>
 	
-	 <%@ include file="html/footer.html" %>
+	 <%@ include file="../html/footer.html" %>
 </html>
