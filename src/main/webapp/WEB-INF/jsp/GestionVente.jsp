@@ -14,7 +14,7 @@
     </head>
     <body>
     
-    	<%@ include file="html/header.html" %>
+    	<%@ include file="../html/header.html" %>
     
         <h1>Nouvelle Vente</h1>
         
@@ -100,6 +100,6 @@
             </div>
         </div>
 		
-		<%@ include file="html/footer.html" %>
+		<%@ include file="../html/footer.html" %>
     </body>
 </html>
