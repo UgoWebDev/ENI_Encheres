@@ -118,24 +118,31 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Article> getArticles() {
-		ArrayList<Article> articles = null;
-		try (Connection cnx = ConnectionProvider.getConnection();
-				Statement pstmt = cnx.createStatement()
-				) {
-			
-			try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
-				if (rs.next()) {
-					articles.add(new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getEtatsVente("etat_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"), rs.getInt("no_adresse")));
-
-					// il reste à ajouter le tableau d'articles de la catégorie quand ArticleManager sera prêt
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return articles;
-	}
+	
+	  public List<Article> getArticles() {
+		ArrayList<Article> articles = null; 
+	  
+		  try
+		  (Connection cnx = ConnectionProvider.getConnection(); Statement pstmt =
+		  cnx.createStatement() ) {
+		  
+			  try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
+				  if (rs.next()){ articles.add(new Article(rs.getInt("no_article"),
+					  rs.getString("nom_article"), rs.getString("description"),
+					  rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+					  rs.getInt("prix_initial"), rs.getInt("prix_vente"),
+					  rs.getEtatsVente("etat_vente"), rs.getInt("no_utilisateur"),
+					  rs.getInt("no_categorie"), rs.getInt("no_adresse")));
+			  
+			  // il reste à ajouter le tableau d'articles de la catégorie quandArticleManager sera prêt 
+				  } 
+				} 
+		  } catch (SQLException e) { 
+			  e.printStackTrace();
+		  } 
+		  	return articles; 
+	  }
+	 
 	
 	@Override
 	public void deleteArticle(int noArticle) {

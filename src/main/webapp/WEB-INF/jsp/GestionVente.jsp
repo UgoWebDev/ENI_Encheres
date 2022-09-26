@@ -13,6 +13,9 @@
         <title>nouvelle vente</title>
     </head>
     <body>
+    
+    	<%@ include file="html/header.html" %>
+    
         <h1>Nouvelle Vente</h1>
         
         <div class="page">
@@ -96,6 +99,7 @@
 
             </div>
         </div>
-
+		
+		<%@ include file="html/footer.html" %>
     </body>
 </html>
