@@ -16,4 +16,6 @@ public interface CategorieDAO {
 
 	List<Categorie> getCategories();
 
+	Categorie getCategorieByNo(Integer noCategorie);
+
 }

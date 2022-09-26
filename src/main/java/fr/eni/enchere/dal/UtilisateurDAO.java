@@ -4,6 +4,8 @@ import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {
+	
+	Utilisateur getUtilisateurByNo(Integer noUtilisateur)throws BusinessException;
 
 	Utilisateur getUtilisateurByMail(String login)throws BusinessException;
 

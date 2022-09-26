@@ -5,7 +5,7 @@ import fr.eni.enchere.bo.Adresse;
 
 public interface AdresseDAO {
 	
-	Adresse getAdresse(Integer noAdresse);
+	Adresse getAdresseByNo(Integer noAdresse);
 
 	Adresse insertAdresse(Adresse adresse) throws BusinessException;
 

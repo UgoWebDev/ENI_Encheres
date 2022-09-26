@@ -17,7 +17,7 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 	public static final String INSERT_ADRESSE			= "INSERT INTO ADRESSES (rue, code_postal, ville) VALUES (?,?,?)";
 
 	@Override
-	public Adresse getAdresse(Integer noAdresse) {
+	public Adresse getAdresseByNo(Integer noAdresse) {
 		Adresse adresse = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ADRESSE_BY_ID)

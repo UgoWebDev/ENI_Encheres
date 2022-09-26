@@ -24,6 +24,10 @@ public class UtilisateurManager {
 	public Utilisateur getUtilisateur(String pseudo) throws BusinessException {
 		return utilisateurDAO.getUtilisateurByPseudo(pseudo);
 	}
+	
+	public Utilisateur getUtilisateurByNo(Integer noUtilisateur) throws BusinessException {
+		return utilisateurDAO.getUtilisateurByNo(noUtilisateur);
+	}
 
 	public Utilisateur seConnecter(String login, String mdp) throws BusinessException {
 		Utilisateur user = null; 

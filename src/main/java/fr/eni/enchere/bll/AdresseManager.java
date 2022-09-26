@@ -22,8 +22,8 @@ public class AdresseManager {
 		return instance;
 	}
 	
-	public Adresse getAdresse(Integer noAdresse) throws BusinessException {
-		return AdresseDAO.getAdresse(noAdresse);
+	public Adresse getAdresseByNo(Integer noAdresse) throws BusinessException {
+		return AdresseDAO.getAdresseByNo(noAdresse);
 	}
 
 	public Adresse insertAdresse(Adresse adresse) throws BusinessException {

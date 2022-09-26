@@ -16,7 +16,8 @@ import fr.eni.enchere.BusinessException;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO {
 
-	public static final String SELECT_CATEGORIE_BY_LIBELLE    	= "SELECT no_categorie ,libelle FROM CATEGORIES where libelle = CATEGORIES";
+	public static final String SELECT_CATEGORIE_BY_LIBELLE    	= "SELECT no_categorie ,libelle FROM CATEGORIES where libelle = ?";
+	public static final String SELECT_CATEGORIE_BY_NO	    	= "SELECT no_categorie ,libelle FROM CATEGORIES where no_categorie = ?";
 	public static final String SELECT_ALL_CATEGORIES    		= "SELECT no_categorie ,libelle FROM ?";
 	public static final String INSERT_CATEGORIE 				= "INSERT INTO CATEGORIES (libelle) VALUES (?)";
 	public static final String DELETE_CATEGORIE 				= "DELETE FROM CATEGORIES WHERE libelle = ?";
@@ -31,8 +32,25 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return categorie;
+	}
 
-					// il reste à ajouter le tableau d'articles de la catégorie quand ArticleManager sera prêt
+
+	@Override
+	public Categorie getCategorieByNo(Integer noCategorie) {
+		Categorie categorie = null;
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(SELECT_CATEGORIE_BY_NO)
+				) {
+			pstmt.setInt(1, noCategorie);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					categorie = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 				}
 			}
 		} catch (SQLException e) {

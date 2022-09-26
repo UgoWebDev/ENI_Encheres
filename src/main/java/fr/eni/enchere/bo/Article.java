@@ -12,14 +12,14 @@ public class Article {
 	private Date dateFinEncheres;
 	private int miseAPrix;
 	private int prixVente;
-	private EtatsVente etatVente;
+	private Article.EtatsVente etatVente;
 	private Utilisateur vendeur;
 	private Categorie categorie;
 	private List<Enchere>  encherisseurs;
 	private Adresse retrait;
 	
 	public Article(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
-			int miseAPrix, int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie,
+			int miseAPrix, int prixVente, Article.EtatsVente etatVente, Utilisateur vendeur, Categorie categorie,
 			List<Enchere> encherisseurs, Adresse retrait) {
 		super();
 		this.noArticle = noArticle;
@@ -37,11 +37,19 @@ public class Article {
 	}
 	
 	public Article(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres, int miseAPrix,
-			int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie, List<Enchere> encherisseurs, Adresse retrait) {
+			int prixVente, Article.EtatsVente etatVente, Utilisateur vendeur, Categorie categorie, List<Enchere> encherisseurs, Adresse retrait) {
 		this( null ,nomArticle, description, dateDebutEncheres, dateFinEncheres , miseAPrix, prixVente , etatVente, vendeur, categorie, encherisseurs, retrait);
 	}
 
 
+	public enum EtatsVente {
+		CREATION,
+		ENCOURS,
+		TERMINEE,
+		RETIREE,
+		SUPPRIME
+	}
+	
 	public Integer getNoArticle() {
 		return noArticle;
 	}
@@ -160,14 +168,4 @@ public class Article {
 	public void setRetrait(Adresse retrait) {
 		this.retrait = retrait;
 	}
-
-
-	enum EtatsVente {
-		CREATION,
-		ENCOURS,
-		TERMINEE,
-		RETIREE,
-		SUPPRIME
-	}
-
 }

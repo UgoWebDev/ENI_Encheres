@@ -27,6 +27,10 @@ public class CategorieManager {
 	public Categorie getCategorie(String categorie) throws BusinessException {
 		return categorieDAO.getCategorie(categorie);
 	}
+	
+	public Categorie getCategorieByNo(Integer noCategorie) throws BusinessException {
+		return categorieDAO.getCategorieByNo(noCategorie);
+	}
 
 	public List<Categorie> getCategories() {
 		return categorieDAO.getCategories();
