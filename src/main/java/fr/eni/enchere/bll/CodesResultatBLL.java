@@ -18,9 +18,6 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_CREATION_PSEUDO = 20007;
 	public static final int UTILISATEUR_CREATION_EMAIL = 20008;
 	public static final int UTILISATEUR_CREATION_TELEPHONE = 20009;
-	public static final int UTILISATEUR_CREATION_RUE = 20010;
-	public static final int UTILISATEUR_CREATION_CODE_POSTAL = 20011;
-	public static final int UTILISATEUR_CREATION_VILLE = 20012;
 	public static final int UTILISATEUR_CREATION_MOT_DE_PASSE = 20013;
 	
 	//Erreurs liées à la gestion des articles
@@ -32,6 +29,11 @@ public abstract class CodesResultatBLL {
 	public static final int CATEGORIE_NON_CONFORME = 20201;
 	public static final int CATEGORIE_DEJA_EXISTANTE = 20202;
 	public static final int CATEGORIE_NON_EXISTANTE = 20203;
+	
+	//Erreurs liées à la gestion des adresses
+	public static final int ADRESSE_CREATION_RUE = 20301;
+	public static final int ADRESSE_CREATION_CODE_POSTAL = 20302;
+	public static final int ADRESSE_CREATION_VILLE = 20303;
 	
 
 

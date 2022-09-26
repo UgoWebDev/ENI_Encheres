@@ -10,18 +10,19 @@ import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
 import fr.eni.enchere.dal.UtilisateurDAO;
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.AdresseManager;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	public static final String SELECT_BY_MAIL    	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,rue ,code_postal ,ville ,mot_de_passe ,credit ,administrateur "
+	public static final String SELECT_BY_MAIL    	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,no_adresse ,mot_de_passe ,credit ,administrateur "
 			+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND email = ?";
-	public static final String SELECT_BY_PSEUDO 	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,rue ,code_postal ,ville ,mot_de_passe ,credit ,administrateur "
+	public static final String SELECT_BY_PSEUDO 	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,no_adresse ,mot_de_passe ,credit ,administrateur "
 			+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND pseudo = ?";
 	public static final String INSERT_ADRESSE 		= "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String INSERT_UTILISATEUR 	= "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,no_adresse,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
 
 
-	private Utilisateur getUtilisateurByLogin(String login,String requete) {
+	private Utilisateur getUtilisateurByLogin(String login,String requete) throws BusinessException{
 		Utilisateur user = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(requete)
@@ -29,10 +30,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(1, login);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					user = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
-							rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
-							rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
-							rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"),null,null);
+					user = new Utilisateur(
+							rs.getInt("no_utilisateur"), 
+							rs.getString("pseudo"), 
+							rs.getString("nom"),
+							rs.getString("prenom"), 
+							rs.getString("email"), 
+							rs.getString("telephone"),
+							AdresseManager.getInstance().getAdresse(rs.getInt("no_adresse")),
+							rs.getString("mot_de_passe"), 
+							rs.getInt("credit"), 
+							rs.getBoolean("administrateur"),null,null);
 				}
 			}
 		} catch (SQLException e) {
@@ -42,12 +50,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur getUtilisateurByPseudo(String login) {
+	public Utilisateur getUtilisateurByPseudo(String login) throws BusinessException{
 		return getUtilisateurByLogin(login, SELECT_BY_PSEUDO);
 	}
 
 	@Override
-	public Utilisateur getUtilisateurByMail(String login) {
+	public Utilisateur getUtilisateurByMail(String login) throws BusinessException{
 		return getUtilisateurByLogin(login, SELECT_BY_MAIL);
 	}
 
@@ -69,9 +77,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				if (user.getNoUtilisateur()==null) 
 				{
 					pstmt = cnx.prepareStatement(INSERT_ADRESSE,PreparedStatement.RETURN_GENERATED_KEYS);
-					pstmt.setString(1, user.getRue());
-					pstmt.setString(2, user.getCodePostal());
-					pstmt.setString(3, user.getVille());
+					pstmt.setString(1, user.getAdresse().getRue());
+					pstmt.setString(2, user.getAdresse().getCodePostal());
+					pstmt.setString(3, user.getAdresse().getVille());
 					pstmt.executeUpdate();
 					rs = pstmt.getGeneratedKeys();
 					if (rs.next()) {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Adresse;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -55,12 +56,14 @@ public class ServletGestionProfil extends HttpServlet {
 		System.out.println("mdp : " + mdp);
 		System.out.println("password : " +  password);
 		Utilisateur user = null;
+		Adresse adresse = null;
 		
 		switch (action) {
 		case "creation":
 
 			try {
-				user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, codepostal, ville, mdp, 100, false,null,null);
+				adresse = new Adresse(rue, codepostal, ville);
+				user = new Utilisateur(pseudo, nom, prenom, email, tel, adresse, mdp, 100, false,null,null);
 				user = UtilisateurManager.getInstance().insertUtilisateur(user,password);
 				request.getSession().setAttribute("user", user);
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);

@@ -10,22 +10,20 @@ public class Utilisateur {
     private String prenom;
     private String email;
 	private String telephone;
-    private String rue;
-    private String codePostal;
-    private String ville;
+    private Adresse adresse;
     private String motDePasse;
     private int credit;
     private boolean administrateur;
     private List<Enchere> encheresSoumises;
     private List<Article> vendArticles;
     
-    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<Enchere> encheresSoumises, List<Article> vendArticles ) {
-			this( null,pseudo,  nom,  prenom,  email,  telephone,  rue,	 codePostal,  ville,  motDePasse,  credit,  administrateur, encheresSoumises, vendArticles);
+    public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, Adresse adresse,
+			String motDePasse, int credit, boolean administrateur, List<Enchere> encheresSoumises, List<Article> vendArticles ) {
+			this( null,pseudo,  nom,  prenom,  email,  telephone,  adresse,  motDePasse,  credit,  administrateur, encheresSoumises, vendArticles);
 
 	}
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur, List<Enchere> encheresSoumises, List<Article> vendArticles ) {
+			Adresse adresse, String motDePasse, int credit, boolean administrateur, List<Enchere> encheresSoumises, List<Article> vendArticles ) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -33,9 +31,7 @@ public class Utilisateur {
 		this.prenom = prenom;
 		this.email = email;
 		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
+		this.adresse = adresse;
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
@@ -79,23 +75,11 @@ public class Utilisateur {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public String getRue() {
-		return rue;
+	public Adresse getAdresse() {
+		return adresse;
 	}
-	public void setRue(String rue) {
-		this.rue = rue;
-	}
-	public String getCodePostal() {
-		return codePostal;
-	}
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
-	}
-	public String getVille() {
-		return ville;
-	}
-	public void setVille(String ville) {
-		this.ville = ville;
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 	public String getMotDePasse() {
 		return motDePasse;

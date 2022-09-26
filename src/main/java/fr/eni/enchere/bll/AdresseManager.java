@@ -28,6 +28,7 @@ public class AdresseManager {
 
 	public Adresse insertAdresse(Adresse adresse) throws BusinessException {
 		BusinessException be = new BusinessException();
+		this.valideAdresse(adresse,be);
 		if(!be.hasErreurs())
 		{
 			adresse = AdresseDAO.insertAdresse(adresse);
@@ -38,6 +39,13 @@ public class AdresseManager {
 			throw be;
 		}
 		return adresse;
+	}
+	
+	private void valideAdresse(Adresse adresse, BusinessException be) {
+		// TODO Auto-generated method stub
+		if (adresse.getRue() == null || adresse.getRue() == "") {be.ajouterErreur(CodesResultatBLL.ADRESSE_CREATION_RUE);}
+		if (adresse.getCodePostal() == null || adresse.getCodePostal() == "") {be.ajouterErreur(CodesResultatBLL.ADRESSE_CREATION_CODE_POSTAL);}
+		if (adresse.getVille() == null || adresse.getVille() == "") {be.ajouterErreur(CodesResultatBLL.ADRESSE_CREATION_VILLE);}
 	}
 	
 }

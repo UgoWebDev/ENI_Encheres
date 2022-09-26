@@ -5,9 +5,9 @@ import fr.eni.enchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {
 
-	Utilisateur getUtilisateurByMail(String login);
+	Utilisateur getUtilisateurByMail(String login)throws BusinessException;
 
-	Utilisateur getUtilisateurByPseudo(String login);
+	Utilisateur getUtilisateurByPseudo(String login) throws BusinessException;
 	
 	Utilisateur insertUtilisateur(Utilisateur user) throws BusinessException;
 

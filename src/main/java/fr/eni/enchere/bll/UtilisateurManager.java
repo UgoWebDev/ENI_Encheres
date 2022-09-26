@@ -99,9 +99,6 @@ public class UtilisateurManager {
 		if (user.getPseudo() == null || user.getPseudo() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
 		if (user.getEmail() == null || user.getEmail() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
 		if (user.getTelephone() == null || user.getTelephone() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_TELEPHONE);}
-		if (user.getRue() == null || user.getRue() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_RUE);}
-		if (user.getCodePostal() == null || user.getCodePostal() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_CODE_POSTAL);}
-		if (user.getVille() == null || user.getVille() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_VILLE);}
 		if (user.getMotDePasse() == null || user.getMotDePasse() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
 	}
 }

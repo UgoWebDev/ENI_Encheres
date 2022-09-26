@@ -53,9 +53,9 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 				PreparedStatement pstmt;
 				ResultSet rs;
 				pstmt = cnx.prepareStatement(INSERT_ADRESSE,PreparedStatement.RETURN_GENERATED_KEYS);
-				pstmt.setString(1, adresse.getRueAdresse());
-				pstmt.setString(2, adresse.getCodePostalAdresse());
-				pstmt.setString(3, adresse.getVilleAdresse());
+				pstmt.setString(1, adresse.getRue());
+				pstmt.setString(2, adresse.getCodePostal());
+				pstmt.setString(3, adresse.getVille());
 				pstmt.executeUpdate();
 				rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {

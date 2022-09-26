@@ -3,20 +3,20 @@ package fr.eni.enchere.bo;
 public class Adresse {
 	
 	private Integer 	noAdresse;
-	private String 		rueAdresse;
-	private String 		codePostalAdresse;
-	private String 		villeAdresse;
+	private String 		rue;
+	private String 		codePostal;
+	private String 		ville;
 	
-	public Adresse(Integer noAdresse, String rueAdresse, String codePostalAdresse, String villeAdresse) {
+	public Adresse(Integer noAdresse, String rue, String codePostal, String ville) {
 		super();
 		this.noAdresse = noAdresse;
-		this.rueAdresse = rueAdresse;
-		this.codePostalAdresse = codePostalAdresse;
-		this.villeAdresse = villeAdresse;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
 	}
 	
-	public Adresse(String rueAdresse, String codePostalAdresse, String villeAdresse) {
-		this(null,rueAdresse,codePostalAdresse,villeAdresse);
+	public Adresse(String rue, String codePostal, String ville) {
+		this(null,rue,codePostal,ville);
 	}
 	
 	public Integer getNoAdresse() {
@@ -25,22 +25,22 @@ public class Adresse {
 	public void setNoAdresse(Integer noAdresse) {
 		this.noAdresse = noAdresse;
 	}
-	public String getRueAdresse() {
-		return rueAdresse;
+	public String getRue() {
+		return rue;
 	}
-	public void setRueAdresse(String rueAdresse) {
-		this.rueAdresse = rueAdresse;
+	public void setRue(String rue) {
+		this.rue = rue;
 	}
-	public String getCodePostalAdresse() {
-		return codePostalAdresse;
+	public String getCodePostal() {
+		return codePostal;
 	}
-	public void setCodePostalAdresse(String codePostalAdresse) {
-		this.codePostalAdresse = codePostalAdresse;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
-	public String getVilleAdresse() {
-		return villeAdresse;
+	public String getVille() {
+		return ville;
 	}
-	public void setVilleAdresse(String villeAdresse) {
-		this.villeAdresse = villeAdresse;
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 }
