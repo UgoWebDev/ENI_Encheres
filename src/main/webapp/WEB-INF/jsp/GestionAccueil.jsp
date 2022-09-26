@@ -117,14 +117,13 @@
 							</div>
 							<div class="content">
 								<h3>"${article.nom}"</h3>
-								<div class="price">Prix :${article.miseAPrix}</div>
+								<div class="price">Prix : ${article.miseAPrix}</div>
 								<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
 								<div class="vendeur">Vendeur : 
 									<c:if test="${!empty user}">
-										<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}"> ${article.getVendeur().pseudo} </a>
+										<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}">${article.getVendeur().getPseudo()}</a>
 									</c:if>
-									<c:if test="${empty user}">
-										${article.getVendeur().pseudo}
+									<c:if test="${empty user}">${article.getVendeur().getPseudo()}
 									</c:if>
 								</div>
 							</div>
@@ -436,7 +435,7 @@
 		</div>
 
 		<div class="credit">
-			crée par <span> Ugo, Pierre et Patrick </span> | all rights reserved
+			crée par <span> Ugo, Pierre et Patrick </span> |  all rights reserved
 		</div>
 
 	</section>
