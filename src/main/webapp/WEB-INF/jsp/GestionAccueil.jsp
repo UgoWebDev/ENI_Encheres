@@ -17,37 +17,16 @@
 <body>
 
 	<!-- header section starts  -->
-
 	<header>
-		<input type="checkbox" name="" id="toggler"> <label
-			for="toggler" class="fas fa-bars"></label> <a href="#" class="logo">ENI-ENCHERE<span>.</span></a>
-
+	
 		<c:if test="${!empty user}">							
-		<nav class="navbar">
-		
-			<ul>
-				<li><a href="#encheres">Enchères</a></li>
-				<li><a href="#vendre">Ventes</a></li>
-				<li><a href="${pageContext.request.contextPath}/visualisation?id=${c.id}">Mon profil</a></li>
-			</ul>
-		</nav>
-		
-		<div class="icons">
-			<a href="#" class="fa-solid fa-heart"></a> 
-			<a href="#" class="fa-solid fa-cart-shopping"></a> 
-			<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}" class="fa-solid fa-user"></a> 
-			<a href="${pageContext.request.contextPath}/connexion?action=deconnexion" class="fa-solid fa-power-off"></a>
-		</div>
+			<%@ include file="html/header.html" %>
 		</c:if>
 		
 		<c:if test="${empty user}">	
 			<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off icons"></a>
-			
-								
-		</c:if>
-		
-	
-		
+									
+		</c:if>	
 
 	</header>
 
@@ -434,9 +413,7 @@
 
 		</div>
 
-		<div class="credit">
-			crée par <span> Ugo, Pierre et Patrick </span> |  all rights reserved
-		</div>
-
 	</section>
+	
+	 <%@ include file="html/footer.html" %>
 </html>

@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -10,11 +9,9 @@
 			src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	</head>
 	<body>
-		<header>
 			<input type="checkbox" name="" id="toggler"> <label
-				for="toggler" class="fas fa-bars"></label> <a href="#" class="logo">ENI-ENCHERE<span>.</span></a>
-	
-			<c:if test="${!empty user}">							
+				for="toggler" class="fas fa-bars"></label> <a href="/accueil" class="logo">ENI-ENCHERE<span>.</span></a>
+							
 			<nav class="navbar">
 			
 				<ul>
@@ -30,14 +27,5 @@
 				<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}" class="fa-solid fa-user"></a> 
 				<a href="${pageContext.request.contextPath}/connexion?action=deconnexion" class="fa-solid fa-power-off"></a>
 			</div>
-			</c:if>
-			
-			<c:if test="${empty user}">	
-				<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off icons"></a>
-				
-									
-			</c:if>
-				
-		</header>
 	</body>
 </html>
