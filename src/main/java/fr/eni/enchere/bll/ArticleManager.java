@@ -81,11 +81,11 @@ public class ArticleManager {
 		return instance;
 	}
 	
-	public Article getArticleByNo(Integer noArticle) throws BusinessException {
+	public Article getArticleByNo(Integer noArticle)  {
 		return articleDAO.getArticleByNo(noArticle);
 	}
 	
-	public List<Article> getArticles(String categorie, String utilisateur) throws BusinessException {
+	public List<Article> getArticles(String categorie, String utilisateur)  {
 		
 		return articleDAO.getArticles();
 	}
