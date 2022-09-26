@@ -30,13 +30,12 @@
                     <textarea rows="7" cols="40" name="description">Décrivez votre article...</textarea>
                 </p>
             
-                <select name="Cat" id="Cat">
-                    <option value="">-----Catégories-----</option>
-                    <option value="Ameublement">Ameublement</option>
-                    <option value="Informatique">Informatique</option>
-                    <option value="Sport">Sport et Loisirs</option>
-                    <option value="Vetements">Vêtements</option>
-                </select>
+                <select name="cat" class="cat">
+				<option value="all">--Catégories--</option>
+					<c:forEach var="choixCat" items="${listeCategories}">
+						<option value="${choixCat}">${choixCat}</option>
+					</c:forEach>
+				</select>
             
                 <p>
                     <input type="file" id="image" name="image" accept="image/*" class="custom-file-input">
