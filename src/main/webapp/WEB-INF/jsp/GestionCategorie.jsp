@@ -19,6 +19,19 @@
 				</ul>
 			</div>
 		</c:if>
+		
+<%-- 		<c:if test="${!empty listeCategories}"> --%>
+			<strong>Categories</strong>
+			<select name="cat" class="cat">
+				<c:forEach var="choixCat" items="${listeCategories}">
+					<option value="${choixCat.getLibelle()}">--${choixCat.getLibelle()}--</option>
+<!-- 					<option value="3">Sport et Loisirs</option> -->
+				</c:forEach>
+				
+			</select>
+			<br>
+<%-- 		</c:if> --%>
+		
 		<label for="libelle">libelle</label> 
 		<input type="text" id="libelle" name="libelle"> 
 
