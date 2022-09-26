@@ -16,11 +16,11 @@ public class Article {
 	private Utilisateur vendeur;
 	private Categorie categorie;
 	private List<Enchere>  encherisseurs;
-	private Retrait retrait;
+	private Adresse retrait;
 	
 	public Article(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
 			int miseAPrix, int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie,
-			List<Enchere> encherisseurs, Retrait retrait) {
+			List<Enchere> encherisseurs, Adresse retrait) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -37,7 +37,7 @@ public class Article {
 	}
 	
 	public Article(String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres, int miseAPrix,
-			int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie, List<Enchere> encherisseurs, Retrait retrait) {
+			int prixVente, EtatsVente etatVente, Utilisateur vendeur, Categorie categorie, List<Enchere> encherisseurs, Adresse retrait) {
 		this( null ,nomArticle, description, dateDebutEncheres, dateFinEncheres , miseAPrix, prixVente , etatVente, vendeur, categorie, encherisseurs, retrait);
 	}
 
@@ -152,12 +152,12 @@ public class Article {
 	}
 
 
-	public Retrait getRetrait() {
+	public Adresse getRetrait() {
 		return retrait;
 	}
 
 
-	public void setRetrait(Retrait retrait) {
+	public void setRetrait(Adresse retrait) {
 		this.retrait = retrait;
 	}
 
