@@ -11,12 +11,26 @@
         <title>état vente</title>
     </head>
     <body>
+    
+    <div>
     <c:if test="${article.etatVente == Article.EtatsVente.ENCOURS}">
     	<h1>Détail vente</h1>
+    	<img alt="Impossible de charger l'image..." src="">
+    	<h2>"${article.nom}"</h2>
+    	<h2 class="description">Description : ${description}</h2>
+    	<h2 class="cat">Catégorie : ${choixCat}</h2>
+    	<div class="enchere">Meilleure offre : </div>                  <!-- insérer enchère encours -->
+		<div class="price">Mise à prix : ${article.miseAPrix}</div>
+    	<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
+    	<div class="retrait">Retrait : ${article.getVendeur().retrait}</div>
+    	<div class="vendeur">Vendeur : ${article.getVendeur().getPseudo()}</div>    
+		<input type="number">
 	</c:if>
+	</div>
 					    
 	<c:if test="${article.etatVente == Article.EtatsVente.TERMINEE}"> 
-		<h1>ACHETEUR a remporté l'enchère</h1>		<!-- insérer l'acheteur final  -->
+		<h1>ACHETEUR a remporté l'enchère</h1>	
+			<!-- insérer l'acheteur final  -->
 	</c:if>
         
         <div class="content">
@@ -38,6 +52,13 @@
 				<c:if test="${article.etatVente == Article.EtatsVente.TERMINEE}">
 					<div class="telephone">Tel : ${article.getTelephone()}</div>
 				</c:if>	
+
+
+
+
+
+
+
 
 
 
