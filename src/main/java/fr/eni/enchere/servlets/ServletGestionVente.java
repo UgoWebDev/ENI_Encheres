@@ -1,6 +1,8 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.ArticleManager;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Article;
 
 /**
@@ -24,6 +27,13 @@ public class ServletGestionVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<String> listeCategories = new ArrayList<>();
+		listeCategories.add("Ameublement");
+		listeCategories.add("Info");
+		listeCategories.add("Video");
+		
+		
+		request.setAttribute("listeCategories",listeCategories);		
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
 	}
 
@@ -44,12 +54,13 @@ public class ServletGestionVente extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		
-		int noArticle = Integer.parseInt(action.substring("annulerVente".length()));
-		System.out.println(action + " : " + noArticle);
-		action = action.substring(0, "annulerVente".length());
-		System.out.println(action + " : " + noArticle);
+//		int noArticle = Integer.parseInt(action.substring("annulerVente".length()));
+//		System.out.println(action + " : " + noArticle);
+//		action = action.substring(0, "annulerVente".length());
+//		System.out.println(action + " : " + noArticle);
 		
 		Article article = null;
+
 		
 		switch (action) {
 		case "enregistrer":
@@ -67,15 +78,15 @@ public class ServletGestionVente extends HttpServlet {
 		break;
 		
 		case "annulerVente":
-			try {
-				ArticleManager.getInstance().deleteArticle(noArticle);
-				request.getSession().setAttribute("user", null);
-				response.sendRedirect("accueil");
-			} catch (BusinessException e) {
-				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
-				
-			}
+//			try {
+//				ArticleManager.getInstance().deleteArticle(noArticle);
+//				request.getSession().setAttribute("user", null);
+//				response.sendRedirect("accueil");
+//			} catch (BusinessException e) {
+//				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+//				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
+//				
+//			}
 		break;
 
 		default:
