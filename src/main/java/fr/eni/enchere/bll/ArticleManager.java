@@ -90,7 +90,23 @@ public class ArticleManager {
 		return articleDAO.getArticles();
 	}
 	
+	public void deleteArticle(Integer noArticle) throws BusinessException {
+		BusinessException be = new BusinessException();
+		this.notExists(noArticle, be);
+		if(!be.hasErreurs())
+		{
+			articleDAO.deleteArticle(noArticle);
+			System.out.println("deleteArticle OK");
+		}
+		else
+		{
+			throw be;
+		}
+	}
 	
+	
+	
+
 	/**
 	
 	 * @throws BusinessException
@@ -120,6 +136,12 @@ public class ArticleManager {
 		  be.ajouterErreur(CodesResultatBLL.ARTICLE_DATE_DEBUT_SUPERIEUR_DATE_FIN); 
 		  }
 		 
+	}
+	
+	private void notExists(Integer noArticle, BusinessException be) {
+		if(articleDAO.getArticleByNo(noArticle) == null) {
+			be.ajouterErreur(CodesResultatBLL.ARTICLE_NON_EXISTANT);
+		}
 	}
 	
 }

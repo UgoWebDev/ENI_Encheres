@@ -91,7 +91,7 @@
 	        
 				        <c:if test="${article.etatVente == Article.EtatsVente.CREATION || article.etatVente == Article.EtatsVente.ENCOURS}">
 					        <div class="bouton">
-	                    		<button type="submit" name="action" value="annulerVente">Annuler la vente</button>
+	                    		<button type="submit" name="action" value="annulerVente${article.noArticle}">Annuler la vente</button>
 					       	</div>
 					    </c:if>
 				    </form>

@@ -12,7 +12,7 @@ public interface ArticleDAO {
 
 	List<Article> getArticles() ;
 
-	void deleteArticle(int noArticle);
+	void deleteArticle(Integer noArticle);
 
 	Article getArticleByNo(Integer noArticle) ;
 

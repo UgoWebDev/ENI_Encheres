@@ -44,12 +44,17 @@ public class ServletGestionVente extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		
+		int noArticle = Integer.parseInt(action.substring("annulerVente".length()));
+		System.out.println(action + " : " + noArticle);
+		action = action.substring(0, "annulerVente".length());
+		System.out.println(action + " : " + noArticle);
+		
 		Article article = null;
 		
 		switch (action) {
 		case "enregistrer":
 			try {
-				article = ArticleManager.insertArticle(nomArticle, description, categorie, image, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville);
+				article = ArticleManager.getInstance().insertArticle(nomArticle, description, categorie, image, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville);
 				response.sendRedirect("accueil");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
@@ -63,9 +68,9 @@ public class ServletGestionVente extends HttpServlet {
 		
 		case "annulerVente":
 			try {
-				article = ArticleManager.getInstance().article(login, mdp);
-				request.getSession().setAttribute("user", user);
-				response.sendRedirect("http://www.google.com");
+				ArticleManager.getInstance().deleteArticle(noArticle);
+				request.getSession().setAttribute("user", null);
+				response.sendRedirect("accueil");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);

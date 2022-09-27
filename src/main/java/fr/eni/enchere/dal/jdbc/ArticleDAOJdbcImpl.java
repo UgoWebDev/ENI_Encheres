@@ -182,7 +182,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	 
 	
 	@Override
-	public void deleteArticle(int noArticle) {
+	public void deleteArticle(Integer noArticle) {
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE)
 				) {
