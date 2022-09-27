@@ -36,7 +36,7 @@
 		<!-- header section ends -->
 	
 		<!-- home section starts  -->
-		<section class="home" id="home">
+		<section class="home">
 	
 			<div class="content">
 				<h3>Les Encheres</h3>
