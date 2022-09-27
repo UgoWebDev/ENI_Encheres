@@ -15,7 +15,7 @@
     	<%@ include file="../html/header.html" %>
     
    		<c:if test="${!empty profil}">
-	        <div class="affichePseudo">
+	        <div class="visualisation">
 	            <h1>
 	                Pseudo: ${profil.pseudo }
 	            </h1>
@@ -51,15 +51,16 @@
 	    </c:if> 
 	    
 	    <c:if test="${empty profil }">
-	    	<p>Ce profil n'existe pas</p>
-	    	<a href="/accueil">Retour</a>
+	    	<div class="visualisation">
+	    		<p>Ce profil n'existe pas</p>
+	    	</div>
 	    </c:if>
 	    
        
         <c:if test="${user.pseudo } == ${profil.pseudo }">
         	 <form method="post" action="<%= request.getContextPath()%>/visualisation">
-		        <div class="bouton">
-		           <button type="submit" name="action" value="modifier">Modifier</button>
+		        <div>
+		           <button type="submit" name="action" value="modifier" class="btn">Modifier</button>
 		       	</div>
 	       	 </form>
 	    </c:if>

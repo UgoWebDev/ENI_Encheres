@@ -530,6 +530,22 @@ div .box #infos {
     text-transform: none;
 }
 
+.visualisation
+{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 10rem;
+}
+
+.visualisation p, h1
+{
+	padding-bottom: 1rem; 
+}
+
+
+
+
 
 /* media queries  */
 @media (max-width:991px){
