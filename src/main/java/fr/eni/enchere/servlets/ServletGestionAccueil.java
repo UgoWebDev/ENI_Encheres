@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import fr.eni.enchere.bll.ArticleManager;
+import fr.eni.enchere.bll.CategorieManager;
 
 /**
  * Servlet implementation class ServletGestionAccueil
@@ -25,12 +26,19 @@ public class ServletGestionAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/*
 		List<String> listeCategories = new ArrayList<>();
 		listeCategories.add("Ameublement");
 		listeCategories.add("Info");
 		listeCategories.add("Video");
 		
+		
 		request.setAttribute("listeCategories",listeCategories);
+		
+		*/
+		request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+
 		
 		request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
 

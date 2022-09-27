@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <title>Accueil ENI-ENCHERE</title>
 <meta charset="UTF-8">
@@ -69,7 +69,7 @@
 				<select name="cat" class="cat">
 				<option value="all">--Catégories--</option>
 					<c:forEach var="choixCat" items="${listeCategories}">
-						<option value="${choixCat}">${choixCat}</option>
+						<option value="${choixCat.getLibelle()}">${choixCat.getLibelle()}</option>
 					</c:forEach>
 				</select>
 			</c:if>
