@@ -22,7 +22,7 @@ public class AdresseManager {
 		return instance;
 	}
 	
-	public Adresse getAdresseByNo(Integer noAdresse) throws BusinessException {
+	public Adresse getAdresseByNo(Integer noAdresse)  {
 		return AdresseDAO.getAdresseByNo(noAdresse);
 	}
 

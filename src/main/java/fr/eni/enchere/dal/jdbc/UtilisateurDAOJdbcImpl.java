@@ -25,7 +25,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 
 
-	private Utilisateur getUtilisateurByLogin(String login,String requete,String type) throws BusinessException{
+	private Utilisateur getUtilisateurByLogin(String login,String requete,String type) {
 		Utilisateur user = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(requete)
@@ -58,17 +58,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur getUtilisateurByPseudo(String login) throws BusinessException{
+	public Utilisateur getUtilisateurByPseudo(String login) {
 		return getUtilisateurByLogin(login, SELECT_BY_PSEUDO,"S");
 	}
 
 	@Override
-	public Utilisateur getUtilisateurByMail(String login) throws BusinessException{
+	public Utilisateur getUtilisateurByMail(String login) {
 		return getUtilisateurByLogin(login, SELECT_BY_MAIL,"S");
 	}
 
 	@Override
-	public Utilisateur getUtilisateurByNo(Integer noUtilisateur) throws BusinessException {
+	public Utilisateur getUtilisateurByNo(Integer noUtilisateur)  {
 		String login = String.valueOf(noUtilisateur);
 		
 		return getUtilisateurByLogin(login, SELECT_BY_NO,"I");

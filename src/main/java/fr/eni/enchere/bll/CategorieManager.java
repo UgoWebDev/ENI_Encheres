@@ -24,11 +24,11 @@ public class CategorieManager {
 		return instance;
 	}
 	
-	public Categorie getCategorie(String categorie) throws BusinessException {
+	public Categorie getCategorie(String categorie)  {
 		return categorieDAO.getCategorie(categorie);
 	}
 	
-	public Categorie getCategorieByNo(Integer noCategorie) throws BusinessException {
+	public Categorie getCategorieByNo(Integer noCategorie)  {
 		return categorieDAO.getCategorieByNo(noCategorie);
 	}
 

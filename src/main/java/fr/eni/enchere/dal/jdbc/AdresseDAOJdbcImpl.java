@@ -26,11 +26,14 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					adresse = new Adresse(
-						rs.getInt("no_adresse"), 
-						rs.getString("rue"),
-						rs.getString("code_postal"),
-						rs.getString("ville"));
+							rs.getInt("no_adresse"), 
+							rs.getString("rue"),
+							rs.getString("code_postal"),
+							rs.getString("ville"));
 				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

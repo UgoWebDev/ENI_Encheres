@@ -10,11 +10,11 @@ public interface ArticleDAO {
 
 	Article insertArticle(Article article) throws BusinessException;
 
-	List<Article> getArticles() throws BusinessException;
+	List<Article> getArticles() ;
 
 	void deleteArticle(int noArticle);
 
-	Article getArticleByNo(Integer noArticle) throws BusinessException;
+	Article getArticleByNo(Integer noArticle) ;
 
 
 }

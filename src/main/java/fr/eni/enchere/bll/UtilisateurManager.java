@@ -25,7 +25,7 @@ public class UtilisateurManager {
 		return utilisateurDAO.getUtilisateurByPseudo(pseudo);
 	}
 	
-	public Utilisateur getUtilisateurByNo(Integer noUtilisateur) throws BusinessException {
+	public Utilisateur getUtilisateurByNo(Integer noUtilisateur)  {
 		return utilisateurDAO.getUtilisateurByNo(noUtilisateur);
 	}
 

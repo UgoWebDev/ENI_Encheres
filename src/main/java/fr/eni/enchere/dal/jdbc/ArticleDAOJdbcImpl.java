@@ -115,8 +115,42 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
+	public Article getArticleByNo(Integer noArticle)  {
+		Article article = null;
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_BY_NO)
+				) {
+			pstmt.setInt(1, noArticle);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					article = new Article (
+							rs.getInt("no_article"),
+							rs.getString("nom_article"), 
+							rs.getString("description"),
+							rs.getDate("date_debut_encheres"), 
+							rs.getDate("date_fin_encheres"),
+							rs.getInt("prix_initial"), 
+							rs.getInt("prix_vente"),
+							EtatsVente.values()[rs.getInt("etat_vente")], 
+							UtilisateurManager.getInstance().getUtilisateurByNo(rs.getInt("no_utilisateur")),
+							CategorieManager.getInstance().getCategorieByNo(rs.getInt("no_categorie")), 
+							null,
+							AdresseManager.getInstance().getAdresseByNo(rs.getInt("no_adresse"))
+							);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return article;
+	}
+
+	@Override
 	
-	  public List<Article> getArticles() throws BusinessException {
+	  public List<Article> getArticles()  {
 		ArrayList<Article> articles = null; 
 	  
 		  try
@@ -158,36 +192,5 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	@Override
-	public Article getArticleByNo(Integer noArticle) throws BusinessException {
-		Article article = null;
-		try (Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_BY_NO)
-				) {
-			pstmt.setInt(1, noArticle);
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					article = new Article (
-						  rs.getInt("no_article"),
-						  rs.getString("nom_article"), 
-						  rs.getString("description"),
-						  rs.getDate("date_debut_encheres"), 
-						  rs.getDate("date_fin_encheres"),
-						  rs.getInt("prix_initial"), 
-						  rs.getInt("prix_vente"),
-						  EtatsVente.values()[rs.getInt("etat_vente")], 
-						  UtilisateurManager.getInstance().getUtilisateurByNo(rs.getInt("no_utilisateur")),
-						  CategorieManager.getInstance().getCategorieByNo(rs.getInt("no_categorie")), 
-						  null,
-						  AdresseManager.getInstance().getAdresseByNo(rs.getInt("no_adresse"))
-					  );
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return article;
 	}
 }
