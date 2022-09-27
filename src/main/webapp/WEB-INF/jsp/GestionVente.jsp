@@ -26,7 +26,7 @@
                     <h1>Nouvelle Vente</h1>
                         
                     <div class="description">
-                        <label for="nomArticle">Article</label>
+                        <label for="nomArticle">Article : </label>
                         <input type="text" name="nomArticle" id="article" maxlength="20" />
                         <textarea rows="7" cols="40" name="description" placeholder="Décrivez votre article..."></textarea>
                     </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="prix">
                             <label for="miseAPrix">Mise à  prix</label>
-                            <input type="number" name="miseAPrix" id="prix">
+                            <input type="number" min="0" name="miseAPrix" id="prix">
                     </div>
                     <div class="dateenchere">
                             <label for="dateDebutEncheres">Début de l'enchère</label>
@@ -58,7 +58,7 @@
                         
                         <fieldset>
         
-                            <legend>Retrait</legend>
+                            <legend>Retrait : </legend>
         
                                 <label for="rue">Rue</label>
                                 <input type="text" name="rue" id="rue" value="${userConnected.getAdresse().getRue() }">
@@ -73,7 +73,7 @@
         
                         </fieldset>
         
-                        <div class="bouton">
+                        <div class="enregistrer">
                                 <button type="submit" name="action" value="enregistrer">Enregistrer</button>
                                 <button type="submit" name="action" value="annuler">Annuler</button>
                                 

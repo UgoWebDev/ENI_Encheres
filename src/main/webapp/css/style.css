@@ -231,30 +231,43 @@ header .fa-bars{
     min-height: 100vh;
     background-size: cover;
     background-position: center;
-    border: solid black 3px;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 3rem
 }
 
 .vente .photo{
 	display: flex;
 	text-align: center;
-	border: solid black 3px;
 	
 }
 .vente .content{
 	display: flex;
-	border: solid black 3px;
 	align-items: left;
 	flex-direction: column;
 	outline-color: #fff;
 
 }
 
+.vente .content h1{
+	text-align: left;
+	padding-top: 1 rem;
+}
+
+.vente .content label, legend{
+	font-size: 12px;
+}
+
 .vente .content .description{
 	margin: 0;
-	padding: 2rem;
-	gap: 1rem;
-	align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.vente .content input[type=text], input[type=file], select, input[type=number], textarea{
+	border: 2px solid var(--green);
+	border-radius: 4px;
 }
 
 .vente .content .cat{
@@ -285,6 +298,28 @@ header .fa-bars{
 	align-items: center;
 }
 
+.vente .content fieldset{
+	margin: 0;
+	padding: 2rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.vente .content .enregistrer{
+	display: flex;
+	margin: 0;
+	padding-top: 3rem;
+	align-items: center;
+	justify-content: space-around;
+	
+	
+}
+
+.vente .content .enregistrer button{
+	border: 2px solid var(--green);
+	border-radius: 4px;
+}
+	
 .about .row{
     display: flex;
     align-items: center;
