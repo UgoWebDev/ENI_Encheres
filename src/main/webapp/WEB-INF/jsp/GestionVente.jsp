@@ -18,20 +18,18 @@
     	<div class="home">
 	        <h1>Nouvelle Vente</h1>
 	        <form method="post" action="">
-		        <div class="page">
+		        <div class="content">
 		            <div class="carre">
-		                <p>Photo upload</p>
+		                <h3>Photo upload</h3>
 		            </div>
 		                
 		            <div>
-		                <p>
+
 		                    <label for="nomArticle">Article</label>
 		                    <input type="text" name="nomArticle" id="article" maxlength="20" />
-		                </p>
-		                
-		                <p>
+
 		                    <textarea rows="7" cols="40" name="description" placeholder="Décrivez votre article..."></textarea>
-		                </p>
+
 		            
 		                <select name="cat" class="cat">
 						<option value="all">--Catégories--</option>
@@ -39,25 +37,18 @@
 								<option value="${choixCat}">${choixCat}</option>
 							</c:forEach>
 						</select>
-		            
-		                <p>
-		                    <input type="file" id="image" name="image" accept="image/*" class="custom-file-input">
-		                </p>
-		                
-		                <p>
+
+		                    <input type="file" id="image" name="image" accept="image/*" class="custom-file-input btn">
+
 		                    <label for="miseAPrix">Mise à  prix</label>
 		                    <input type="number" name="miseAPrix" id="prix">
-		                </p>
-		            
-		                <p>
+
 		                    <label for="dateDebutEncheres">Début de l'enchère</label>
 		                    <input type="date" name="dateDebutEncheres"/>
-		                </p>
-		            
-		                <p>
+
 		                    <label for="dateFinEncheres">Fin de l'enchère</label>
 		                    <input type="date" name="dateFinEncheres"/>
-		                </p>
+
 			
 						<% Utilisateur userConnected =  (Utilisateur) session.getAttribute("user"); %>
 						
@@ -65,20 +56,15 @@
 		
 		                    <legend>Retrait</legend>
 		
-		                    <p>
 		                        <label for="rue">Rue</label>
 		                        <input type="text" name="rue" id="rue" value="${userConnected.getAdresse().getRue() }">
-		                    </p>
-		
-		                    <p>
+
 		                        <label for="codePostal">Code postal</label>
 		                        <input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value="${userConnected.getAdresse().getCodePostal() }">
-		                    </p>
-		
-		                    <p>
+
 		                        <label for="ville">Ville</label>
 		                        <input type="text" name="ville" id="ville" value="${userConnected.getAdresse().getVille() }">
-		                    </p>
+
 		
 		
 		                </fieldset>
