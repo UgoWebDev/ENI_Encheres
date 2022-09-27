@@ -16,16 +16,16 @@
 			
 				<ul>
 					<li><a href="#encheres">Enchères</a></li>
-					<li><a href="#vendre">Ventes</a></li>
-					<li><a href="${pageContext.request.contextPath}/visualisation?profilPseudo=${user.pseudo}">Mon profil</a></li>
+					<li><a href="vente">Ventes</a></li>
+					<li><a href="visualisation?profilPseudo=${user.pseudo}">Mon profil</a></li>
 				</ul>
 			</nav>
 			
 			<div class="icons">
 				<a href="#" class="fa-solid fa-heart"></a> 
-				<a href="#" class="fa-solid fa-cart-shopping"></a> 
-				<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}" class="fa-solid fa-user"></a> 
-				<a href="${pageContext.request.contextPath}/connexion?action=deconnexion" class="fa-solid fa-power-off"></a>
+				<a href="vente" class="fa-solid fa-cart-shopping"></a> 
+				<a href="visualisation?profilPseudo=${user.pseudo}" class="fa-solid fa-user"></a> 
+				<a href="connexion?action=deconnexion" class="fa-solid fa-power-off"></a>
 			</div>
 	</body>
 </html>

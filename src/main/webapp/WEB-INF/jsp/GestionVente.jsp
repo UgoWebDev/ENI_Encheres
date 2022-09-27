@@ -67,17 +67,17 @@
 
                     <p>
                         <label for="rue">Rue</label>
-                        <input type="text" name="rue" id="rue" value="${userConnected.getRue() }">
+                        <input type="text" name="rue" id="rue" value="${userConnected.getAdresse().getRue() }">
                     </p>
 
                     <p>
                         <label for="codePostal">Code postal</label>
-                        <input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value="${userConnected.getCodePostal() }">
+                        <input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value="${userConnected.getAdresse().getCodePostal() }">
                     </p>
 
                     <p>
                         <label for="ville">Ville</label>
-                        <input type="text" name="ville" id="ville" value="${userConnected.getVille() }">
+                        <input type="text" name="ville" id="ville" value="${userConnected.getAdresse().getVille() }">
                     </p>
 
 
@@ -89,11 +89,11 @@
 	                    <button type="submit" name="action" value="annuler">Annuler</button>
 	                    
 	        
-				        <c:if test="${article.etatVente == Article.EtatsVente.CREATION || article.etatVente == Article.EtatsVente.ENCOURS}">
-					        <div class="bouton">
-	                    		<button type="submit" name="action" value="annulerVente${article.noArticle}">Annuler la vente</button>
-					       	</div>
-					    </c:if>
+<%-- 				        <c:if test="${article.etatVente == Article.EtatsVente.CREATION || article.etatVente == Article.EtatsVente.ENCOURS}"> --%>
+<!-- 					        <div class="bouton"> -->
+<%-- 	                    		<button type="submit" name="action" value="annulerVente${article.noArticle}">Annuler la vente</button> --%>
+<!-- 					       	</div> -->
+<%-- 					    </c:if> --%>
 				    </form>
                 </div>
 
