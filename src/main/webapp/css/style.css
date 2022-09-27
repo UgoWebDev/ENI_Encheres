@@ -87,6 +87,7 @@ html{
 }
 
 .btn{
+	margin-right: 1rem;
     display: inline-block;
     margin-top: 1rem;
     border-radius: 5rem;
@@ -221,6 +222,67 @@ header .fa-bars{
     color:#999;
     padding:1rem 0;
     line-height: 1.5;
+}
+
+
+.vente{
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    border: solid black 3px;
+    justify-content: center;
+}
+
+.vente .photo{
+	display: flex;
+	text-align: center;
+	border: solid black 3px;
+	
+}
+.vente .content{
+	display: flex;
+	border: solid black 3px;
+	align-items: left;
+	flex-direction: column;
+	outline-color: #fff;
+
+}
+
+.vente .content .description{
+	margin: 0;
+	padding: 2rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.vente .content .cat{
+	margin: 0;
+	padding: 2rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.vente .content .uploadimg{
+	margin: 0;
+	padding: 2rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.vente .content .prix{
+	margin: 0;
+	padding: 2rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.vente .content .dateenchere{
+	margin: 0;
+	padding: 2rem;
+	gap: 1rem;
+	align-items: center;
 }
 
 .about .row{
