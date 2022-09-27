@@ -30,6 +30,7 @@
 :root{
     --blue: #144a7f;
     --green: #8cd9b1;
+    --red: #f47171;
     --rad: .7rem;
     --dur: .3s;
     --color-dark: #2f2f2f;
@@ -46,7 +47,8 @@
     padding:0;
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    outline: none; border:none;
+    outline: none; 
+    border:none;
     text-decoration: none;
     text-transform: none;
     transition: .2s linear;
@@ -164,6 +166,11 @@ header .icons a{
 header .icons a:hover{
     color:var(--green);
 }
+
+#deconnexion:hover{
+    color:var(--red);
+}
+
 
 header #toggler{
     display: none;
