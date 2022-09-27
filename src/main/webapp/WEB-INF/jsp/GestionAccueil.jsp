@@ -74,7 +74,7 @@
 					<select name="cat" class="cat">
 					<option value="all">--Catégories--</option>
 						<c:forEach var="choixCat" items="${listeCategories}">
-							<option value="${choixCat.getLibelle()}">${choixCat.getLibelle()}</option>
+							<option value="${choixCat.libelleCategorie}">${choixCat.libelleCategorie}</option>
 						</c:forEach>
 					</select>
 				</c:if>

@@ -27,13 +27,8 @@ public class ServletGestionVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<String> listeCategories = new ArrayList<>();
-		listeCategories.add("Ameublement");
-		listeCategories.add("Info");
-		listeCategories.add("Video");
-		
-		
-		request.setAttribute("listeCategories",listeCategories);		
+
+		request.setAttribute("listeCategories",CategorieManager.getInstance().getCategories());
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
 	}
 
@@ -49,7 +44,7 @@ public class ServletGestionVente extends HttpServlet {
 		String image = request.getParameter("image");
 		String miseAPrix = request.getParameter("miseAPrix");
 		String dateDebutEncheres = request.getParameter("dateDebutEncheres");
-		String dateFinEncheres = request.getParameter("dateFin");
+		String dateFinEncheres = request.getParameter("dateFinEncheres");
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");

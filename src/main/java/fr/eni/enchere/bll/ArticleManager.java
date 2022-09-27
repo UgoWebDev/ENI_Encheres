@@ -27,11 +27,11 @@ public class ArticleManager {
 		BusinessException be = new BusinessException();
 		
 		if(isValid(dateDebutEncheres)){
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 			try {
 				dateDebut = formatter.parse(dateDebutEncheres);
-			    System.out.println(dateDebut);
-			    System.out.println(formatter.format(dateDebut));
+			    System.out.println("Date début : " + dateDebut);
+			    System.out.println("Date début après formatter : " + formatter.format(dateDebut));
 
 			} catch (ParseException e) {
 			    e.printStackTrace();
@@ -41,11 +41,11 @@ public class ArticleManager {
 		}
 		
 		if(isValid(dateFinEncheres)){
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 			try {
 				dateFin = formatter.parse(dateDebutEncheres);
-			    System.out.println(dateFin);
-			    System.out.println(formatter.format(dateFin));
+			    System.out.println("Date fin : " + dateFin);
+			    System.out.println("Date fin après formatter : " + formatter.format(dateFin));
 
 			} catch (ParseException e) {
 			    e.printStackTrace();
@@ -114,7 +114,8 @@ public class ArticleManager {
 	 * Vérifie l'exactitude des dates
 	 */
 	private boolean isValid(String dateString) {
-	        DateFormat sdf = new SimpleDateFormat();
+			System.out.println("Date isValid : " + dateString);
+	        DateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 	        sdf.setLenient(false);
 	        try {
 	            sdf.parse(dateString);
