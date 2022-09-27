@@ -14,11 +14,11 @@ import fr.eni.enchere.bll.AdresseManager;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	public static final String SELECT_BY_MAIL    	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,no_adresse ,mot_de_passe ,credit ,administrateur "
+	public static final String SELECT_BY_MAIL    	= "SELECT u.no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,u.no_adresse ,mot_de_passe ,credit ,administrateur "
 			+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND email = ?";
-	public static final String SELECT_BY_PSEUDO 	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,no_adresse ,mot_de_passe ,credit ,administrateur "
+	public static final String SELECT_BY_PSEUDO 	= "SELECT u.no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,u.no_adresse ,mot_de_passe ,credit ,administrateur "
 			+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND pseudo = ?";
-	public static final String SELECT_BY_NO    	= "SELECT no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,no_adresse ,mot_de_passe ,credit ,administrateur "
+	public static final String SELECT_BY_NO    	= "SELECT u.no_utilisateur ,pseudo ,nom ,prenom ,email ,telephone ,u.no_adresse ,mot_de_passe ,credit ,administrateur "
 			+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND no_utilisateur = ?";
 	public static final String INSERT_ADRESSE 		= "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String INSERT_UTILISATEUR 	= "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,no_adresse,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
