@@ -57,7 +57,7 @@
 	    </c:if>
 	    
        
-        <c:if test="${user.pseudo } == ${profil.pseudo }">
+        <c:if test="${user.pseudo  == profil.pseudo }">
         	 <form method="post" action="<%= request.getContextPath()%>/visualisation">
 		        <div>
 		           <button type="submit" name="action" value="modifier" class="btn">Modifier</button>

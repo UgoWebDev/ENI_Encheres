@@ -26,17 +26,21 @@
 					</ul>
 				</div>
 			</c:if>
-			
-			<label for="login">Login</label> 
-			<input type="text" id="login" name="login"> 
-			
-			<label for="mdp">Mot de passe</label> 
-			<input type="password" id="mdp" name="mdp">
-			
-			<button type="submit" name="action" value="connexion" class="btn">se connecter</button>
-			<button type="submit" name="action" value="inscription" class="btn">s'inscrire</button>
-			<button type="submit" name="action" value="annulation" class="btn">annuler</button>
-	
+			<div class="connexion">
+				<div>
+					<label for="login">Login</label> 
+					<input type="text" id="login" name="login"> 
+					
+					<label for="mdp">Mot de passe</label> 
+					<input type="password" id="mdp" name="mdp">
+				</div>
+				
+				<div>
+					<button type="submit" name="action" value="connexion" class="btn">Se connecter</button>
+					<button type="submit" name="action" value="inscription" class="btn">S'inscrire</button>
+					<button type="submit" name="action" value="annulation" class="btn">Annuler</button>
+				</div>
+			</div>
 		</form>
 	
 	</body>
