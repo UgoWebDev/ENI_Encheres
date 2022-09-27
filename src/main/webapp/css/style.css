@@ -187,7 +187,7 @@ header .fa-bars{
 }
 
 .home{
-    position: relative;
+    display: flex;
     align-items: center;
     min-height: 100vh;
     background-size: cover;
