@@ -646,6 +646,28 @@ div .box #infos {
 	padding-bottom: 1rem; 
 }
 
+.connexion
+{
+	margin-left: 300px;
+	
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+.connexion span
+{
+    font-size: 2rem;
+    color:var(--blue);
+    padding:1rem 0;
+    line-height: 1.5;
+}
+
+.bouton
+{
+	display: flex;
+	justify-content: space-between;
+}
+
 
 
 

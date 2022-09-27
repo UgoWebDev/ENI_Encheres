@@ -28,20 +28,21 @@
 			</c:if>
 			<div class="connexion">
 				<div>
-					<label for="login">Login</label> 
+					<label for="login"><span>Login</span></label> 
 					<input type="text" id="login" name="login"> 
 					
-					<label for="mdp">Mot de passe</label> 
+					<label for="mdp"><span>Mot de passe</span></label> 
 					<input type="password" id="mdp" name="mdp">
 				</div>
 				
-				<div>
+				<div class="bouton">
 					<button type="submit" name="action" value="connexion" class="btn">Se connecter</button>
 					<button type="submit" name="action" value="inscription" class="btn">S'inscrire</button>
 					<button type="submit" name="action" value="annulation" class="btn">Annuler</button>
 				</div>
 			</div>
 		</form>
-	
+		
+		<%@ include file="../html/footer.html" %>
 	</body>
 </html>
