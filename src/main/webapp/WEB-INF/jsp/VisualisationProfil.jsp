@@ -37,15 +37,15 @@
 	            </p>
 	
 	            <p>
-	                Rue: ${profil.rue }
+	                Rue: ${profil.getAdresse().getRue()}
 	            </p>
 	
 	            <p>
-	                Code postal: ${profil.codePostal }
+	                Code postal: ${profil.getAdresse().getCodePostal()}
 	            </p>
 	
 	            <p>
-	                Ville: ${profil.ville }
+	                Ville: ${profil.getAdresse().getVille()}
 	            </p>
 	        </div>
 	    </c:if> 

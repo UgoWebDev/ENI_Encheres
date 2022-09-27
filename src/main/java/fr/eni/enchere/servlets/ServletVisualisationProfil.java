@@ -25,14 +25,11 @@ public class ServletVisualisationProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur profil;
-		try {
-			profil = UtilisateurManager.getInstance().getUtilisateur(request.getParameter("profil"));
-		} catch (BusinessException e) {
-			profil = null;
-		}
+	
+		profil = UtilisateurManager.getInstance().getUtilisateur(request.getParameter("profilPseudo"));
+
 		request.setAttribute("profil", profil) ;
 		request.getRequestDispatcher("/WEB-INF/jsp/VisualisationProfil.jsp").forward(request, response);
-		
 	}
 
 	/**
