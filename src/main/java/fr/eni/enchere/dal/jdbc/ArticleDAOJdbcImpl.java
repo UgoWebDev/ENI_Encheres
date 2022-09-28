@@ -122,6 +122,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			pstmt.setInt(1, noArticle);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
+					
 					article = new Article (
 							rs.getInt("no_article"),
 							rs.getString("nom_article"), 
@@ -149,35 +150,37 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	@Override
 	
-	  public List<Article> getArticles()  {
+	public List<Article> getArticles()  {
 		ArrayList<Article> articles = new ArrayList<>(); 
-	  
-		  try
-		  (Connection cnx = ConnectionProvider.getConnection(); Statement pstmt =
-		  cnx.createStatement() ) {
-		  
-			  try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
-				  while (rs.next()){ articles.add(new Article(
-					  rs.getInt("no_article"),
-					  rs.getString("nom_article"), 
-					  rs.getString("description"),
-					  rs.getDate("date_debut_encheres"),
-					  rs.getDate("date_fin_encheres"),
-					  rs.getInt("prix_initial"),
-					  rs.getInt("prix_vente"),
-					  EtatsVente.values()[rs.getInt("etat_vente")], 
-					  UtilisateurManager.getInstance().getUtilisateurByNo(rs.getInt("no_utilisateur")),
-					  CategorieManager.getInstance().getCategorieByNo(rs.getInt("no_categorie")), 
-					  null,
-					  AdresseManager.getInstance().getAdresseByNo(rs.getInt("no_adresse"))
-					 ));
-				  } 
+
+		try
+		(Connection cnx = ConnectionProvider.getConnection(); Statement pstmt =
+		cnx.createStatement() ) {
+
+			try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
+				while (rs.next()){ 
+
+					articles.add(new Article(
+							rs.getInt("no_article"),
+							rs.getString("nom_article"), 
+							rs.getString("description"),
+							rs.getDate("date_debut_encheres"), 
+							rs.getDate("date_fin_encheres"),
+							rs.getInt("prix_initial"),
+							rs.getInt("prix_vente"),
+							EtatsVente.values()[rs.getInt("etat_vente")], 
+							UtilisateurManager.getInstance().getUtilisateurByNo(rs.getInt("no_utilisateur")),
+							CategorieManager.getInstance().getCategorieByNo(rs.getInt("no_categorie")), 
+							null,
+							AdresseManager.getInstance().getAdresseByNo(rs.getInt("no_adresse"))
+							));
 				} 
-		  } catch (SQLException e) { 
-			  e.printStackTrace();
-		  } 
-		  	return articles;
-	  }
+			} 
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		} 
+		return articles;
+	}
 	 
 	
 	@Override

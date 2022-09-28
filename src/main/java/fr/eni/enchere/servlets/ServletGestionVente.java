@@ -14,6 +14,7 @@ import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletGestionVente
@@ -59,7 +60,7 @@ public class ServletGestionVente extends HttpServlet {
 		switch (action) {
 		case "enregistrer":
 			try {
-				article = ArticleManager.getInstance().insertArticle(nomArticle, description, categorie, image, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville);
+				article = ArticleManager.getInstance().insertArticle(nomArticle, description, categorie, image, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville,(Utilisateur) request.getSession().getAttribute("user"));
 				response.sendRedirect("accueil");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());

@@ -23,6 +23,17 @@
             
                 <div class="content">
                     <h1>Nouvelle Vente</h1>
+                    
+                    			<c:if test="${!empty listeCodesErreur}">
+				<div class="alert alert-danger" role="alert">
+					<strong>Erreur!</strong>
+					<ul>
+						<c:forEach var="code" items="${listeCodesErreur}">
+							<li>${LecteurMessage.getMessageErreur(code)}</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</c:if>
                         
                     <div class="description">
                         <label for="nomArticle">Article : </label>
@@ -78,7 +89,7 @@
                                 <button type="submit" name="action" value="annuler">Annuler</button>
                                 
                                
-                                <c:if test="${article.etatVente == Article.EtatsVente.ENCOURS}">
+                                <c:if test="${article.etatVente == 'ENCOURS'}">
                                     <div class="bouton">
                                         <button type="submit" name="action" value="annulerVente${article.noArticle}">Annuler la vente</button>
                                        </div>

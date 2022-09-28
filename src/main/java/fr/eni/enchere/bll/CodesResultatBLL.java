@@ -21,10 +21,18 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_CREATION_MOT_DE_PASSE = 20013;
 	
 	//Erreurs liées à la gestion des articles
-	public static final int ARTICLE_CREATION_DATE_DEBUT = 20101;
+	public static final int ARTICLE_CREATION_DATE = 20101;
 	public static final int ARTICLE_CREATION_DATE_FIN = 20102;
 	public static final int ARTICLE_DATE_DEBUT_SUPERIEUR_DATE_FIN = 20103;
 	public static final int ARTICLE_NON_EXISTANT = 20104;
+	public static final int ARTICLE_CREATION_ANNEE = 20105;
+	public static final int ARTICLE_CREATION_MOIS = 20106;
+	public static final int ARTICLE_CREATION_JOUR = 20107;
+	public static final int ARTICLE_CREATION_PRIX = 20108;
+	public static final int ARTICLE_CREATION_CATEGORIE = 20109;
+	public static final int ARTICLE_CREATION_RUE = 20110;
+	public static final int ARTICLE_CREATION_CODE_POSTAL = 20111;
+	public static final int ARTICLE_CREATION_VILLE = 20112;
 
 	
 	//Erreurs liées à la gestion des catégories
