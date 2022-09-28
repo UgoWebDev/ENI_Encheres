@@ -44,8 +44,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				cnx.setAutoCommit(false);
 				PreparedStatement pstmt;
 				ResultSet rs;
-				if (article.getNomArticle()==null || article.getNomArticle() == "") 
+				if (!(article.getNomArticle()==null || article.getNomArticle() == "") )
 				{
+					System.out.println(getClass() + " : Entrée dans l'enregistrement de l'adresse");
 					pstmt = cnx.prepareStatement(INSERT_ADRESSE,PreparedStatement.RETURN_GENERATED_KEYS);
 					pstmt.setString(1, article.getRetrait().getRue());
 					pstmt.setString(2, article.getRetrait().getCodePostal());
@@ -76,8 +77,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					pstmt = cnx.prepareStatement(INSERT_ARTICLE,PreparedStatement.RETURN_GENERATED_KEYS);
 					pstmt.setString(1, article.getNomArticle());
 					pstmt.setString(2, article.getDescription());
-					pstmt.setDate(3, (Date) article.getDateDebutEncheres());
-					pstmt.setDate(4, (Date) article.getDateFinEncheres());
+					pstmt.setDate(3, convertJavaDateToSqlDate(article.getDateDebutEncheres()) );
+					pstmt.setDate(4, convertJavaDateToSqlDate(article.getDateFinEncheres()));
 					pstmt.setInt(5, article.getMiseAPrix());
 					pstmt.setInt(6, 0);
 					pstmt.setInt(7, article.getEtatVente().ordinal());
@@ -127,8 +128,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 							rs.getInt("no_article"),
 							rs.getString("nom_article"), 
 							rs.getString("description"),
-							rs.getDate("date_debut_encheres"), 
-							rs.getDate("date_fin_encheres"),
+							convertSQLDateToJAVADate(rs.getDate("date_debut_encheres")) , 
+							convertSQLDateToJAVADate(rs.getDate("date_fin_encheres")) , 
 							rs.getInt("prix_initial"), 
 							rs.getInt("prix_vente"),
 							EtatsVente.values()[rs.getInt("etat_vente")], 
@@ -164,8 +165,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 							rs.getInt("no_article"),
 							rs.getString("nom_article"), 
 							rs.getString("description"),
-							rs.getDate("date_debut_encheres"), 
-							rs.getDate("date_fin_encheres"),
+							convertSQLDateToJAVADate(rs.getDate("date_debut_encheres")) , 
+							convertSQLDateToJAVADate(rs.getDate("date_fin_encheres")) , 
 							rs.getInt("prix_initial"),
 							rs.getInt("prix_vente"),
 							EtatsVente.values()[rs.getInt("etat_vente")], 
@@ -194,5 +195,17 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private static java.util.Date convertSQLDateToJAVADate(java.sql.Date sqlDate) {
+        java.util.Date javaDate = null;
+        if (sqlDate != null) {
+            javaDate = new Date(sqlDate.getTime());
+        }
+        return javaDate;
+    }
+	
+	private java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+	    return new java.sql.Date(date.getTime());
 	}
 }
