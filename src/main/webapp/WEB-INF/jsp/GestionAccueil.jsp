@@ -76,7 +76,7 @@
 
 				<c:if test="${!empty user}">
 					<select name="choixCategorie" class="cat">
-						<option value="all">--Catégories--</option>
+						<option value="0">--Catégories--</option>
 						<c:forEach var="choixCat" items="${listeCategories}">
 							<option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
 						</c:forEach>
