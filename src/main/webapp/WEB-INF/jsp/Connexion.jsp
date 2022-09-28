@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/style.css">
-		<title>se connecter</title>
+		<title>Se connecter</title>
 	</head>
 	<body>
 		
@@ -14,8 +14,10 @@
 			<input type="checkbox" name="" id="toggler"> 
 			<label for="toggler" class="fas fa-bars"></label> <a href="accueil" class="logo">ENI-ENCHERE<span>.</span></a>
 		</header>
-		
-		<form method="post" action="<%=request.getContextPath()%>/connexion" class="home testborder">
+
+	
+	<div class="home" id="connexion">
+		<form method="post" action="<%=request.getContextPath()%>/connexion" class="content">
 			<c:if test="${!empty listeCodesErreur}">
 				<div class="alert alert-danger" role="alert">
 					<strong>Erreur!</strong>
@@ -27,11 +29,12 @@
 				</div>
 			</c:if>
 			<div class="connexion">
-				<div>
-					<label for="login"><span>Login </span></label> 
+				<div class="login">
+					<label for="login"><span>Login</span></label> 
 					<input type="text" id="login" name="login"> 
-					
-					<label for="mdp"><span>Mot de passe </span></label> 
+				</div>
+				<div class="mdp">
+					<label for="mdp"><span>Mot de passe</span></label> 
 					<input type="password" id="mdp" name="mdp">
 				</div>
 				
@@ -42,6 +45,7 @@
 				</div>
 			</div>
 		</form>
+	</div>
 		
 		<%@ include file="../html/footer.html" %>
 	</body>

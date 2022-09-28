@@ -9,7 +9,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	</head>
 	
 	<body>
@@ -45,7 +44,7 @@
 					Donner une seconde vie aux objets en facilitant les échanges.
 					Encourager la réutilisation.
 					Promouvoir des échanges non commerciaux.</p>
-				<a href="#footer" class="btn">infos</a>
+				<a href="#footer" class="btn">Infos</a>
 			</div>
 	
 		</section>
@@ -59,7 +58,7 @@
 		<section class="products" id="products">
 	
 			<h1 class="heading">
-				liste <span>des enchères</span>
+				Liste <span>des enchères</span>
 			</h1>
 		<form method="post" action="<%=request.getContextPath()%>/accueil">
 			<div class="search">
@@ -137,7 +136,7 @@
 		<section class="products" id="products">
 	
 			<h1 class="heading">
-				derniers <span>articles</span>
+				Derniers <span>articles</span>
 			</h1>
 	
 			<div class="box-container">
@@ -152,11 +151,10 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a>
 						</div>
 					</div>
 				</div>
@@ -171,12 +169,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -190,12 +187,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -209,12 +205,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -228,12 +223,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -247,12 +241,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -266,12 +259,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -285,12 +277,11 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
+
 					</div>
 				</div>
 	
@@ -304,12 +295,10 @@
 						</div>
 					</div>
 					<div class="content">
-						<h3>article</h3>
+						<h3>Article</h3>
 						<div class="price">100.eni</div>
 						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">
-							Vendeur : <a href="#">vendeur</a>
-						</div>
+						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
 					</div>
 				</div>
 	
@@ -337,7 +326,7 @@
 					<input type="email" placeholder="Email" class="box"> 
 					<input type="number" placeholder="Telephone" class="box">
 					<textarea name="" class="box" placeholder="Votre message..." id="" cols="30" rows="10"></textarea>
-					<input type="submit" value="envoyer message" class="btn">
+					<input type="submit" value="Envoyer message" class="btn">
 				</form>
 	
 				<div class="image">
@@ -352,16 +341,16 @@
 	
 		<!-- about section starts  -->
 	
-		<section class="about" id="about">
+		<section class="about">
 	
 			<h1 class="heading">
-				<span> à </span> propos
+				<span> A </span> propos
 			</h1>
 	
 			<div class="row">
 	
 				<div class="content">
-					<h3>pour en savoir plus sur nous</h3>
+					<h3>Pour en savoir plus sur nous</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
 						cumque sit nemo pariatur corporis perspiciatis aspernatur a ullam
 						repudiandae autem asperiores quibusdam omnis commodi alias repellat
@@ -369,7 +358,7 @@
 					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 						Accusantium ea est commodi incidunt magni quia molestias
 						perspiciatis, unde repudiandae quidem.</p>
-					<a href="#" class="btn">en savoir plus</a>
+					<a href="#" class="btn">En savoir plus</a>
 				</div>
 	
 			</div>
@@ -380,44 +369,44 @@
 	
 		<!-- footer section starts  -->
 	
-		<section class="footer" id="footer">
+		<section class="footer">
 	
 			<div class="box-container">
 	
 				<div class="box">
-					<h3>liens rapides</h3>
+					<h3>Liens rapides</h3>
 					<c:if test="${!empty user}">
-						<a href="#">enchères</a> 
-						<a href="#">ventes</a> 
+						<a href="#">Enchères</a> 
+						<a href="#">Ventes</a> 
 					</c:if>
-					<a href="#">articles</a>
-					<a href="#">à propos</a> 
-					<a href="#">contact</a>
+					<a href="#">Articles</a>
+					<a href="#">A propos</a> 
+					<a href="#">Contact</a>
 				</div>
 	
 				<c:if test="${!empty user}">
 					<div class="box">
 						<h3>Espace perso</h3>
-						<a href="#">mon profil</a> 
-						<a href="#">mes ventes</a> 
-						<a href="#">mes favoris</a>
+						<a href="#">Mon profil</a> 
+						<a href="#">Mes ventes</a> 
+						<a href="#">Mes favoris</a>
 				</div>
 				</c:if>
 	
 				<div class="box">
 					<h3>Pays</h3>
-					<a href="#">france</a> 
-					<a href="#">europe</a> 
+					<a href="#">France</a> 
+					<a href="#">Europe</a> 
 					<a href="#">USA</a> 
-					<a href="#">japon</a>
+					<a href="#">Japon</a>
 	
 				</div>
 	
 				<div class="box" id="infos">
-					<h3>infos contacts</h3>
+					<h3>Infos contacts</h3>
 					<a href="#">+123-456-7890</a> 
-					<a href="#">example@gmail.com</a> <a
-						href="#">nantes, france - 44100</a> 
+					<a href="#">Example@gmail.com</a> <a
+						href="#">Nantes, France - 44100</a> 
 						<img src="css/images/payment.png" alt="">
 				</div>
 	

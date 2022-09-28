@@ -8,36 +8,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="ccs/style.css">
-        <title>afficher pseudo</title>
+        <title>Profil ${profil.pseudo }</title>
     </head>
     <body>
     
     	<%@ include file="../html/header.html" %>
     
-   		<c:if test="${!empty profil}">
-	        <div class="margeTop">
-	            <h1>
-	                <span class="entetePat">Pseudo: </span>${profil.pseudo }
-	            </h1>
-	
-	                <span class="entetePat">NOM : </span>${profil.nom }
-
-	                <span class="entetePat">Prénom : </span>${profil.prenom }
-	                
-	                 <span class="entetePat">Email : </span>${profil.email }
-
-	                <span class="entetePat">Téléphone : </span>${profil.telephone }
-
-	                <span class="entetePat">Rue : </span>${profil.getAdresse().getRue()}
-
-	                <span class="entetePat">Code postal : </span>${profil.getAdresse().getCodePostal()}
-
-	                <span class="entetePat">Ville : </span>${profil.getAdresse().getVille()}
+    <c:if test="${!empty profil}">
+	        <div class="homeVisualisation">
+	            <h1><span>Pseudo: </span>${profil.pseudo }</h1>
+	            
+	            <p><span>NOM : </span>${profil.nom }</p> 
+	            <p><span>Prénom : </span>${profil.prenom }</p> 
+	            <p><span>Email : </span>${profil.email }</p> 
+	            <p><span>Téléphone : </span>${profil.telephone }</p> 
+	            <p><span>Rue : </span>${profil.getAdresse().getRue()}</p> 
+	            <p><span>Code postal : </span>${profil.getAdresse().getCodePostal()}</p> 
+				<p><span>Ville : </span>${profil.getAdresse().getVille()}</p>
+	              
 	        </div>
+	        
 	    </c:if> 
 	    
+	    <section class="visualisation">
 	    <c:if test="${empty profil }">
-	    	<div class="visualisation">
+	    	<div>
 	    		<p>Ce profil n'existe pas</p>
 	    	</div>
 	    </c:if>
@@ -50,7 +45,8 @@
 		       	</div>
 	       	 </form>
 	    </c:if>
-       
+    	</section>
+   		
        <%@ include file="../html/footer.html" %>
     
     </body>

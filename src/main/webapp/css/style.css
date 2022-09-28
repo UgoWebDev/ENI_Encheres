@@ -42,19 +42,6 @@
     --bez: cubic-bezier(0, 0, 0.43, 1.49);
 }
 
-.entetePat{
-	color : var(--green);
-	font-weight : bold;
-	font-style : italic;
-	
-}
-
-body
-{
-	width: 1200px;
-	margin: auto;
-}
-
 *{
     margin:0; 
     padding:0;
@@ -74,39 +61,9 @@ html{
     overflow-x: hidden;
 }
 
-/* section{
-    padding:2rem 9%;
-} */
-
-.heading{
-    text-align: center;
-    font-size: 4rem;
-    color:#333;
-    padding:1rem;
-    margin:2rem 0;
-    background: linear-gradient(10deg, #7bb3ea, #8cd9b1);
-    border-radius: 0.5rem;
-    
-}
-
-.heading span{
-    color:var(--blue);
-}
-
-.btn{
-	margin-right: 1rem;
-    display: inline-block;
-    margin-top: 1rem;
-    border-radius: 5rem;
-    background:#144a7f;
-    color:#fff;
-    padding:.9rem 3.5rem;
-    cursor: pointer;
-    font-size: 1.7rem;
-}
-
-.btn:hover{
-    background:var(--green);
+body{
+	width: 1200px;
+	margin: auto;
 }
 
 header{
@@ -138,7 +95,7 @@ header .navbar{
     align-items: center;
 }
 
-header .navbar ul li {
+header .navbar ul li{
     list-style: none;
     display: inline-block;
     margin: 0 20px;
@@ -185,7 +142,6 @@ header .icons a:hover{
     color:var(--red);
 }
 
-
 header #toggler{
     display: none;
 }
@@ -199,6 +155,8 @@ header .fa-bars{
     border:.1rem solid rgba(0,0,0,.3);
     display: none;
 }
+
+/* Reutilisable */
 
 .home{
     display: flex;
@@ -231,7 +189,343 @@ header .fa-bars{
     line-height: 1.5;
 }
 
-/* CSS JSP GestionVente */
+section#connexion{
+	display: flex;
+}
+
+.heading{
+    text-align: center;
+    font-size: 4rem;
+    color:#333;
+    padding:1rem;
+    margin:2rem 0;
+    background: linear-gradient(10deg, #7bb3ea, #8cd9b1);
+    border-radius: 0.5rem;
+}
+
+
+.heading span{
+    color:var(--blue);
+}
+
+.btn{
+	margin-right: 1rem;
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background:#144a7f;
+    color:#fff;
+    padding:.9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover{
+    background:var(--green);
+}
+
+/* Fin Reutilisable */
+
+/* JSP GestionAccueil */
+
+.products .search{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 1rem;
+}
+
+.products .search .cat{
+    height: 40px;
+    border: var(--green) solid 1px;
+    border-radius: 1rem;
+    align-items: center;
+  }
+
+.products .search .search-box{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+  }
+  
+.products .search .btn-search{
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color:#fff ;
+    background-color:transparent;
+    pointer-events: painted;  
+  }
+
+.products .btn-search:hover ~ .input-search{
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border:1px solid var(--blue);
+    border-radius: 3%;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+
+.products .search .input-search:hover{
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid var(--blue);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+  
+.products .search .input-search{
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: var(--green);
+    padding-right: 40px;
+    color:#144a7f;
+  }
+
+.products .search .input-search::placeholder{
+    color:#144a7f;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+  }
+  
+.products .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.products .box-container .box{
+    flex:1 1 30rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    border-radius: .5rem;
+    border:.1rem solid rgba(0,0,0,.1);
+    position: relative;    
+}
+
+.products .box-container .box .image{
+    position: relative;
+    text-align: center;
+    padding-top: 2rem;
+    overflow:hidden;
+}
+
+.products .box-container .box .image img{
+    height:25rem;
+}
+
+.products .box-container .box:hover .image img{
+    transform: scale(1.1);
+}
+
+.products .box-container .box .image .icons{
+    position: absolute;
+    bottom:-7rem; left:0; right:0;
+    display: flex;
+}
+
+.products .box-container .box:hover .image .icons{
+    bottom:0;
+}
+
+.products .box-container .box .image .icons a{
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    width:50%;
+    background:var(--blue);
+    color:#fff;
+}
+
+.products .box-container .box .image .icons .fa-cart-plus{
+    border-left: .1rem solid #fff7;
+    border-right: .1rem solid #fff7;
+    width:50%;
+}
+
+.products .box-container .box .image .icons .fa-heart-circle-plus, .fa-share-from-square{
+    border-left: .1rem solid #fff7;
+    border-right: .1rem solid #fff7;
+    width: 25%;
+}
+
+
+.products .box-container .box .image .icons a:hover{
+    background:#333;
+}
+
+.products .box-container .box .content{
+    padding:2rem;
+    text-align: center;
+}
+
+.products .box-container .box .content h3{
+    font-size: 2.5rem;
+    color:#333;
+}
+
+.products .box-container .box .content .price, .date-fin, .vendeur{
+    font-size: 1.5rem;
+    color:var(--blue);
+    font-weight: bolder;
+    padding-top: 1rem;
+    text-transform: none;
+}
+
+.products .box-container .box .content .price span{
+    font-size: 1.5rem;
+    color:#999;
+    font-weight: lighter;
+    text-decoration: line-through;
+}
+
+
+
+.contact .row{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap:1.5rem;
+    align-items: center;
+}
+
+.contact .row form{
+    flex:1 1 40rem;
+    padding:2rem 2.5rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    border:.1rem solid rgba(0,0,0,.1);
+    background: #fff;
+    border-radius: .5rem;
+}
+
+.contact .row .image{
+    flex:1 1 40rem;
+}
+
+.contact .row .image img{
+    width: 100%;
+}
+
+.contact .row form .box{
+    padding:1rem;
+    font-size: 1.7rem;
+    color:#333;
+    text-transform: none;
+    border:.1rem solid rgba(0,0,0,.1);
+    border-radius: .5rem;
+    margin:.7rem 0;
+    width: 100%;
+}
+
+.contact .row form .box:focus{
+    border-color: var(--blue);
+}
+
+.contact .row form textarea{
+    height: 15rem;
+    resize: none;
+}
+
+.about .row{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+    flex-wrap: wrap;
+    padding:2rem 0;
+    padding-bottom: 3rem;
+}
+
+.about .row .content{
+    flex:1 1 40rem;
+}
+
+.about .row .content h3{
+    font-size: 3rem;
+    color:#333;
+}
+
+.about .row .content p{
+    font-size: 1.5rem;
+    color:#999;
+    padding:.5rem 0;
+    padding-top: 1rem;
+    line-height: 1.5;
+}
+
+.footer{
+	text-align:center;
+}
+
+.footer .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.footer .box-container .box{
+    flex:1 1 25rem;
+}
+
+.footer .box-container .box h3{
+    color:#333;
+    font-size: 2.5rem;
+    padding:1rem 0;
+}
+
+.footer .box-container .box a{
+    display: block;
+    color:#666;
+    font-size: 1.5rem;
+    padding:1rem 0;
+}
+
+.footer .box-container .box a:hover{
+    color:var(--blue);
+    text-decoration: underline;
+}
+
+.footer .box-container .box  img{
+    margin-top: 1rem;
+}
+
+.footer .credit{
+    text-align: center;
+    padding:1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 2.5rem;
+    font-size: 2rem;
+    color:#333;
+    border-top: .1rem solid rgba(0,0,0,.1);
+    padding-bottom: 9rem;
+}
+
+.footer .credit span{
+    color:var(--blue);
+}
+
+.footer .box #infos {
+    text-transform: none;
+}
+
+
+
+
+
+
+/* JSP GestionVente */
 
 .vente{
     display: flex;
@@ -304,339 +598,34 @@ input[type=text], input[type=number], input[type=password]{
 	border-radius: 4px;
 }
 
-.dateFin
-{
+.dateFin{
 	margin-top: 1rem;
 }
-	
-.about .row{
-    display: flex;
-    align-items: center;
-    gap:2rem;
-    flex-wrap: wrap;
-    padding:2rem 0;
-    padding-bottom: 3rem;
-}
-
-.about .row .content{
-    flex:1 1 40rem;
-}
-
-.about .row .content h3{
-    font-size: 3rem;
-    color:#333;
-}
-
-.about .row .content p{
-    font-size: 1.5rem;
-    color:#999;
-    padding:.5rem 0;
-    padding-top: 1rem;
-    line-height: 1.5;
-}
-
-.products .search{
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    gap: 1rem;
-}
-
-.products .search-box{
-    width: fit-content;
-    height: fit-content;
-    position: relative;
-  }
-.products  .input-search{
-    height: 50px;
-    width: 50px;
-    border-style: none;
-    padding: 10px;
-    font-size: 18px;
-    letter-spacing: 2px;
-    outline: none;
-    border-radius: 25px;
-    transition: all .5s ease-in-out;
-    background-color: var(--green);
-    padding-right: 40px;
-    color:#144a7f;
-  }
-
-  .products .input-search::placeholder{
-    color:#144a7f;
-    font-size: 18px;
-    letter-spacing: 2px;
-    font-weight: 100;
-  }
-
-  .products  .btn-search{
-    width: 50px;
-    height: 50px;
-    border-style: none;
-    font-size: 20px;
-    font-weight: bold;
-    outline: none;
-    cursor: pointer;
-    border-radius: 50%;
-    position: absolute;
-    right: 0px;
-    color:#fff ;
-    background-color:transparent;
-    pointer-events: painted;  
-  }
-.products .btn-search:hover ~ .input-search{
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border:1px solid var(--blue);
-    border-radius: 3%;
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-
-  .products  .input-search:hover{
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid var(--blue);
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-
-  .products .search .cat{
-    height: 40px;
-    border: var(--green) solid 1px;
-    border-radius: 1rem;
-    align-items: center;
-  }
 
 
-.products .box-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap:1.5rem;
-}
 
-.products .box-container .box{
-    flex:1 1 30rem;
-    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
-    border-radius: .5rem;
-    border:.1rem solid rgba(0,0,0,.1);
-    position: relative;    
-}
 
-.products .box-container .box .image{
-    position: relative;
-    text-align: center;
-    padding-top: 2rem;
-    overflow:hidden;
-}
 
-.products .box-container .box .image img{
-    height:25rem;
-}
 
-.products .box-container .box:hover .image img{
-    transform: scale(1.1);
-}
 
-.products .box-container .box .image .icons{
-    position: absolute;
-    bottom:-7rem; left:0; right:0;
-    display: flex;
-}
-
-.products .box-container .box:hover .image .icons{
-    bottom:0;
-}
-
-.products .box-container .box .image .icons a{
-    height: 5rem;
-    line-height: 5rem;
-    font-size: 2rem;
-    width:50%;
-    background:var(--blue);
-    color:#fff;
-}
-
-.products .box-container .box .image .icons .fa-cart-plus{
-    border-left: .1rem solid #fff7;
-    border-right: .1rem solid #fff7;
-    width:50%;
-}
-
-.products .box-container .box .image .icons .fa-heart-circle-plus{
-    border-left: .1rem solid #fff7;
-    border-right: .1rem solid #fff7;
-    width: 25%;
-}
-
-.products .box-container .box .image .icons .fa-share-from-square{
-    border-left: .1rem solid #fff7;
-    border-right: .1rem solid #fff7;
-    width: 25%;
-}
-
-.products .box-container .box .image .icons a:hover{
-    background:#333;
-}
-
-.products .box-container .box .content{
-    padding:2rem;
-    text-align: center;
-}
-
-.products .box-container .box .content h3{
-    font-size: 2.5rem;
-    color:#333;
-}
-
-.products .box-container .box .content .price{
-    font-size: 1.5rem;
-    color:var(--blue);
-    font-weight: bolder;
-    padding-top: 1rem;
-    text-transform: none;
-}
-
-.products .box-container .box .content .date-fin{
-    font-size: 1.5rem;
-    color:var(--blue);
-    font-weight: bolder;
-    padding-top: 1rem;
-    text-transform: none;
-}
-
-.products .box-container .box .content .vendeur{
-    font-size: 1.5rem;
-    color:var(--blue);
-    font-weight: bolder;
-    padding-top: 1rem;
-    text-transform: none;
-}
-
-.products .box-container .box .content .price span{
-    font-size: 1.5rem;
-    color:#999;
-    font-weight: lighter;
-    text-decoration: line-through;
-}
-
-.contact .row{
-    display: flex;
-    flex-wrap: wrap-reverse;
-    gap:1.5rem;
-    align-items: center;
-}
-
-.contact .row form{
-    flex:1 1 40rem;
-    padding:2rem 2.5rem;
-    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
-    border:.1rem solid rgba(0,0,0,.1);
-    background: #fff;
-    border-radius: .5rem;
-}
-
-.contact .row .image{
-    flex:1 1 40rem;
-}
-
-.contact .row .image img{
-    width: 100%;
-}
-
-.contact .row form .box{
-    padding:1rem;
-    font-size: 1.7rem;
-    color:#333;
-    text-transform: none;
-    border:.1rem solid rgba(0,0,0,.1);
-    border-radius: .5rem;
-    margin:.7rem 0;
-    width: 100%;
-}
-
-.contact .row form .box:focus{
-    border-color: var(--blue);
-}
-
-.contact .row form textarea{
-    height: 15rem;
-    resize: none;
-}
-
-.footer{
-	text-align:center;
-}
-
-.footer .box-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap:1.5rem;
-}
-
-.footer .box-container .box{
-    flex:1 1 25rem;
-}
-
-.footer .box-container .box h3{
-    color:#333;
-    font-size: 2.5rem;
-    padding:1rem 0;
-}
-
-.footer .box-container .box a{
-    display: block;
-    color:#666;
-    font-size: 1.5rem;
-    padding:1rem 0;
-}
-
-.footer .box-container .box a:hover{
-    color:var(--blue);
-    text-decoration: underline;
-}
-
-.footer .box-container .box  img{
-    margin-top: 1rem;
-}
-
-.footer .credit{
-    text-align: center;
-    padding:1.5rem;
-    margin-top: 1.5rem;
-    padding-top: 2.5rem;
-    font-size: 2rem;
-    color:#333;
-    border-top: .1rem solid rgba(0,0,0,.1);
-    padding-bottom: 9rem;
-}
-
-.footer .credit span{
-    color:var(--blue);
-}
-
-div .box #infos {
-    text-transform: none;
-}
 
 /*JSP VisualisationProfil*/
 
-.margeTop
-{
+.homeVisualisation{
+	width: 100%;
 	color: black;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	flex-direction: column;
 	margin-top: 150px;
 	gap: 1.5rem;
 }
 
-.margeTop span{
-	width: 20%;
+.home .connexion{
+	max-width: 75rem;
 }
 
-.visualisation p, h1
-{
+.visualisation p, h1{
 	padding-bottom: 1rem; 
 }
 
@@ -646,8 +635,8 @@ div .box #infos {
 }
 /*JSP Connexion*/
 
-.connexion
-{
+.connexion{
+	width: auto;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -655,16 +644,22 @@ div .box #infos {
 	gap: 1.5rem;
 	
 }
-.connexion span
-{
+.connexion span{
     font-size: 2rem;
     color:var(--blue);
     padding:1rem 0;
     line-height: 1.5;
 }
 
-.bouton
-{
+.connexion .login, .mdp{
+	display:flex;		
+} 
+
+.connexion label{
+	width: auto;
+}
+
+.bouton{
 	display: flex;
 	justify-content: space-between;
 }
