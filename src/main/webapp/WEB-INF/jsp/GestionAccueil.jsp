@@ -40,11 +40,12 @@
 	
 			<div class="content">
 				<h3>Les Encheres</h3>
-				<span> bla bla bla </span>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Beatae laborum ut minus corrupti dolorum dolore assumenda iste
-					voluptate dolorem pariatur.</p>
-				<a href="#" class="btn">infos</a>
+				<span> Les objets sont nos amis </span>
+				<p><strong>Nos ambitions</strong>
+					Donner une seconde vie aux objets en facilitant les échanges.
+					Encourager la réutilisation.
+					Promouvoir des échanges non commerciaux.</p>
+				<a href="#footer" class="btn">infos</a>
 			</div>
 	
 		</section>
@@ -373,7 +374,7 @@
 	
 		<!-- footer section starts  -->
 	
-		<section class="footer">
+		<section class="footer" id="footer">
 	
 			<div class="box-container">
 	
