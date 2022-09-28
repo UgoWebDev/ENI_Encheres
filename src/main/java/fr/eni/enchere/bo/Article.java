@@ -168,4 +168,35 @@ public class Article {
 	public void setRetrait(Adresse retrait) {
 		this.retrait = retrait;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Article [noArticle=");
+		builder.append(noArticle);
+		builder.append(", nomArticle=");
+		builder.append(nomArticle);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", dateDebutEncheres=");
+		builder.append(dateDebutEncheres);
+		builder.append(", dateFinEncheres=");
+		builder.append(dateFinEncheres);
+		builder.append(", miseAPrix=");
+		builder.append(miseAPrix);
+		builder.append(", prixVente=");
+		builder.append(prixVente);
+		builder.append(", etatVente=");
+		builder.append(etatVente);
+		builder.append(", vendeur=");
+		builder.append(vendeur);
+		builder.append(", categorie=");
+		builder.append(categorie);
+		builder.append(", encherisseurs=");
+		builder.append(encherisseurs);
+		builder.append(", retrait=");
+		builder.append(retrait);
+		builder.append("]");
+		return builder.toString();
+	}
 }

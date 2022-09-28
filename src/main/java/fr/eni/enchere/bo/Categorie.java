@@ -23,4 +23,15 @@ public class Categorie {
 	public void setLibelleCategorie(String libelleCategorie) {
 		this.libelleCategorie = libelleCategorie;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Categorie [noCategorie=");
+		builder.append(noCategorie);
+		builder.append(", libelleCategorie=");
+		builder.append(libelleCategorie);
+		builder.append("]");
+		return builder.toString();
+	}
 }

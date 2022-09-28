@@ -24,11 +24,11 @@ import fr.eni.enchere.dal.ConnectionProvider;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	
-	public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	public static final String INSERT_ADRESSE = "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE no_article = ?";
-	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES";
-	public static final String SELECT_ARTICLE_BY_NO 	= "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES WHERE no_article = ?";
+	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES";
+	public static final String SELECT_ARTICLE_BY_NO 	= "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES WHERE no_article = ?";
 	
 	@Override
 	public Article insertArticle(Article article) throws BusinessException {

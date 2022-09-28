@@ -55,6 +55,23 @@ public class Enchere {
 	public void setArticleEnchere(Article articleEnchere) {
 		this.articleEnchere = articleEnchere;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Enchere [noEnchere=");
+		builder.append(noEnchere);
+		builder.append(", dateEnchere=");
+		builder.append(dateEnchere);
+		builder.append(", montantEnchere=");
+		builder.append(montantEnchere);
+		builder.append(", utilisateurEnchere=");
+		builder.append(utilisateurEnchere);
+		builder.append(", articleEnchere=");
+		builder.append(articleEnchere);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 
 }

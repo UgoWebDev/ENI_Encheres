@@ -82,9 +82,9 @@
 	
 			<div class="box-container">
 				<c:choose>
-					<c:when test="${listeArticle.articles.size()>0}">
+					<c:when test="${listeArticle.size()>0}">
 						<div class="box">
-							<c:forEach var="article" items="${listeArticle.articles}">
+							<c:forEach var="article" items="${listeArticle}">
 								<div class="image">
 									<img src="css/images/article1.jpg" alt="">
 									
@@ -98,7 +98,7 @@
 									
 								</div>
 								<div class="content">
-									<h3>"${article.nom}"</h3>
+									<h3>"${article.nomArticle}"</h3>
 									<div class="price">Prix : ${article.miseAPrix}</div>
 									<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
 									<div class="vendeur">Vendeur : 

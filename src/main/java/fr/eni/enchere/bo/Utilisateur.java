@@ -111,6 +111,36 @@ public class Utilisateur {
 	public void setVendArticles(List<Article> vendArticles) {
 		this.vendArticles = vendArticles;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Utilisateur [noUtilisateur=");
+		builder.append(noUtilisateur);
+		builder.append(", pseudo=");
+		builder.append(pseudo);
+		builder.append(", nom=");
+		builder.append(nom);
+		builder.append(", prenom=");
+		builder.append(prenom);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", telephone=");
+		builder.append(telephone);
+		builder.append(", adresse=");
+		builder.append(adresse);
+		builder.append(", motDePasse=");
+		builder.append(motDePasse);
+		builder.append(", credit=");
+		builder.append(credit);
+		builder.append(", administrateur=");
+		builder.append(administrateur);
+		builder.append(", encheresSoumises=");
+		builder.append(encheresSoumises);
+		builder.append(", vendArticles=");
+		builder.append(vendArticles);
+		builder.append("]");
+		return builder.toString();
+	}
 
 	
 }

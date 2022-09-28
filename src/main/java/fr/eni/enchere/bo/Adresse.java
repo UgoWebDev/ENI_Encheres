@@ -43,4 +43,19 @@ public class Adresse {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Adresse [noAdresse=");
+		builder.append(noAdresse);
+		builder.append(", rue=");
+		builder.append(rue);
+		builder.append(", codePostal=");
+		builder.append(codePostal);
+		builder.append(", ville=");
+		builder.append(ville);
+		builder.append("]");
+		return builder.toString();
+	}
 }
