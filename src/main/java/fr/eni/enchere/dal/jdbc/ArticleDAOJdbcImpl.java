@@ -19,7 +19,6 @@ import fr.eni.enchere.bo.Article.EtatsVente;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
-import fr.eni.enchere.dal.UtilisateurDAO;
 
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
@@ -151,14 +150,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	@Override
 	
 	  public List<Article> getArticles()  {
-		ArrayList<Article> articles = null; 
+		ArrayList<Article> articles = new ArrayList<>(); 
 	  
 		  try
 		  (Connection cnx = ConnectionProvider.getConnection(); Statement pstmt =
 		  cnx.createStatement() ) {
 		  
 			  try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
-				  if (rs.next()){ articles.add(new Article(
+				  while (rs.next()){ articles.add(new Article(
 					  rs.getInt("no_article"),
 					  rs.getString("nom_article"), 
 					  rs.getString("description"),

@@ -77,7 +77,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				) {
 			pstmt.setInt(1, noEnchere);
 			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
+				while (rs.next()) {
 					enchere = new Enchere(
 						rs.getInt("no_enchere"), 
 						rs.getDate("date_enchere"),
@@ -95,7 +95,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	@Override
 	public List<Enchere> getEncheresByUtilisateur(Utilisateur utilisateur) throws BusinessException{
-		ArrayList<Enchere> encheres = null; 
+		ArrayList<Enchere> encheres = new ArrayList<>(); 
 		  
 		  try
 		  (Connection cnx = ConnectionProvider.getConnection(); 
@@ -103,7 +103,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				) {
 			  pstmt.setInt(1, utilisateur.getNoUtilisateur());
 			  try (ResultSet rs = pstmt.executeQuery()) {
-				  if (rs.next()){ encheres.add(new Enchere(
+				  while (rs.next()){ encheres.add(new Enchere(
 							rs.getInt("no_enchere"), 
 							rs.getDate("date_enchere"),
 							rs.getInt("montant_enchere"),
@@ -120,7 +120,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	@Override
 	public List<Enchere> getEncheresByArticle(Article article) throws BusinessException{
-		ArrayList<Enchere> encheres = null; 
+		ArrayList<Enchere> encheres = new ArrayList<>(); 
 		  
 		  try
 		  (Connection cnx = ConnectionProvider.getConnection(); 
@@ -128,7 +128,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				) {
 			  pstmt.setInt(1, article.getNoArticle());
 			  try (ResultSet rs = pstmt.executeQuery()) {
-				  if (rs.next()){ encheres.add(new Enchere(
+				  while (rs.next()){ encheres.add(new Enchere(
 							rs.getInt("no_enchere"), 
 							rs.getDate("date_enchere"),
 							rs.getInt("montant_enchere"),
@@ -146,7 +146,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	@Override
 	public List<Enchere> getEncheresByUtilisateurByContent(Utilisateur utilisateur, String contient)
 			throws BusinessException {
-		ArrayList<Enchere> encheres = null; 
+		ArrayList<Enchere> encheres = new ArrayList<>(); 
 		  
 		  try
 		  (Connection cnx = ConnectionProvider.getConnection(); 
@@ -155,7 +155,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			  pstmt.setInt(1, utilisateur.getNoUtilisateur());
 			  pstmt.setString(2, "%"+contient+"%");
 			  try (ResultSet rs = pstmt.executeQuery()) {
-				  if (rs.next()){ encheres.add(new Enchere(
+				  while (rs.next()){ encheres.add(new Enchere(
 							rs.getInt("no_enchere"), 
 							rs.getDate("date_enchere"),
 							rs.getInt("montant_enchere"),
