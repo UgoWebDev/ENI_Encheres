@@ -47,7 +47,7 @@ public class Article {
 		ENCOURS,
 		TERMINEE,
 		RETIREE,
-		SUPPRIME
+		SUPPRIMEE
 	}
 	
 	public Integer getNoArticle() {
