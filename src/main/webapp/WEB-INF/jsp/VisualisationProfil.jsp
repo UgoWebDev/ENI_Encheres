@@ -17,35 +17,35 @@
    		<c:if test="${!empty profil}">
 	        <div class="margeTop">
 	            <h1>
-	                Pseudo: ${profil.pseudo }
+	                <span class="entetePat">Pseudo: </span>${profil.pseudo }
 	            </h1>
 	
 	            <p>
-	                NOM: ${profil.nom }
+	                <span class="entetePat">NOM: </span>${profil.nom }
 	            </p>
 	
 	            <p>
-	                Prénom: ${profil.prenom }
+	                <span class="entetePat">Prénom: </span>${profil.prenom }
 	            </p>
 	
 	            <p>
-	                Email: ${profil.email }
+	                <span class="entetePat">Email: </span>${profil.email }
 	            </p>
 	
 	            <p>
-	                Téléphone: ${profil.telephone }
+	                <span class="entetePat">Téléphone: </span>${profil.telephone }
 	            </p>
 	
 	            <p>
-	                Rue: ${profil.getAdresse().getRue()}
+	                <span class="entetePat">Rue: </span>${profil.getAdresse().getRue()}
 	            </p>
 	
 	            <p>
-	                Code postal: ${profil.getAdresse().getCodePostal()}
+	                <span class="entetePat">Code postal: </span>${profil.getAdresse().getCodePostal()}
 	            </p>
 	
 	            <p>
-	                Ville: ${profil.getAdresse().getVille()}
+	                <span class="entetePat">Ville: </span>${profil.getAdresse().getVille()}
 	            </p>
 	        </div>
 	    </c:if> 

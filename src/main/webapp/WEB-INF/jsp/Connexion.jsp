@@ -15,7 +15,7 @@
 			<label for="toggler" class="fas fa-bars"></label> <a href="accueil" class="logo">ENI-ENCHERE<span>.</span></a>
 		</header>
 		
-		<form method="post" action="<%=request.getContextPath()%>/connexion" class="home">
+		<form method="post" action="<%=request.getContextPath()%>/connexion" class="home testborder">
 			<c:if test="${!empty listeCodesErreur}">
 				<div class="alert alert-danger" role="alert">
 					<strong>Erreur!</strong>
@@ -28,10 +28,10 @@
 			</c:if>
 			<div class="connexion">
 				<div>
-					<label for="login"><span>Login</span></label> 
+					<label for="login"><span>Login </span></label> 
 					<input type="text" id="login" name="login"> 
 					
-					<label for="mdp"><span>Mot de passe</span></label> 
+					<label for="mdp"><span>Mot de passe </span></label> 
 					<input type="password" id="mdp" name="mdp">
 				</div>
 				

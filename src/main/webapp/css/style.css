@@ -42,6 +42,13 @@
     --bez: cubic-bezier(0, 0, 0.43, 1.49);
 }
 
+.entetePat{
+	color : var(--green);
+	font-weight : bold;
+	font-style : italic;
+	
+}
+
 body
 {
 	width: 1200px;
@@ -271,7 +278,7 @@ header .fa-bars{
 	border-radius: 4px;
 }
 
-.vente .content input[type=text], input[type=number]{
+input[type=text], input[type=number], input[type=password]{
 	border-bottom: 2px solid var(--green);
 	border-radius: 4px;
 }
@@ -282,6 +289,7 @@ header .fa-bars{
 	gap: 1rem;
 	align-items: center;
 }
+
 
 .vente .content .enregistrer{
 	display: flex;
@@ -633,11 +641,10 @@ div .box #infos {
 
 .connexion
 {
-	margin-left: 300px;
-	
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	border : 2px solid green;
 }
 .connexion span
 {
@@ -653,7 +660,33 @@ div .box #infos {
 	justify-content: space-between;
 }
 
+.alert {
+	border : 2px solid black;
+	padding-bottom: 2rem;
+	
+}
 
+.alert strong {
+	font-size: 3rem;
+	color: var(--red);
+}
+.testborder{
+	
+	border : 2px solid red;
+	height : 100%;
+	width:100%;
+	display : flex;
+	gap:3rem;
+	align-items:center;
+	justify-content:center;
+	flex-direction: column;
+
+}
+.alert ul {
+	list-style-type : none;
+	font-size: 2rem;
+	color: var(--green);
+}	
 
 
 
