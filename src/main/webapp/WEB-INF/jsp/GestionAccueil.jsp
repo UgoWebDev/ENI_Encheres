@@ -103,7 +103,7 @@
 									<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
 									<div class="vendeur">Vendeur : 
 										<c:if test="${!empty user}">
-											<a href="${pageContext.request.contextPath}/visualisation?id=${c.id}">${article.getVendeur().getPseudo()}</a>
+											<a href="${pageContext.request.contextPath}/visualisation?profilPseudo=${article.getVendeur().getPseudo()}">${article.getVendeur().getPseudo()}</a>
 										</c:if>
 										<c:if test="${empty user}">${article.getVendeur().getPseudo()}
 										</c:if>
