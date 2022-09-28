@@ -61,27 +61,34 @@
 			<h1 class="heading">
 				liste <span>des enchères</span>
 			</h1>
-	
+		<form method="post" action="<%=request.getContextPath()%>/accueil">
 			<div class="search">
 				<div class="search-box">
 					<button class="btn-search">
 						<i class="fas fa-search"></i>
 					</button>
-					<input type="text" class="input-search" placeholder="Chercher un article...">
+					<input name="chaineRecherche" type="text" class="input-search" placeholder="Chercher un article...">
+
+
+
 				</div>
-	
-				
+
+
 				<c:if test="${!empty user}">
-					<select name="cat" class="cat">
-					<option value="all">--Catégories--</option>
+					<select name="choixCategorie" class="cat">
+						<option value="all">--Catégories--</option>
 						<c:forEach var="choixCat" items="${listeCategories}">
-							<option value="${choixCat.libelleCategorie}">${choixCat.libelleCategorie}</option>
+							<option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
 						</c:forEach>
 					</select>
 				</c:if>
 			</div>
-	
-			<div class="box-container">
+			<div class="bouton">
+				<button type="submit" name="action" value="rechercher" class="btn">Rechercher</button>
+			</div>
+		</form>
+
+		<div class="box-container">
 				<c:choose>
 					<c:when test="${listeArticle.size()>0}">
 						<div class="box">
