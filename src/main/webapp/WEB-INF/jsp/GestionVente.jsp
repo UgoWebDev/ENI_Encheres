@@ -47,11 +47,14 @@
                             <input type="number" min="0" name="miseAPrix" id="prix">
                     </div>
                     <div class="dateenchere">
+                    	<p>
                             <label for="dateDebutEncheres">Début de l'enchère</label>
                             <input type="date" name="dateDebutEncheres"/>
-                    
-                            <label for="dateFinEncheres">Fin de l'enchère</label>
+                    	</p>
+                    	<p class="dateFin">
+                            <label for="dateFinEncheres">Fin de l'enchère</label> 
                             <input type="date" name="dateFinEncheres"/>
+                        </p>
                     </div>
             
                         <% Utilisateur userConnected =  (Utilisateur) session.getAttribute("user"); %>
