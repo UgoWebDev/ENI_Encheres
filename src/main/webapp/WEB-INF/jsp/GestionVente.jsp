@@ -40,7 +40,7 @@
                         </select>
                     </div>
                     <div class="uploadimg">
-                            <input type="file" id="image" name="image" accept="image/*" class="custom-file-input">
+                            <input type="file" name="image" accept="image/*" class="custom-file-input">
                     </div>
                     <div class="prix">
                             <label for="miseAPrix">Mise à  prix</label>
@@ -56,21 +56,20 @@
                             <input type="date" name="dateFinEncheres"/>
                         </p>
                     </div>
-            
-                        <% Utilisateur userConnected =  (Utilisateur) session.getAttribute("user"); %>
+          
                         
                         <fieldset>
         
                             <legend>Retrait : </legend>
         
                                 <label for="rue">Rue</label>
-                                <input type="text" name="rue" id="rue" value="${userConnected.getAdresse().getRue() }">
+                                <input type="text" name="rue" id="rue" value="${user.getAdresse().getRue() }">
 
                                 <label for="codePostal">Code postal</label>
-                                <input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value="${userConnected.getAdresse().getCodePostal() }">
+                                <input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value="${user.getAdresse().getCodePostal() }">
 
                                 <label for="ville">Ville</label>
-                                <input type="text" name="ville" id="ville" value="${userConnected.getAdresse().getVille() }">
+                                <input type="text" name="ville" id="ville" value="${user.getAdresse().getVille() }">
 
         
         

@@ -12,83 +12,87 @@
 	</head>
 	<body>
 		  <%@ include file="../html/header.html" %>
+		  
+		  <div class="margeTop">
+			
+		      <% Utilisateur user =  (Utilisateur) session.getAttribute("user"); %>
+		      <p> ${user.getPseudo() } </p>
 		
-	      <% Utilisateur user =  (Utilisateur) session.getAttribute("user"); %>
-	      <p> ${user.getPseudo() } </p>
-	
-		<h1>Création profil</h1>
-		
-		<c:if test="${!empty listeCodesErreur}">
-			<div class="alert alert-danger" role="alert">
-				<strong>Erreur!</strong>
-				<ul>
-					<c:forEach var="code" items="${listeCodesErreur}">
-						<li>${LecteurMessage.getMessageErreur(code)}</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</c:if>
-		
-		<form method="post"  action="<%=request.getContextPath()%>/profil">
-			<div class="form">
-					<div>
-						<label for="pseudo">Pseudo</label>
-						<input type="text" name="pseudo" id="pseudo" placeholder="Renseigner votre pseudo..." value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getPseudo() }</c:if>><br>
-						
-						<label for="prenom">Prénom</label>
-						<input type="text" name="prenom" id="prenom" placeholder="Renseigner votre Prénom..." value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getPrenom() }</c:if>><br>
-						
-						<label for="tel">Numéro de téléphone</label>
-						<input type="tel" name="tel" id="tel" value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getTelephone() }</c:if>><br>
-						
-						<label for="cp">Code postal</label>
-						<input type="number" name="codepostal" id="cp" min="01000" max="99999" value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getCodePostal() }</c:if>><br>
-						
-						<label for="mdp">Mot de passe</label>
-						<input type="password" name="mdp" id="mdp"><br>
-					</div>
-					
-					<div>
-						<label for="nom">NOM</label>
-						<input type="text" name="nom" id="nom" placeholder="Renseigner votre NOM..."value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getNom() }</c:if>><br>
-						
-						<label for="mail">E-mail</label>
-						<input type="email" name="email" id="mail"value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getEmail() }</c:if>><br>
-						
-						<label for="rue">Rue</label>
-						<input type="text" name="rue" id="rue"value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getRue() }</c:if>><br>
-						
-						<label for="ville">Ville</label>
-						<input type="text" name="ville" id="ville"value=
-						<c:if test="${!empty listeCodesErreur}"> ${user.getVille() }</c:if>><br>
+			<h1>Création profil</h1>
+			
+			<c:if test="${!empty listeCodesErreur}">
+				<div class="alert alert-danger" role="alert">
+					<strong>Erreur!</strong>
+					<ul>
+						<c:forEach var="code" items="${listeCodesErreur}">
+							<li>${LecteurMessage.getMessageErreur(code)}</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</c:if>
+			
+			<form method="post"  action="<%=request.getContextPath()%>/profil">
+				<div class="form">
+						<div>
+							<label for="pseudo">Pseudo</label>
+							<input type="text" name="pseudo" id="pseudo" placeholder="Renseigner votre pseudo..." value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getPseudo() }</c:if>><br>
+							
+							<label for="prenom">Prénom</label>
+							<input type="text" name="prenom" id="prenom" placeholder="Renseigner votre Prénom..." value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getPrenom() }</c:if>><br>
+							
+							<label for="tel">Numéro de téléphone</label>
+							<input type="tel" name="tel" id="tel" value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getTelephone() }</c:if>><br>
+							
+							<label for="cp">Code postal</label>
+							<input type="number" name="codepostal" id="cp" min="01000" max="99999" value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getCodePostal() }</c:if>><br>
+							
+							<label for="mdp">Mot de passe</label>
+							<input type="password" name="mdp" id="mdp"><br>
+						</div>
 						
 						<div>
-							<label for="confirmationMdp">Confirmation</label>
-							<input type="password" name="password" id="confirmationMdp"><br>
+							<label for="nom">NOM</label>
+							<input type="text" name="nom" id="nom" placeholder="Renseigner votre NOM..."value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getNom() }</c:if>><br>
+							
+							<label for="mail">E-mail</label>
+							<input type="email" name="email" id="mail"value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getEmail() }</c:if>><br>
+							
+							<label for="rue">Rue</label>
+							<input type="text" name="rue" id="rue"value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getRue() }</c:if>><br>
+							
+							<label for="ville">Ville</label>
+							<input type="text" name="ville" id="ville"value=
+							<c:if test="${!empty listeCodesErreur}"> ${user.getVille() }</c:if>><br>
+							
+							<div>
+								<label for="confirmationMdp">Confirmation</label>
+								<input type="password" name="password" id="confirmationMdp"><br>
+							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-				<div>
-				     <c:if test="${empty user.getNoUtilisateur() }">
-						<button type="submit" name="action" value="creation">Créer</button>
-				      </c:if>
-				      
-				     <c:if test="${!empty user.getNoUtilisateur() }">
-						<button type="submit" name="action" value="suppression">Supprimer</button>
-						<button type="submit" name="action" value="modification">Modifier</button>
-				      </c:if>
-
-					<button type="submit" name="action" value="annulation">Annuler</button>
-				</div>
-			</form>
+					<br>
+					<div>
+					     <c:if test="${empty user.getNoUtilisateur() }">
+							<button type="submit" name="action" value="creation">Créer</button>
+					      </c:if>
+					      
+					     <c:if test="${!empty user.getNoUtilisateur() }">
+							<button type="submit" name="action" value="suppression">Supprimer</button>
+							<button type="submit" name="action" value="modification">Modifier</button>
+					      </c:if>
+	
+						<button type="submit" name="action" value="annulation">Annuler</button>
+					</div>
+				</form>
+			
+			</div>
 			
 			<%@ include file="../html/footer.html" %>
 			

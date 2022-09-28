@@ -15,7 +15,7 @@
     	<%@ include file="../html/header.html" %>
     
    		<c:if test="${!empty profil}">
-	        <div class="visualisation">
+	        <div class="margeTop">
 	            <h1>
 	                Pseudo: ${profil.pseudo }
 	            </h1>

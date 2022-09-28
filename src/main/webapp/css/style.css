@@ -266,8 +266,13 @@ header .fa-bars{
     flex-direction: column;
 }
 
-.vente .content input[type=text], input[type=file], select, input[type=number], textarea, input[type=date]{
+.vente .content input[type=file], select, textarea, input[type=date]{
 	border: 2px solid var(--green);
+	border-radius: 4px;
+}
+
+.vente .content input[type=text], input[type=number]{
+	border-bottom: 2px solid var(--green);
 	border-radius: 4px;
 }
 
@@ -611,7 +616,7 @@ div .box #infos {
 
 /*JSP VisualisationProfil*/
 
-.visualisation
+.margeTop
 {
 	display: flex;
 	align-items: center;
