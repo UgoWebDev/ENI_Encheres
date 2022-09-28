@@ -89,7 +89,7 @@
                                 <button type="submit" name="action" value="annuler">Annuler</button>
                                 
                                
-                                <c:if test="${article.etatVente == 'ENCOURS'}">
+                                <c:if test="${article.etatVente == 'ENCOURS' || article.etatVente == 'CREATION'}">
                                     <div class="bouton">
                                         <button type="submit" name="action" value="annulerVente${article.noArticle}">Annuler la vente</button>
                                        </div>
