@@ -24,10 +24,18 @@ public class ServletGestionDetailsVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Article article;
 		
-		article = ArticleManager.getInstance().getArticleByNo(Integer.parseInt(request.getParameter("noArticle")));
-
+		String strArticle = request.getParameter("noArticle");
+		System.out.println(strArticle);
+		
+		int noArticle = Integer.parseInt(strArticle);
+		System.out.println(noArticle);
+		
+		article = ArticleManager.getInstance().getArticleByNo(noArticle);
+		
+		System.out.println(article);
+		
 		request.setAttribute("article", article) ;
-		request.getRequestDispatcher("/WEB-INF/jsp/GestionDetailVente.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/GestionDetailsVente.jsp").forward(request, response);
 	}
 
 	/**

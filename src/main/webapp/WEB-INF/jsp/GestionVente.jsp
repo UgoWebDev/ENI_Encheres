@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="fr.eni.enchere.bo.Utilisateur" %>
-<%@ page import="fr.eni.enchere.bo.Article" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,7 +32,6 @@
 
                     <div class="cat">
                         <select name="cat" class="cat">
-                        <option value="all">--Catégories--</option>
                             <c:forEach var="choixCat" items="${listeCategories}">
                                 <option value="${choixCat.libelleCategorie}">${choixCat.libelleCategorie}</option>
                             </c:forEach>
@@ -80,7 +78,7 @@
                                 <button type="submit" name="action" value="annuler">Annuler</button>
                                 
                                
-                                <c:if test="${article.etatVente.name} == CREATION || ${article.etatVente.name} == ENCOURS">
+                                <c:if test="${article.etatVente == Article.EtatsVente.ENCOURS}">
                                     <div class="bouton">
                                         <button type="submit" name="action" value="annulerVente${article.noArticle}">Annuler la vente</button>
                                        </div>

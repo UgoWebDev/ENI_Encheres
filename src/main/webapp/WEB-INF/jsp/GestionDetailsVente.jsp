@@ -34,32 +34,27 @@
 		</form>
 	</c:if>
 	
-	<c:if test="${article.etatVente.name} == TERMINEE && ${user.pseudo} == ${enchere.getUtilisateurEnchere().getPseudo() }">     <!-- enchere gagnée -->
+	<c:if test="${article.etatVente == Article.EtatsVente.TERMINEE && user.pseudo == enchere.utilisateurEnchere.pseudo }">     <!-- enchere gagnée -->
     	<h1>Vous avez remporté la vente</h1>
+    </c:if>
+    <c:if test="${article.etatVente == Article.EtatsVente.TERMINEE && user.pseudo != enchere.utilisateurEnchere.pseudo } ">		<!-- enchere perdue -->
+    	<h1>${enchere.utilisateurEnchere.pseudo} a remporté la vente</h1>
+    </c:if>
     	<img alt="Impossible de charger l'image..." src="">
     	<h2>"${article.nomArticle}"</h2>
     	<h2 class="description">Description : ${article.description}</h2>
-    	<div class="enchere">Meilleure offre : </div>                  <!-- insérer enchère encours -->
+    	<div class="enchere">Meilleure offre : ${enchere.montantEnchere } par ${enchere.utilisateurEnchere.pseudo}</div>                  <!-- insérer enchère encours -->
 		<div class="price">Mise à prix : ${article.miseAPrix}</div>
     	<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
-    	<div class="retrait">Retrait : ${article.getVendeur().getRetrait}</div>
-    	<div class="vendeur">Vendeur : ${article.getVendeur().getPseudo()}</div>
+    	<div class="retrait">Retrait : ${article.retrait}</div>
+    	<div class="vendeur">Vendeur : ${article.vendeur.pseudo}</div>
+    	
+    	<div class="telephone">Tel : ${article.vendeur.telephone}</div>
+    	
 		<button class="retrait" type="button">Retrait effectué</button>
-		
-	</c:if>
 	
-	<c:if test="${article.etatVente.name} == TERMINEE && ${user.pseudo} != ${enchere.getUtilisateurEnchere().getPseudo() } ">		<!-- enchere perdue -->
-    	<h1>${enchere.getUtilisateurEnchere().getPseudo()} a remporté la vente</h1>
-    	<img alt="Impossible de charger l'image..." src="">
-    	<h2>"${article.nomArticle}"</h2>
-    	<h2 class="description">Description : ${article.description}</h2>
-    	<div class="enchere">Meilleure offre : ${enchere.getMontantEnchere() } par ${enchere.getUtilisateurEnchere().getPseudo()}</div>                  <!-- insérer enchère encours -->
-		<div class="price">Mise à prix : ${article.miseAPrix}</div>
-    	<div class="retrait">Retrait : ${article.getVendeur().getRetrait}</div>
-    	<div class="vendeur">Vendeur : ${article.getVendeur().getPseudo()}</div>
-    	<div class="telephone">Tel : ${article.getVendeur().getTelephone()}</div>
 		<button class="back" type="button">Back</button>
-	</c:if>
+	
 	</div>
 	
 		<%@ include file="../html/footer.html" %>
