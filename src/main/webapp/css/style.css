@@ -203,7 +203,7 @@ header .fa-bars{
 .home{
     display: flex;
     align-items: center;
-    min-height: 40vh;
+    margin: 120px 0 50px 20px;
     background-size: cover;
     background-position: center;
 }
@@ -280,7 +280,7 @@ header .fa-bars{
 
 input[type=text], input[type=number], input[type=password]{
 	border-bottom: 2px solid var(--green);
-	border-radius: 4px;
+	width: 95%;
 }
 
 .vente .content .dateenchere, fieldest, .prix, .uploadimg, .cat{
@@ -337,7 +337,9 @@ input[type=text], input[type=number], input[type=password]{
 
 .products .search{
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+    align-items: center;
+    gap: 1rem;
 }
 
 .products .search-box{
@@ -382,7 +384,7 @@ input[type=text], input[type=number], input[type=password]{
     background-color:transparent;
     pointer-events: painted;  
   }
-.products .btn-search:focus ~ .input-search{
+.products .btn-search:hover ~ .input-search{
     width: 300px;
     border-radius: 0px;
     background-color: transparent;
@@ -391,7 +393,7 @@ input[type=text], input[type=number], input[type=password]{
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
   }
 
-  .products  .input-search:focus{
+  .products  .input-search:hover{
     width: 300px;
     border-radius: 0px;
     background-color: transparent;
@@ -399,18 +401,13 @@ input[type=text], input[type=number], input[type=password]{
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
   }
 
-  .products .search .cat {
+  .products .search .cat{
     height: 40px;
     border: var(--green) solid 1px;
     border-radius: 1rem;
+    align-items: center;
   }
 
-
-
-
-
-
-  
 
 .products .box-container{
     display: flex;
@@ -626,10 +623,16 @@ div .box #infos {
 
 .margeTop
 {
+	color: black;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin-top: 10rem;
+	margin-top: 150px;
+	gap: 1.5rem;
+}
+
+.margeTop span{
+	width: 20%;
 }
 
 .visualisation p, h1
@@ -637,6 +640,10 @@ div .box #infos {
 	padding-bottom: 1rem; 
 }
 
+.button{
+	display: flex;
+	justify-content: center;
+}
 /*JSP Connexion*/
 
 .connexion
@@ -644,6 +651,9 @@ div .box #infos {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	margin: 150px 0 250px 0;
+	gap: 1.5rem;
+	
 }
 .connexion span
 {
@@ -660,7 +670,7 @@ div .box #infos {
 }
 
 .alert {
-	padding-bottom: 2rem;
+	padding-bottom: 1rem;
 	
 }
 

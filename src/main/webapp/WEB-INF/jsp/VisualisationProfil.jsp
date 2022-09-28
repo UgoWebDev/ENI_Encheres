@@ -20,33 +20,19 @@
 	                <span class="entetePat">Pseudo: </span>${profil.pseudo }
 	            </h1>
 	
-	            <p>
-	                <span class="entetePat">NOM: </span>${profil.nom }
-	            </p>
-	
-	            <p>
-	                <span class="entetePat">Prénom: </span>${profil.prenom }
-	            </p>
-	
-	            <p>
-	                <span class="entetePat">Email: </span>${profil.email }
-	            </p>
-	
-	            <p>
-	                <span class="entetePat">Téléphone: </span>${profil.telephone }
-	            </p>
-	
-	            <p>
-	                <span class="entetePat">Rue: </span>${profil.getAdresse().getRue()}
-	            </p>
-	
-	            <p>
-	                <span class="entetePat">Code postal: </span>${profil.getAdresse().getCodePostal()}
-	            </p>
-	
-	            <p>
-	                <span class="entetePat">Ville: </span>${profil.getAdresse().getVille()}
-	            </p>
+	                <span class="entetePat">NOM : </span>${profil.nom }
+
+	                <span class="entetePat">Prénom : </span>${profil.prenom }
+	                
+	                 <span class="entetePat">Email : </span>${profil.email }
+
+	                <span class="entetePat">Téléphone : </span>${profil.telephone }
+
+	                <span class="entetePat">Rue : </span>${profil.getAdresse().getRue()}
+
+	                <span class="entetePat">Code postal : </span>${profil.getAdresse().getCodePostal()}
+
+	                <span class="entetePat">Ville : </span>${profil.getAdresse().getVille()}
 	        </div>
 	    </c:if> 
 	    
@@ -59,7 +45,7 @@
        
         <c:if test="${user.pseudo  == profil.pseudo }">
         	 <form method="post" action="<%= request.getContextPath()%>/visualisation">
-		        <div>
+		        <div class="button">
 		           <button type="submit" name="action" value="modifier" class="btn">Modifier</button>
 		       	</div>
 	       	 </form>

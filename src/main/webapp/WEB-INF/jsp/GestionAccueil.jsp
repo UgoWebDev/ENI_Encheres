@@ -63,16 +63,6 @@
 			</h1>
 		<form method="post" action="<%=request.getContextPath()%>/accueil">
 			<div class="search">
-				<div class="search-box">
-					<button class="btn-search">
-						<i class="fas fa-search"></i>
-					</button>
-					<input name="chaineRecherche" type="text" class="input-search" placeholder="Chercher un article...">
-
-
-
-				</div>
-
 
 				<c:if test="${!empty user}">
 					<select name="choixCategorie" class="cat">
@@ -82,10 +72,19 @@
 						</c:forEach>
 					</select>
 				</c:if>
+				
+				<div class="search-box">
+					<button class="btn-search">
+						<i class="fas fa-search"></i>
+					</button>
+					<input name="chaineRecherche" type="text" class="input-search" placeholder="Chercher un article...">
+				</div>
 			</div>
+			
 			<div class="bouton">
 				<button type="submit" name="action" value="rechercher" class="btn">Rechercher</button>
 			</div>
+			
 		</form>
 
 		<div class="box-container">
@@ -99,7 +98,7 @@
 									<c:if test="${!empty user}">
 										<div class="icons">
 											<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-											<a href="detail ?noArticle=${article.noArticle}" class="fa-solid fa-cart-plus"></a> 
+											<a href="${pageContext.request.contextPath}/detail?noArticle=${article.noArticle}" class="fa-solid fa-cart-plus"></a> 
 											<a href="#" class="fa-solid fa-share-from-square"></a>
 										</div>
 									</c:if>
