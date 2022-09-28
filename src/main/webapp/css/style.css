@@ -203,7 +203,7 @@ header .fa-bars{
 .home{
     display: flex;
     align-items: center;
-    min-height: 100vh;
+    min-height: 40vh;
     background-size: cover;
     background-position: center;
 }
