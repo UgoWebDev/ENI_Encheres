@@ -102,7 +102,6 @@ public class UtilisateurManager {
 		if (user.getPrenom() == null || user.getPrenom() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PRENOM);}
 		if (user.getPseudo() == null || user.getPseudo() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
 		if (user.getEmail() == null || user.getEmail() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
-		if (user.getTelephone() == null || user.getTelephone() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_TELEPHONE);}
 		if (user.getMotDePasse() == null || user.getMotDePasse() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
 	}
 }

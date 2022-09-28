@@ -55,7 +55,6 @@ public class ServletGestionVente extends HttpServlet {
 //		System.out.println(action + " : " + noArticle);
 		
 		Article article = null;
-
 		
 		switch (action) {
 		case "enregistrer":

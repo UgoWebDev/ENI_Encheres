@@ -29,16 +29,6 @@ public class ServletGestionAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*
-		List<String> listeCategories = new ArrayList<>();
-		listeCategories.add("Ameublement");
-		listeCategories.add("Info");
-		listeCategories.add("Video");
-		
-		
-		request.setAttribute("listeCategories",listeCategories);
-		
-		*/
 		System.out.println("Avant le setAttribute listeCategories");
 		request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
 		List<Article> test = new ArrayList<>();
