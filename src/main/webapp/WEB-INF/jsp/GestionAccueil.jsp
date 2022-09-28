@@ -99,7 +99,7 @@
 									<c:if test="${!empty user}">
 										<div class="icons">
 											<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-											<a href="#" class="fa-solid fa-cart-plus"></a> 
+											<a href="detail" class="fa-solid fa-cart-plus"></a> 
 											<a href="#" class="fa-solid fa-share-from-square"></a>
 										</div>
 									</c:if>
