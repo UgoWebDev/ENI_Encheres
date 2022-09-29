@@ -81,15 +81,15 @@
 					<br>
 					<div class="buttonModif">
 					     <c:if test="${empty user.getNoUtilisateur() }">
-							<button type="submit" name="action" value="creation">Créer</button>
+							<button class="btn" type="submit" name="action" value="creation">Créer</button>
 					      </c:if>
 					      
 					     <c:if test="${!empty user.getNoUtilisateur() }">
-							<button type="submit" name="action" value="suppression">Supprimer</button>
-							<button type="submit" name="action" value="modification">Modifier</button>
+							<button class="btn" type="submit" name="action" value="suppression">Supprimer</button>
+							<button class="btn" type="submit" name="action" value="modification">Modifier</button>
 					      </c:if>
 	
-						<button type="submit" name="action" value="annulation">Annuler</button>
+						<button class="btn" type="submit" name="action" value="annulation">Annuler</button>
 					</div>
 				</form>
 			
