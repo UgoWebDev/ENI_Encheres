@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.Utilitaires;
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Article;
@@ -27,18 +28,10 @@ public class ServletGestionAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Avant le setAttribute listeCategories");
-		request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
-		List<Article> test = new ArrayList<>();
-		test = ArticleManager.getInstance().getArticles(null, null);
-		for (Article article : test) {
-			System.out.println(article);
-		}
 		
-		System.out.println("Avant le setAttribute listeArticle : " + test);
-		request.setAttribute("listeArticle", test);
+		request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+		request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
 
-		System.out.println("Avant le forward : " + test);
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 		
 	}

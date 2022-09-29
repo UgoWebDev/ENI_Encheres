@@ -16,7 +16,7 @@ public class Utilitaires {
 	}
 
 	public static String toHtml(String chaine) {
-		String[][] html = new String[][] {{" à","&agrave;"},{"À","&Agrave;"},{"á","&aacute;"},{"Á","&Aacute;"},{"â","&acirc; "},{"Â","&Acirc; "},{"ã","&atilde;"},
+		String[][] html = new String[][] {{"à","&agrave;"},{"À","&Agrave;"},{"á","&aacute;"},{"Á","&Aacute;"},{"â","&acirc; "},{"Â","&Acirc; "},{"ã","&atilde;"},
 			{"Ã","&Atilde;"},{"ä","&auml; "},{"Ä","&Auml; "},{"å","&aring; "},{"Å","&Aring; "},{"æ","&aelig; "},{"Æ","&AElig; "},{"è","&egrave;"},{"È","&Egrave;"},
 			{"é","&eacute;"},{"É","&Eacute;"},{"ê","&ecirc; "},{"Ê","&Ecirc; "},{"ë","&euml; "},{"Ë","&Euml; "},{"ì","&igrave;"},{"Ì","&Igrave;"},{"í","&iacute;"},
 			{"Í","&Iacute;"},{"î","&icirc; "},{"Î","&Icirc; "},{"ï","&iuml; "},{"Ï","&Iuml; "},{"ò","&ograve;"},{"Ò","&Ograve;"},{"ó","&oacute;"},{"Ó","&Oacute;"},
@@ -29,7 +29,7 @@ public class Utilitaires {
 		for (int i = 0; i < html.length; i++) {
 			String a = html[i][0];
 			String b = html[i][1];
-			chaine.replaceAll(html[i][0], html[i][1]);
+			chaine = chaine.replaceAll(html[i][0], html[i][1]);
 		}
 		return chaine;
 	}
