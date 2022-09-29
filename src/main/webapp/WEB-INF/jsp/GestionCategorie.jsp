@@ -9,8 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%--     <%@ include file="../html/header.html" %>   --%>
+<%@ include file="../html/header.html" %>
 
+	<div class="homeModif">
 	<form method="post" action="<%=request.getContextPath()%>/categorie">
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
@@ -23,7 +24,7 @@
 			</div>
 		</c:if>
 		
-			<strong>Categories</strong>
+			<h2>Categories</h2>
 			<select name="cat" class="cat">
 				<c:forEach var="choixCat" items="${listeCategories}">
 					<option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
@@ -35,12 +36,12 @@
 		<label for="libelle">libelle</label> 
 		<input type="text" id="libelle" name="libelle" value=""> 		<%-- Ajouter ici la catégorie sélectionnée --%>
 
-		<button type="submit" name="action" value="creation">créer</button>
-		<button type="submit" name="action" value="suppression">supprimer</button>
-		<button type="submit" name="action" value="annulation">annuler</button>
+		<button class="btn" type="submit" name="action" value="creation">créer</button>
+		<button class="btn" type="submit" name="action" value="suppression">supprimer</button>
+		<button class="btn" type="submit" name="action" value="annulation">annuler</button>
 
 	</form>
-	
+	</div>
     <%@ include file="../html/footer.html" %>
 	
 </body>

@@ -20,6 +20,17 @@
 				<%@ include file="../html/header.html" %>
 			</c:if>
 			
+			<c:if test="${user.administrateur == true}">
+				<nav class="navbar">
+				<ul>
+					<li><a href="administration?profilPseudo=${user.pseudo}" class="fa-solid fa-computer icons"></a></li>
+				</ul>
+				</nav>
+			</c:if>
+			
+			
+			
+			
 			<c:if test="${empty user}">
 				<header>	
 					<input type="checkbox" name="" id="toggler"> 
