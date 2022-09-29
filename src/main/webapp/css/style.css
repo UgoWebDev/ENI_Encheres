@@ -584,10 +584,10 @@ input[type=text], input[type=number], input[type=password]{
 	width: 100%;
 	color: black;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	flex-direction: column;
 	margin: 150px 0;
-	gap: 3rem;
+	gap: 2rem;
 }
 
 .homeModif .form{
@@ -720,6 +720,14 @@ input[type=text], input[type=number], input[type=password]{
 	font-size: 2rem;
 	color: var(--green);
 }	
+
+
+/* JSP GestionCat */
+.btnCat{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+}
 
 
 

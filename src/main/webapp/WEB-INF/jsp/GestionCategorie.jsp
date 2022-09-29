@@ -11,8 +11,9 @@
 <body>
 <%@ include file="../html/header.html" %>
 
-	<div class="homeModif">
+	
 	<form method="post" action="<%=request.getContextPath()%>/categorie">
+	<div class="homeModif">
 		<c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
 				<strong>Erreur!</strong>
@@ -29,19 +30,20 @@
 				<c:forEach var="choixCat" items="${listeCategories}">
 					<option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
 				</c:forEach>
-				
 			</select>
-			<br>
 		
-		<label for="libelle">libelle</label> 
+		<label for="libelle">Libelle</label> 
 		<input type="text" id="libelle" name="libelle" value=""> 		<%-- Ajouter ici la catégorie sélectionnée --%>
-
-		<button class="btn" type="submit" name="action" value="creation">créer</button>
-		<button class="btn" type="submit" name="action" value="suppression">supprimer</button>
-		<button class="btn" type="submit" name="action" value="annulation">annuler</button>
-
-	</form>
 	</div>
+	
+	<div class="btnCat">
+		<button class="btn" type="submit" name="action" value="creation">Créer</button>
+		<button class="btn" type="submit" name="action" value="suppression">Supprimer</button>
+		<button class="btn" type="submit" name="action" value="annulation">Annuler</button>
+	</div>
+		
+	</form>
+	
     <%@ include file="../html/footer.html" %>
 	
 </body>
