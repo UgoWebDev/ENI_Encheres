@@ -40,15 +40,15 @@
 							
 							<label for="prenom">Prénom</label>
 							<input type="text" name="prenom" id="prenom" placeholder="Renseigner votre Prénom..." value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getPrenom() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.prenom }</c:if>><br>
 							
 							<label for="tel">Numéro de téléphone</label>
 							<input type="tel" name="tel" id="tel" value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getTelephone() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.telephone }</c:if>><br>
 							
 							<label for="cp">Code postal</label>
 							<input type="number" name="codepostal" id="cp" min="01000" max="99999" value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getCodePostal() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.adresse.codePostal }</c:if>><br>
 							
 							<label for="mdp">Mot de passe</label>
 							<input type="password" name="mdp" id="mdp"><br>
@@ -57,19 +57,19 @@
 						<div>
 							<label for="nom">NOM</label>
 							<input type="text" name="nom" id="nom" placeholder="Renseigner votre NOM..."value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getNom() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.nom }</c:if>><br>
 							
 							<label for="mail">E-mail</label>
 							<input type="email" name="email" id="mail"value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getEmail() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.email }</c:if>><br>
 							
 							<label for="rue">Rue</label>
 							<input type="text" name="rue" id="rue"value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getRue() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.adresse.rue }</c:if>><br>
 							
 							<label for="ville">Ville</label>
 							<input type="text" name="ville" id="ville"value=
-							<c:if test="${!empty listeCodesErreur}"> ${user.getVille() }</c:if>><br>
+							<c:if test="${!empty listeCodesErreur}"> ${user.adresse.ville }</c:if>><br>
 							
 							<div>
 								<label for="confirmationMdp">Confirmation</label>
