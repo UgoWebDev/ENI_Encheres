@@ -64,12 +64,6 @@ public class ServletGestionVente extends HttpServlet {
 				response.sendRedirect("vente");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				
-				List<Integer> temp = e.getListeCodesErreur();
-				for (Integer code : temp) {
-					System.out.println(code + " : " +  LecteurMessage.getMessageErreur(code));
-				}
-				
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
 			}
 			break;
