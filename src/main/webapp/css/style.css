@@ -610,9 +610,40 @@ input[type=text], input[type=number], input[type=password]{
 }
 
 
+/*JSP ModifProfil*/
 
+.homeModif{
+	width: 100%;
+	color: black;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin: 150px 0;
+	gap: 3rem;
+}
 
+.homeModif .form{
+	display: flex;
+	gap: 5rem;
+	align-items: baseline;
+}
 
+.homeModif .infos{
+	display: flex;
+	width: 300px;
+	flex-direction: column;
+	gap: 0.5rem;
+	font-size: 1.3rem;
+}
+.homeModif .infos input[type=tel], input[type=email]{
+	border: 2px solid var(--green);
+	border-radius: 4px;
+}
+
+.buttonModif{
+	display: flex;
+	justify-content: space-around;
+}
 
 
 
@@ -620,16 +651,23 @@ input[type=text], input[type=number], input[type=password]{
 
 .homeVisualisation{
 	width: 100%;
-	color: black;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	flex-direction: column;
-	margin-top: 150px;
-	gap: 1.5rem;
+	margin: 150px 0 30px 0;
+	gap: 3rem;
+}
+
+.homeVisualisation p{
+	font-size: 1.7rem;
 }
 
 .home .connexion{
 	max-width: 75rem;
+}
+
+.visualisation{
+	margin-bottom: 150px;
 }
 
 .visualisation p, h1{
@@ -640,6 +678,9 @@ input[type=text], input[type=number], input[type=password]{
 	display: flex;
 	justify-content: center;
 }
+
+
+
 /*JSP Connexion*/
 
 #connexion{
@@ -708,7 +749,7 @@ input[type=text], input[type=number], input[type=password]{
 
 
 /* media queries  */
-@media (max-width:991px){
+@media (max-width:1280px){
     
     html{
         font-size: 55%;
@@ -716,6 +757,10 @@ input[type=text], input[type=number], input[type=password]{
 
     header{
         padding:2rem;
+    }
+    
+    header .icons{
+        display: block;
     }
 
     section{
@@ -728,9 +773,49 @@ input[type=text], input[type=number], input[type=password]{
 
 }
 
-@media (max-width:768px){
+@media (max-width:991px){
+    
+    html{
+        font-size: 55%;
+    }
 
-    header .fa-bars{
+    header{
+        padding:2rem;
+    }
+    
+    header .navbar{
+        position:absolute;
+        top:100%; left:0; right:0;
+        background: white;
+        border-top: 0.1rem solid #144a7f;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar a{
+        margin:1.5rem;
+        padding:1.5rem;
+        background:#fff;
+        border:.1rem solid rgba(0,0,0,.1);
+        display: block;
+    }
+    
+    header .icons{
+        display: block;
+    }
+
+    section{
+        padding:2rem;
+    }
+
+    .home{
+        background-position: left;
+    }
+
+}
+
+@media (max-width:950px){
+
+    header .icons{
         display: block;
     }
 
@@ -740,10 +825,6 @@ input[type=text], input[type=number], input[type=password]{
         background: white;
         border-top: 0.1rem solid #144a7f;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-
-    header #toggler:checked ~ .navbar{
-        clip-path:polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     }
 
     header .navbar a{
