@@ -68,11 +68,11 @@
 				
 					<div class="optionAchatVente">
 						<div class="optionAchat">
-							<input type="radio" name="radioAchatVente" id="achat" value="achat"/>
+							<input type="radio" name="radioAchatVente" id="achat" value="achat" checked="checked"/>
 							<label for="achat">Achats</label>
 							
 							<div>
-								<input type="checkbox" name="checkbox" id="enchereOuverte"/>
+								<input type="checkbox" name="checkbox" id="enchereOuverte" checked="checked"/>
 								<label for="enchereOuverte">Enchères ouverte</label><br/>
 								<input type="checkbox" name="checkbox" id="enchereEnCours"/>
 								<label for="enchereEnCours">Mes enchères en cours</label><br/>
