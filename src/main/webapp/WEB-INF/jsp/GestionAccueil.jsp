@@ -122,27 +122,25 @@
 							</div>
 						</div>
 					</div>
-					
-					<select name="choixCategorie" class="cat">
-						<option value="0">--Catégories--</option>
-						<c:forEach var="choixCat" items="${listeCategories}">
-							<option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
-						</c:forEach>
-					</select>
 				</c:if>
 				
-				<div class="searchBox">
-					<button class="btn-search">
-						<i class="fas fa-search"></i>
-					</button>
-					<input name="chaineRecherche" type="text" class="searchInput" placeholder="Chercher un article...">
+				<div class="search-box">
+					<input name="chaineRecherche" type="text" class="search-input" placeholder="Chercher un article...">
+								
+					<select name="categorie" class="cat">
+						<option>--Catégories--</option>
+                            <c:forEach var="choixCat" items="${listeCategories}">
+                                <option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
+                            </c:forEach>
+                       </select>
+					
+				</div>
+				<div class="bouton">
+				<button type="submit" name="action" value="rechercher" class="btn">Rechercher</button>
 				</div>
 			</div>
 			
-			<div class="bouton">
-				<button type="submit" name="action" value="rechercher" class="btn">Rechercher</button>
-			</div>
-			
+				
 		</form>
 
 		<div class="box-container">
