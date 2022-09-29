@@ -32,8 +32,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
 	@Override
 	public Article insertArticle(Article article) throws BusinessException {
+		BusinessException be = new BusinessException();
 		if (article == null) {
-			BusinessException be = new BusinessException();
 			be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE_NULL);
 			throw be;
 		}
@@ -64,7 +64,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			{
 				e.printStackTrace();
 				cnx.rollback();
-				throw e;
+				be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE_ADRESSE);
+				throw be;
 			}
 			
 			try 
@@ -99,23 +100,24 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			{
 				e.printStackTrace();
 				cnx.rollback();
-				throw e;
+				be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE);
+				throw be;
 			}
 			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-			throw businessException;
+			be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE);
+			throw be;
 		}
 		
 		return article;
 	}
 
 	@Override
-	public Article getArticleByNo(Integer noArticle)  {
+	public Article getArticleByNo(Integer noArticle) throws BusinessException  {
+		BusinessException be = new BusinessException();
 		Article article = null;
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_BY_NO)
@@ -142,16 +144,21 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
+				be.ajouterErreur(CodesResultatDAL.SELECT_ARTICLE_BY_NO);
+				throw be;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			be.ajouterErreur(CodesResultatDAL.SELECT_ARTICLE_BY_NO);
+			throw be;
 		}
 		return article;
 	}
 
 	@Override
 	
-	public List<Article> getArticles()  {
+	public List<Article> getArticles()  throws BusinessException{
+		BusinessException be = new BusinessException();
 		ArrayList<Article> articles = new ArrayList<>(); 
 
 		try
@@ -179,13 +186,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			} 
 		} catch (SQLException e) { 
 			e.printStackTrace();
+			be.ajouterErreur(CodesResultatDAL.SELECT_ARTICLES);
+			throw be;
 		} 
 		return articles;
 	}
 	 
 	
 	@Override
-	public void deleteArticle(Integer noArticle) {
+	public void deleteArticle(Integer noArticle) throws BusinessException{
+		BusinessException be = new BusinessException();
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE)
 				) {
@@ -194,6 +204,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			be.ajouterErreur(CodesResultatDAL.DELETE_ARTICLE);
+			throw be;
 		}
 	}
 	

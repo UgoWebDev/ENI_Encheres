@@ -11,49 +11,41 @@ public abstract class CodesResultatDAL {
 	public static final int INSERT_OBJET_NULL=10000;
 	
 	/**
-	 * Echec général quand erreur non gérée à l'insertion 
+	 * Echec de l'insertion d'une adresse 
 	 */
-	public static final int INSERT_OBJET_ECHEC=10001;
-
+	public static final int INSERT_ARTICLE_ADRESSE=10001;
 	
 	/**
-	 * Echec de la lecture des listes de course
+	 * Echec de l'insertion d'une adresse nulle
 	 */
-	public static final int LECTURE_LISTES_ECHEC = 10002;
+	public static final int INSERT_ARTICLE_NULL=10002;
+	
 	/**
-	 * Echec de la lecture d'une liste de course
+	 * Echec de l'insertion d'un article
 	 */
-	public static final int LECTURE_LISTE_ECHEC = 10003;
+	public static final int INSERT_ARTICLE=10003;
+	
 	/**
-	 * Liste de course inexistante
+	 * Echec de la sélection d'un article par son numéro
 	 */
-	public static final int LECTURE_LISTE_INEXISTANTE = 10004;
+	public static final int SELECT_ARTICLE_BY_NO=10004;
 	/**
-	 * Erreur à la suppression d'un article
+	 * Echec de de la sélection de tous les articles
 	 */
-	public static final int SUPPRESSION_ARTICLE_ERREUR = 10005;
+	public static final int SELECT_ARTICLES=10005;
 	/**
-	 * Erreur à la suppression d'une liste
+	 * Echec de de la suppression d'un article
 	 */
-	public static final int SUPPRESSION_LISTE_ERREUR = 10006;
+	public static final int DELETE_ARTICLE=10006;
+	
 	/**
-	 * Erreur au cochage d'un article
+	 * Echec de de l'insertion d'un objet
 	 */
-	public static final int COCHE_ARTICLE_ERREUR = 10007;
-	/**
-	 * Erreur au décochage d'un article
-	 */
-	public static final int DECOCHE_ARTICLE_ERREUR = 10008;
-	/**
-	 * Erreur au décochage de tous les articles d'une liste
-	 */
-	public static final int DECOCHE_ARTICLES_ERREUR = 10009;
+	public static final int INSERT_OBJET_ECHEC=10007;
 	
 
-	/**
-	 * Echec général quand tentative d'ajouter un article null
-	 */
-	public static final int INSERT_ARTICLE_NULL = 10101;
+	
+
 }
 
 

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bo.Article;
 
@@ -25,16 +26,15 @@ public class ServletGestionDetailsVente extends HttpServlet {
 		Article article;
 		
 		String strArticle = request.getParameter("noArticle");
-		System.out.println(strArticle);
-		
 		int noArticle = Integer.parseInt(strArticle);
-		System.out.println(noArticle);
 		
-		article = ArticleManager.getInstance().getArticleByNo(noArticle);
+		try {
+			article = ArticleManager.getInstance().getArticleByNo(noArticle);
+			request.setAttribute("article", article) ;
+		} catch (BusinessException e) {
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+		}
 		
-		System.out.println(article);
-		
-		request.setAttribute("article", article) ;
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionDetailsVente.jsp").forward(request, response);
 	}
 

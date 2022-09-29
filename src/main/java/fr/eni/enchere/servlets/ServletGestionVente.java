@@ -1,6 +1,7 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.messages.LecteurMessage;
 
 /**
  * Servlet implementation class ServletGestionVente
@@ -62,6 +64,12 @@ public class ServletGestionVente extends HttpServlet {
 				response.sendRedirect("vente");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				
+				List<Integer> temp = e.getListeCodesErreur();
+				for (Integer code : temp) {
+					System.out.println(code + " : " +  LecteurMessage.getMessageErreur(code));
+				}
+				
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
 			}
 			break;

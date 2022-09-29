@@ -48,7 +48,6 @@ public class ArticleManager {
 		{
 			throw be;
 		}
-		
 		return article;
 	}
 
@@ -63,12 +62,11 @@ public class ArticleManager {
 		return instance;
 	}
 	
-	public Article getArticleByNo(Integer noArticle)  {
+	public Article getArticleByNo(Integer noArticle) throws BusinessException  {
 		return articleDAO.getArticleByNo(noArticle);
 	}
 	
-	public List<Article> getArticles(String categorie, String utilisateur)  {
-		
+	public List<Article> getArticles(String categorie, String utilisateur) throws BusinessException  {
 		return articleDAO.getArticles();
 	}
 	
@@ -90,7 +88,6 @@ public class ArticleManager {
 	
 
 	private Adresse parseAdresse(String rue, String codePostal, String ville, BusinessException be) {
-
 
 		if (!Utilitaires.isAlphaNumeric(rue)) {
 			be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_RUE);
@@ -172,20 +169,15 @@ public class ArticleManager {
 
 	
 	private void compareDate(Date dateDebut, Date dateFin, BusinessException be) throws BusinessException {
-		
+
 		int dateCompare = dateDebut.compareTo(dateFin);
-		
-		System.out.println("Date début : " + dateDebut);
-		System.out.println("Date de fin : " + dateFin);
-		System.out.println("Date comparé : " + dateCompare);
-	
-		  if (dateCompare >= 0) {
-		  be.ajouterErreur(CodesResultatBLL.ARTICLE_DATE_DEBUT_SUPERIEUR_DATE_FIN); 
-		  }
-		 
+
+		if (dateCompare >= 0) {
+			be.ajouterErreur(CodesResultatBLL.ARTICLE_DATE_DEBUT_SUPERIEUR_DATE_FIN); 
+		}
 	}
-	
-	private void notExists(Integer noArticle, BusinessException be) {
+
+	private void notExists(Integer noArticle, BusinessException be) throws BusinessException {
 		if(articleDAO.getArticleByNo(noArticle) == null) {
 			be.ajouterErreur(CodesResultatBLL.ARTICLE_NON_EXISTANT);
 		}

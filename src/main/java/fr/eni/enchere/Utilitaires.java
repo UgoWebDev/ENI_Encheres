@@ -27,8 +27,6 @@ public class Utilitaires {
 
 
 		for (int i = 0; i < html.length; i++) {
-			String a = html[i][0];
-			String b = html[i][1];
 			chaine = chaine.replaceAll(html[i][0], html[i][1]);
 		}
 		return chaine;

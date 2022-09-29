@@ -23,19 +23,19 @@
             
                 <div class="content">
                     <h1>Nouvelle Vente</h1>
-                    
-                    			<c:if test="${!empty listeCodesErreur}">
-				<div class="alert alert-danger" role="alert">
-					<strong>Erreur!</strong>
-					<ul>
-						<c:forEach var="code" items="${listeCodesErreur}">
-							<li>${LecteurMessage.getMessageErreur(code)}</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</c:if>
-                        
-                    <div class="description">
+
+				<c:if test="${!empty listeCodesErreur}">
+					<div class="alert alert-danger" role="alert">
+						<strong>Erreur!</strong>
+						<ul>
+							<c:forEach var="code" items="${listeCodesErreur}">
+								<li>${LecteurMessage.getMessageErreur(code)}</li>
+							</c:forEach>
+						</ul>
+					</div>
+				</c:if>
+
+				<div class="description">
                         <label for="nomArticle">Article : </label>
                         <input type="text" name="nomArticle" id="article" maxlength="20" />
                         <textarea rows="7" cols="40" name="description" placeholder="Décrivez votre article..."></textarea>
