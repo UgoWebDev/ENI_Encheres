@@ -121,8 +121,9 @@
 		<div class="box-container">
 				<c:choose>
 					<c:when test="${listeArticle.size()>0}">
-						<div class="box">
+						
 							<c:forEach var="article" items="${listeArticle}">
+							<div class="box">
 								<div class="image">
 									<img src="css/images/article1.jpg" alt="">
 									
@@ -147,8 +148,9 @@
 										</c:if>
 									</div>
 								</div>
+								</div>
 							</c:forEach>
-						</div>
+						
 					</c:when>
 					<c:otherwise>
 						<p>Pas d'articles disponibles actuellement...
