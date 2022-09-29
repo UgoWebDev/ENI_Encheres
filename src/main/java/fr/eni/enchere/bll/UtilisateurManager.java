@@ -81,17 +81,17 @@ public class UtilisateurManager {
 			throw be;
 		}
 	}
-	public Utilisateur updateUtilisateur(Utilisateur user, Utilisateur userConnected) throws BusinessException{
+	public Utilisateur updateUtilisateur(Utilisateur user, Utilisateur userOld) throws BusinessException{
 		BusinessException be = new BusinessException();
 		
-		
+		this.valideChange(user,userOld,be);
 		this.valideUtilisateur(user,be);
 		
 		
 		if(!be.hasErreurs())
 		{
-			user = utilisateurDAO.insertUtilisateur(user);
-			System.out.println("insertUtilisateur OK");
+			user = utilisateurDAO.updateUtilisateur(user);
+			System.out.println("modifUtilisateur OK");
 		}
 		else
 		{
@@ -99,6 +99,17 @@ public class UtilisateurManager {
 		}
 
 		return user;
+	}
+	private void valideChange(Utilisateur userNew, Utilisateur userOld, BusinessException be) {
+		if (userNew.getPseudo() != userOld.getPseudo() ) {
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_MODIF_PSEUDO);
+		}
+		if (userNew.getEmail() != userOld.getEmail() ) {
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_MODIF_EMAIL);
+		}
+		if (userNew.getMotDePasse() != userOld.getMotDePasse() ) {
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_MODIF_PASSWORD);
+		}		
 	}
 	/**
 	 * 

@@ -20,6 +20,11 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_CREATION_TELEPHONE = 20009;
 	public static final int UTILISATEUR_CREATION_MOT_DE_PASSE = 20013;
 	public static final int UTILISATEUR_INEXISTANT = 20014;
+	public static final int UTILISATEUR_MODIF_PSEUDO = 20015;
+	public static final int UTILISATEUR_MODIF_EMAIL = 20016;
+	public static final int UTILISATEUR_MODIF_PASSWORD = 20017;
+	
+	
 	
 	//Erreurs liées à la gestion des articles
 	public static final int ARTICLE_CREATION_DATE = 20101;

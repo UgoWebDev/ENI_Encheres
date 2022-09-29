@@ -41,6 +41,23 @@ public class AdresseManager {
 		return adresse;
 	}
 	
+	public Adresse updateAdresse(Adresse adresse, Adresse adresseOld) throws BusinessException {
+		BusinessException be = new BusinessException();
+		this.valideAdresse(adresse,be);	
+		
+		if(!be.hasErreurs())
+		{
+			adresse.setNoAdresse(adresseOld.getNoAdresse());
+			adresse = AdresseDAO.updateAdresse(adresse);
+			System.out.println("modifAdresse OK");
+		}
+		else
+		{
+			throw be;
+		}
+	
+		return adresse;
+	}
 	private void valideAdresse(Adresse adresse, BusinessException be) {
 		// TODO Auto-generated method stub
 		if (adresse.getRue() == null || adresse.getRue() == "") {be.ajouterErreur(CodesResultatBLL.ADRESSE_CREATION_RUE);}

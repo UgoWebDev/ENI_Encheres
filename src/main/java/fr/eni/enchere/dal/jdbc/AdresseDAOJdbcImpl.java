@@ -12,9 +12,10 @@ import fr.eni.enchere.dal.CodesResultatDAL;
 import fr.eni.enchere.dal.ConnectionProvider;
 
 public class AdresseDAOJdbcImpl implements AdresseDAO {
-	
+
 	public static final String SELECT_ADRESSE_BY_ID    	= "SELECT no_adresse ,rue, code_postal, ville FROM ADRESSES where no_adresse = ?";
 	public static final String INSERT_ADRESSE			= "INSERT INTO ADRESSES (rue, code_postal, ville) VALUES (?,?,?)";
+	public static final String UPDATE_ADRESSE 			= "UPDATE ADRESSES SET rue = ?,code_postal = ?,ville = ? WHERE no_adresse = ?";
 
 	@Override
 	public Adresse getAdresseByNo(Integer noAdresse) {
@@ -43,7 +44,7 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 
 	@Override
 	public Adresse insertAdresse(Adresse adresse) throws BusinessException {
-		
+
 		if (adresse == null) {
 			BusinessException be = new BusinessException();
 			be.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
@@ -84,4 +85,45 @@ public class AdresseDAOJdbcImpl implements AdresseDAO {
 		return adresse;
 	}
 
+	@Override
+	public Adresse updateAdresse(Adresse adresse) throws BusinessException {
+
+		if (adresse == null) {
+			BusinessException be = new BusinessException();
+			be.ajouterErreur(CodesResultatDAL.MODIF_ADRESSE_NULL);
+			throw be;
+		}
+		try (Connection cnx = ConnectionProvider.getConnection()) 
+		{
+			try 			// enregistrement de la catégorie
+			{
+				PreparedStatement pstmt;
+				pstmt = cnx.prepareStatement(UPDATE_ADRESSE);
+				pstmt.setString(1, adresse.getRue());
+				pstmt.setString(2, adresse.getCodePostal());
+				pstmt.setString(3, adresse.getVille());
+				pstmt.setInt(4, adresse.getNoAdresse());
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				BusinessException be = new BusinessException();
+				be.ajouterErreur(CodesResultatDAL.MODIF_ADRESSE_ECHEC);
+				throw be;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.MODIF_ADRESSE_ECHEC);
+			throw businessException;
+		}
+
+		return adresse;
+	}
 }
+
+

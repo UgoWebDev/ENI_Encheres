@@ -9,6 +9,7 @@ public interface AdresseDAO {
 
 	Adresse insertAdresse(Adresse adresse) throws BusinessException;
 
+	Adresse updateAdresse(Adresse adresse) throws BusinessException;
 
 
 }

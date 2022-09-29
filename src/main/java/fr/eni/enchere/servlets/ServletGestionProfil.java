@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.AdresseManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Adresse;
 import fr.eni.enchere.bo.Utilisateur;
@@ -44,17 +45,6 @@ public class ServletGestionProfil extends HttpServlet {
 		String action = request.getParameter("action");
 		
 
-		System.out.println("action : " + action);
-		System.out.println("pseudo : " + pseudo); 
-		System.out.println("prenom : " +  prenom);
-		System.out.println("nom : " +  nom);
-		System.out.println("tel : " +  tel);
-		System.out.println("codepostal : " +  codepostal);
-		System.out.println("email : " +  email);
-		System.out.println("rue : " +  rue);
-		System.out.println("ville : " +  ville);
-		System.out.println("mdp : " + mdp);
-		System.out.println("password : " +  password);
 		Utilisateur user = null;
 		Adresse adresse = null;
 		
@@ -93,7 +83,8 @@ public class ServletGestionProfil extends HttpServlet {
 			try {
 				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
 				adresse = new Adresse(rue, codepostal, ville);
-				user = new Utilisateur(pseudo, nom, prenom, email, tel, adresse, userConnected.getMotDePasse(), userConnected.getCredit(), false,null,null);
+				adresse = AdresseManager.getInstance().updateAdresse(adresse,userConnected.getAdresse());
+				user = new Utilisateur(pseudo, nom, prenom, email, tel, adresse, mdp, userConnected.getCredit(), false,null,null);
 				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected);
 				request.getSession().setAttribute("user", user);
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);

@@ -47,6 +47,9 @@ public abstract class CodesResultatDAL {
 	 * Echec de de l'insertion d'un objet
 	 */
 	public static final int DELETE_UTILISATEUR=10008;
+	public static final int MODIF_ADRESSE_NULL=10009;
+	public static final int MODIF_ADRESSE_ECHEC=10010;
+	
 	
 
 	
