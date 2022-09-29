@@ -161,15 +161,22 @@
 									</c:if>
 									
 								</div>
+								
 								<div class="content">
+								<c:if test="${user.noUtilisateur == article.getVendeur().getNoUtilisateur() }">
+									<a href="${pageContext.request.contextPath}/vente?noArticle=${article.noArticle}">Supprimer mon annonce</a>
+								</c:if>
+								
 									<h3>${article.nomArticle}</h3>
+									
 									<div class="price">Prix : ${article.miseAPrix}</div>
+									
 									<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
 									<div class="vendeur">Vendeur : 
 										<c:if test="${!empty user}">
 											<a href="${pageContext.request.contextPath}/visualisation?profilPseudo=${article.getVendeur().getPseudo()}">${article.getVendeur().getPseudo()}</a>
 										</c:if>
-										<c:if test="${empty user}">${article.getVendeur().getPseudo()}
+											<c:if test="${empty user}">${article.getVendeur().getPseudo()}
 										</c:if>
 									</div>
 								</div>
