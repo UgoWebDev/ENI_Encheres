@@ -47,7 +47,7 @@ ALTER TABLE UTILISATEURS ADD constraint utilisateur_pk PRIMARY KEY (no_utilisate
 ALTER TABLE UTILISATEURS
     ADD CONSTRAINT utilisateur_adresse_fk FOREIGN KEY ( no_adresse ) REFERENCES  ADRESSES (no_adresse)
 	ON DELETE NO ACTION 
-    ON UPDATE NO action 
+    ON UPDATE NO ACTION 
 
 ALTER TABLE UTILISATEURS
     ADD CONSTRAINT pseudo_uc UNIQUE ( pseudo )

@@ -74,11 +74,12 @@ public class ServletGestionProfil extends HttpServlet {
 			}
 			break;
 		
-		case "enregistrer":
 
+		case "suppression":
 			try {
-				
-				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+				UtilisateurManager.getInstance().deleteUtilisateur(user);
+				request.getSession().setAttribute("user", null);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.setAttribute("user", user);
@@ -87,15 +88,20 @@ public class ServletGestionProfil extends HttpServlet {
 
 
 			break;
-
-		case "suppression":
-			request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
-
-
-			break;
 			
 		case "modification":
-			request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			try {
+				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
+				adresse = new Adresse(rue, codepostal, ville);
+				user = new Utilisateur(pseudo, nom, prenom, email, tel, adresse, userConnected.getMotDePasse(), userConnected.getCredit(), false,null,null);
+				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected);
+				request.getSession().setAttribute("user", user);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			}
 
 
 			break;

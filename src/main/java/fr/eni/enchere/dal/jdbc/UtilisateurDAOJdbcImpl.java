@@ -22,6 +22,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			+ "FROM UTILISATEURS u, ADRESSES a where u.no_adresse = a.no_adresse AND no_utilisateur = ?";
 	public static final String INSERT_ADRESSE 		= "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String INSERT_UTILISATEUR 	= "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,no_adresse,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
+	public static final String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+	
 	
 
 
@@ -154,4 +156,21 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		
 		return user;
 	}
+
+	@Override
+	public void deleteUtilisateurs(Utilisateur user) throws BusinessException {
+		BusinessException be = new BusinessException();
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(DELETE_UTILISATEUR)
+				) {
+			pstmt.setInt(1, user.getNoUtilisateur());
+			try (ResultSet rs = pstmt.executeQuery()) {
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			be.ajouterErreur(CodesResultatDAL.DELETE_UTILISATEUR);
+			throw be;
+		}
+	}
+	
 }

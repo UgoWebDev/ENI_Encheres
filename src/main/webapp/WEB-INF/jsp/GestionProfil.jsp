@@ -90,7 +90,7 @@
 					      </c:if>
 					      
 					     <c:if test="${!empty user.noUtilisateur }">
-					    	<button class="btn" type="submit" name="action" value="enregistrer">Enregistrer</button>
+					    	<button class="btn" type="submit" name="action" value="modification">Enregistrer</button>
 							<button class="btn" type="submit" name="action" value="suppression">Supprimer</button>
 					      </c:if>
 	

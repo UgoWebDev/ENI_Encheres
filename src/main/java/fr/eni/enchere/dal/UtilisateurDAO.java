@@ -13,4 +13,6 @@ public interface UtilisateurDAO {
 	
 	Utilisateur insertUtilisateur(Utilisateur user) throws BusinessException;
 
+	void deleteUtilisateurs(Utilisateur user) throws BusinessException;
+
 }

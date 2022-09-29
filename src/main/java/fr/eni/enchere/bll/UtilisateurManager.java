@@ -68,6 +68,38 @@ public class UtilisateurManager {
 
 		return user;
 	}
+	public void deleteUtilisateur(Utilisateur user) throws BusinessException {
+		BusinessException be = new BusinessException();
+		this.notExists(user, be);
+		if(!be.hasErreurs())
+		{
+			utilisateurDAO.deleteUtilisateurs(user);
+			System.out.println("deleteUtilisateur OK");
+		}
+		else
+		{
+			throw be;
+		}
+	}
+	public Utilisateur updateUtilisateur(Utilisateur user, Utilisateur userConnected) throws BusinessException{
+		BusinessException be = new BusinessException();
+		
+		
+		this.valideUtilisateur(user,be);
+		
+		
+		if(!be.hasErreurs())
+		{
+			user = utilisateurDAO.insertUtilisateur(user);
+			System.out.println("insertUtilisateur OK");
+		}
+		else
+		{
+			throw be;
+		}
+
+		return user;
+	}
 	/**
 	 * 
 	 * @param login
@@ -103,5 +135,13 @@ public class UtilisateurManager {
 		if (user.getPseudo() == null || user.getPseudo() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
 		if (user.getEmail() == null || user.getEmail() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
 		if (user.getMotDePasse() == null || user.getMotDePasse() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
+	}
+	private void notExists(Utilisateur user, BusinessException be) {
+		if (user == null) {
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_INEXISTANT);
+		} else {
+
+		}
+		
 	}
 }
