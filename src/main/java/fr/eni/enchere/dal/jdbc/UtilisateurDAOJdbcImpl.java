@@ -23,8 +23,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public static final String INSERT_ADRESSE 		= "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String INSERT_UTILISATEUR 	= "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,no_adresse,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
 	public static final String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
-	public static final String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?,prenom = ?,telephone = ?,no_adresse = ?,mot_de_passe = ? WHERE no_utilisateur = ?";
-	
+	public static final String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?,prenom = ?,telephone = ? WHERE no_utilisateur = ?";
+
 
 
 	@Override
@@ -40,7 +40,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur getUtilisateurByNo(Integer noUtilisateur)  {
 		String login = String.valueOf(noUtilisateur);
-		
+
 		return getUtilisateurByLogin(login, SELECT_BY_NO,"I");
 	}
 
@@ -121,7 +121,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
 			throw businessException;
 		}
-		
+
 		return user;
 	}
 
@@ -141,10 +141,44 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 	}
 
+	
 	@Override
 	public Utilisateur updateUtilisateur(Utilisateur user) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		if (user == null) {
+			BusinessException be = new BusinessException();
+			be.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw be;
+		}
+		try (Connection cnx = ConnectionProvider.getConnection()) 
+		{
+			try 
+			{
+				PreparedStatement pstmt;
+				pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
+				pstmt.setString(1, user.getNom());
+				pstmt.setString(2, user.getPrenom());
+				pstmt.setString(3, user.getTelephone());
+				pstmt.setInt(4, user.getNoUtilisateur());
+				pstmt.executeUpdate();
+				pstmt.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				cnx.rollback();
+				throw e;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			throw businessException;
+		}
+
+		return user;
+
 	}
 
 	private Utilisateur getUtilisateurByLogin(String login,String requete,String type) {
@@ -178,5 +212,5 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return user;
 	}
-	
+
 }
