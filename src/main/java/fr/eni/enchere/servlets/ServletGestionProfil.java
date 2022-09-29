@@ -73,15 +73,29 @@ public class ServletGestionProfil extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 			}
 			break;
+		
+		case "enregistrer":
+
+			try {
+				
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			}
+
+
+			break;
 
 		case "suppression":
-			request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 
 
 			break;
 			
 		case "modification":
-			request.getRequestDispatcher("/WEB-INF/jsp/EnCours.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 
 
 			break;
