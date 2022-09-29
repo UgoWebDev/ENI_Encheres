@@ -642,15 +642,19 @@ input[type=text], input[type=number], input[type=password]{
 }
 /*JSP Connexion*/
 
+#connexion{
+	justify-content: center;
+}
+
 .connexion{
 	width: auto;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	margin: 150px 0 250px 0;
-	gap: 1.5rem;
-	
+	gap: 3rem;
 }
+
 .connexion span{
     font-size: 2rem;
     color:var(--blue);
@@ -663,7 +667,11 @@ input[type=text], input[type=number], input[type=password]{
 } 
 
 .connexion label{
-	width: auto;
+	width: 500px;
+}
+
+.connexion input[type=text] {
+	font-size: 22px;
 }
 
 .bouton{
