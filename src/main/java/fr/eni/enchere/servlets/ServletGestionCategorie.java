@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.CategorieManager;
-import fr.eni.enchere.bo.Categorie;
 
 /**
  * Servlet implementation class ServletGestionCategorie
@@ -33,12 +32,11 @@ public class ServletGestionCategorie extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String libelle = request.getParameter("libelle");
 		String action = request.getParameter("action");
-		Categorie categorie = null;
 		
 		switch (action) {
 		case "creation":
 			try {
-				categorie = CategorieManager.getInstance().insertCategorie(libelle);
+				CategorieManager.getInstance().insertCategorie(libelle);
 				response.sendRedirect(request.getContextPath() + "/categorie");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
