@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.AdresseManager;
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
+import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Adresse;
+import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -20,6 +24,7 @@ import fr.eni.enchere.bo.Utilisateur;
 public class ServletGestionVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,7 +32,19 @@ public class ServletGestionVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setAttribute("listeCategories",CategorieManager.getInstance().getCategories());
+		if(request.getParameter("noArticle") != null) {
+			try {
+				Article article = ArticleManager.getInstance().getArticleByNo(Integer.valueOf(request.getParameter("noArticle")));
+				request.setAttribute("article", article);
+			} catch (NumberFormatException | BusinessException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
+		
+		
+		
 	}
 
 	/**
@@ -47,6 +64,9 @@ public class ServletGestionVente extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		
+		Integer noArticle = null;
+		Article article = null;
+		Adresse adresse = null;
 //		int noArticle = Integer.parseInt(action.substring("annulerVente".length()));
 //		System.out.println(action + " : " + noArticle);
 //		action = action.substring(0, "annulerVente".length());
@@ -67,16 +87,34 @@ public class ServletGestionVente extends HttpServlet {
 			response.sendRedirect("accueil");	
 		break;
 		
+		case "modification":
+			try {
+				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
+				adresse = new Adresse(rue, codePostal, ville);
+				adresse = AdresseManager.getInstance().updateAdresse(adresse,userConnected.getAdresse());
+				article = new Article(nomArticle, description, null, null, 0, 0, null, userConnected, null, null, adresse);
+				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected);
+				request.getSession().setAttribute("article", article);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.setAttribute("article", article);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			}
+
+
+			break;
+			
 		case "annulerVente":
-//			try {
-//				ArticleManager.getInstance().deleteArticle(noArticle);
-//				request.getSession().setAttribute("user", null);
-//				response.sendRedirect("accueil");
-//			} catch (BusinessException e) {
-//				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-//				request.getRequestDispatcher("/WEB-INF/jsp/Connexion.jsp").forward(request, response);
-//				
-//			}
+			try {
+				ArticleManager.getInstance().deleteArticle(noArticle);
+				request.getSession().setAttribute("noArticle", null);
+				response.sendRedirect("vente");
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
+				
+			}
 		break;
 
 		default:

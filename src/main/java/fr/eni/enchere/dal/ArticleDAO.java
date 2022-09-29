@@ -16,5 +16,7 @@ public interface ArticleDAO {
 
 	Article getArticleByNo(Integer noArticle) throws BusinessException ;
 
+	Article updateArticle(Article article);
+
 
 }

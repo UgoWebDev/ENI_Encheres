@@ -39,6 +39,13 @@ public abstract class CodesResultatBLL {
 	public static final int ARTICLE_CREATION_RUE = 20110;
 	public static final int ARTICLE_CREATION_CODE_POSTAL = 20111;
 	public static final int ARTICLE_CREATION_VILLE = 20112;
+	
+	public static final int ARTICLE_UPDATE_NOM = 20113;
+	public static final int ARTICLE_UPDATE_DESCRIPTION = 20114;
+	public static final int ARTICLE_UPDATE_RETRAIT = 20115;
+
+
+
 
 	
 	//Erreurs liées à la gestion des catégories

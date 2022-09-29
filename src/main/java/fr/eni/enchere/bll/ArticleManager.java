@@ -84,8 +84,37 @@ public class ArticleManager {
 		}
 	}
 	
+	public Article updateArticle(Article article, Article articleOld) throws BusinessException{
+		BusinessException be = new BusinessException();
+			
+		//Vérifier date de début supérieur à date de fin
+			this.valideArticle(article, be);
+			
+		if(!be.hasErreurs())
+		{
+			article = articleDAO.updateArticle(article);
+			System.out.println("modifArticle OK");
+		}
+		else
+		{
+			throw be;
+		}
+
+		return article;
+	}
 	
 	
+
+	private void valideArticle(Article article, BusinessException be) {
+		if (article.getNomArticle() == null || article.getNomArticle() == "") {be.ajouterErreur(CodesResultatBLL.ARTICLE_UPDATE_NOM);}
+		if (article.getDescription() == null || article.getDescription() == "") {be.ajouterErreur(CodesResultatBLL.ARTICLE_UPDATE_DESCRIPTION);}
+		if (article.getDateDebutEncheres() == null) {be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_DATE);}
+		if (article.getDateFinEncheres() == null) {be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_DATE_FIN);}
+		if (article.getCategorie() == null) {be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_CATEGORIE);}
+		if (article.getRetrait() == null) {be.ajouterErreur(CodesResultatBLL.ARTICLE_UPDATE_RETRAIT);}
+		
+	}
+
 
 	private Adresse parseAdresse(String rue, String codePostal, String ville, BusinessException be) {
 
