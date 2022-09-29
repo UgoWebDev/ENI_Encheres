@@ -568,11 +568,6 @@ input[type=text], input[type=number], input[type=password]{
 	justify-content: space-around;
 }
 
-.vente .content .enregistrer button{
-	border: 2px solid var(--green);
-	border-radius: 4px;
-}
-
 .dateFin{
 	margin-top: 1rem;
 }
