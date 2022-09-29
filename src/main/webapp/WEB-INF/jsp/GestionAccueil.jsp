@@ -48,12 +48,27 @@
 			</div>
 	
 		</section>
-	
+
+
 		<!-- home section ends -->
+
+		<!-- Affichage des erreurs -->
 	
+		<c:if test="${!empty listeCodesErreur}">
+			<div class="alert alert-danger" role="alert">
+				<strong>Erreur!</strong>
+				<ul>
+					<c:forEach var="code" items="${listeCodesErreur}">
+						<li>${LecteurMessage.getMessageErreur(code)}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</c:if>
 	
-	
-		<!-- liste encheres section starts  -->
+		<!-- fin affichage erreurs -->
+
+
+	<!-- liste encheres section starts  -->
 	
 		<section class="products" id="products">
 	
