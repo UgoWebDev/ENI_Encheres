@@ -20,28 +20,29 @@
 				<%@ include file="../html/header.html" %>
 			</c:if>
 			
-			<c:if test="${user.administrateur == true}">
-				<nav class="navbar">
-				<ul>
-					<li><a href="administration?profilPseudo=${user.pseudo}" class="fa-solid fa-computer icons"></a></li>
-				</ul>
-				</nav>
+			<c:if test="${!empty user && user.administrateur == true}">
+			<header>
+					<a href="accueil" class="logo">ENI-ENCHERE<span>.</span></a>
+					
+					<div class="icons">
+						<a href="administration?profilPseudo=${user.pseudo}" class="fa-solid fa-computer icons"></a>
+						<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off"></a>
+					</div>
+				</header>
 			</c:if>
 			
-			
-			
-			
 			<c:if test="${empty user}">
-				<header>	
-					<input type="checkbox" name="" id="toggler"> 
-					<label for="toggler" class="fas fa-bars"></label> <a href="accueil" class="logo">ENI-ENCHERE<span>.</span></a>
-					
+				<header>
+					<a href="accueil" class="logo">ENI-ENCHERE<span>.</span></a>
 					
 					<div class="icons">
 						<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off"></a>
 					</div>
-				</header>						
+				</header>				
 			</c:if>	
+			
+			
+			
 	
 		<!-- header section ends -->
 	
