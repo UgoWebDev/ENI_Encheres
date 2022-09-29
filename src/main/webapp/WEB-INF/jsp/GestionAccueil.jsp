@@ -119,11 +119,11 @@
 					</select>
 				</c:if>
 				
-				<div class="search-box">
+				<div class="searchBox">
 					<button class="btn-search">
 						<i class="fas fa-search"></i>
 					</button>
-					<input name="chaineRecherche" type="text" class="input-search" placeholder="Chercher un article...">
+					<input name="chaineRecherche" type="text" class="searchInput" placeholder="Chercher un article...">
 				</div>
 			</div>
 			
@@ -152,7 +152,7 @@
 									
 								</div>
 								<div class="content">
-									<h3>"${article.nomArticle}"</h3>
+									<h3>${article.nomArticle}</h3>
 									<div class="price">Prix : ${article.miseAPrix}</div>
 									<div class="date-fin">Fin de l'enchère : ${article.dateFinEncheres}</div>
 									<div class="vendeur">Vendeur : 
@@ -176,189 +176,7 @@
 	
 		</section>
 	
-		<!-- liste enchere section ends -->
-	
-	
-	
-		<!-- derniers articles section starts  -->
-	
-		<section class="products" id="products">
-	
-			<h1 class="heading">
-				Derniers <span>articles</span>
-			</h1>
-	
-			<div class="box-container">
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a>
-						</div>
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-
-					</div>
-				</div>
-	
-				<div class="box">
-					<div class="image">
-						<img src="css/images/article1.jpg" alt="">
-						<div class="icons">
-							<a href="#" class="fa-solid fa-heart-circle-plus"></a> 
-							<a href="#" class="fa-solid fa-cart-plus"></a> 
-							<a href="#" class="fa-solid fa-share-from-square"></a>
-						</div>
-					</div>
-					<div class="content">
-						<h3>Article</h3>
-						<div class="price">100.eni</div>
-						<div class="date-fin">Fin de l'enchère : date</div>
-						<div class="vendeur">Vendeur : <a href="#">vendeur</a></div>
-					</div>
-				</div>
-	
-			</div>
-	
-		</section>
-	
-		<!-- derniers articles section ends -->
-	
-	
-	
+		<!-- liste enchere section ends -->	
 	
 		<!-- contact section starts  -->
 	
@@ -400,13 +218,9 @@
 	
 				<div class="content" id="info">
 					<h3>Pour en savoir plus sur nous</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-						cumque sit nemo pariatur corporis perspiciatis aspernatur a ullam
-						repudiandae autem asperiores quibusdam omnis commodi alias repellat
-						illum, unde optio temporibus.</p>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-						Accusantium ea est commodi incidunt magni quia molestias
-						perspiciatis, unde repudiandae quidem.</p>
+					<p>Beaucoup d'objets sont jetés bien qu'étant encore en bon état de fonctionnement par manque d un réseau d'échange non commercial.
+					Notre solution permet l'acquisition de matériels de seconde main sans frais.</p>
+
 					<a href="#" class="btn">En savoir plus</a>
 				</div>
 	
