@@ -3,6 +3,8 @@ package fr.eni.enchere.bo;
 import java.util.Date;
 import java.util.List;
 
+import fr.eni.enchere.Utilitaires;
+
 public class Article {
 	
 	private Integer noArticle;
@@ -67,6 +69,10 @@ public class Article {
 
 	public void setNomArticle(String nomArticle) {
 		this.nomArticle = nomArticle;
+	}
+	
+	public String getNomArticleHtml() {
+		return Utilitaires.toHtml(nomArticle);
 	}
 
 
@@ -168,6 +174,8 @@ public class Article {
 	public void setRetrait(Adresse retrait) {
 		this.retrait = retrait;
 	}
+	
+	
 
 	@Override
 	public String toString() {
