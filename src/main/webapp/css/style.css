@@ -353,7 +353,7 @@ section#connexion{
     height: 5rem;
     line-height: 5rem;
     font-size: 2rem;
-    width:50%;
+    width:25%;
     background:var(--blue);
     color:#fff;
 }
@@ -658,8 +658,15 @@ input[type=text], input[type=number], input[type=password]{
 	gap: 3rem;
 }
 
-.homeVisualisation p{
+.homeVisualisation p span{
 	font-size: 1.7rem;
+	color: black;
+}
+
+.homeVisualisation p{
+	color: var(--blue);
+	font-size: 1.7rem;
+	font: bold;
 }
 
 .home .connexion{
