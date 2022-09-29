@@ -263,6 +263,13 @@ section#connexion{
     background-color:transparent;
     pointer-events: painted;  
   }
+  
+.products .search .optionAchatVente{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	gap: 1rem;
+}
 
 .products .btn-search:hover ~ .input-search{
     width: 300px;

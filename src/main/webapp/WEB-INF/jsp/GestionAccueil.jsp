@@ -44,7 +44,7 @@
 					Donner une seconde vie aux objets en facilitant les échanges.
 					Encourager la réutilisation.
 					Promouvoir des échanges non commerciaux.</p>
-				<a href="#footer" class="btn">Infos</a>
+				<a href="#info" class="btn">Infos</a>
 			</div>
 	
 		</section>
@@ -61,9 +61,41 @@
 				Liste <span>des enchères</span>
 			</h1>
 		<form method="post" action="<%=request.getContextPath()%>/accueil">
+			
 			<div class="search">
 
 				<c:if test="${!empty user}">
+				
+					<div class="optionAchatVente">
+						<div class="optionAchat">
+							<input type="radio" name="radioAchatVente" id="achat" value="achat"/>
+							<label for="achat">Achats</label>
+							
+							<div>
+								<input type="checkbox" name="checkbox" id="enchereOuverte"/>
+								<label for="enchereOuverte">Enchères ouverte</label><br/>
+								<input type="checkbox" name="checkbox" id="enchereEnCours"/>
+								<label for="enchereEnCours">Mes enchères en cours</label><br/>
+								<input type="checkbox" name="checkbox" id="enchereRemporte"/>
+								<label for="enchereRemporte">Mes enchères remportées</label>
+							</div>
+						</div>
+						
+						<div class="optionVente">
+							<input type="radio" name="radioAchatVente" id="vente" value="vente"/>
+							<label for="vente">Mes ventes</label>
+							
+							<div>
+								<input type="checkbox" name="checkbox" id="venteEnCours"/>
+								<label for="venteEnCours">Mes ventes en cours</label><br/>
+								<input type="checkbox" name="checkbox" id="venteNonDebute"/>
+								<label for="venteNonDebute">Mes ventes non débutées</label><br/>
+								<input type="checkbox" name="checkbox" id="venteTermine"/>
+								<label for="venteTermine">Mes ventes terminées</label>
+							</div>
+						</div>
+					</div>
+					
 					<select name="choixCategorie" class="cat">
 						<option value="0">--Catégories--</option>
 						<c:forEach var="choixCat" items="${listeCategories}">
@@ -349,7 +381,7 @@
 	
 			<div class="row">
 	
-				<div class="content">
+				<div class="content" id="info">
 					<h3>Pour en savoir plus sur nous</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
 						cumque sit nemo pariatur corporis perspiciatis aspernatur a ullam
