@@ -29,6 +29,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE no_article = ?";
 	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES";
 	public static final String SELECT_ARTICLE_BY_NO 	= "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES WHERE no_article = ?";
+	public static final String UPDATE_ARTICLE = "UPDATE ARTICLE SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, no_categorie = ?, no_adresse = ? WHERE no_article = ?";
+
 	
 	@Override
 	public Article insertArticle(Article article) throws BusinessException {
@@ -194,19 +196,64 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	 
 	
 	@Override
-	public void deleteArticle(Integer noArticle) throws BusinessException{
+	public void deleteArticle(Article article) throws BusinessException{
 		BusinessException be = new BusinessException();
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE)
 				) {
-			pstmt.setInt(1, noArticle);
-			try (ResultSet rs = pstmt.executeQuery()) {
-			}
+			pstmt.setInt(1, article.getNoArticle() );
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			be.ajouterErreur(CodesResultatDAL.DELETE_ARTICLE);
 			throw be;
 		}
+	}
+	
+	@Override
+	public Article updateArticle(Article article) throws BusinessException {
+		BusinessException be = new BusinessException();
+		if (article == null) {
+			be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE_NULL);
+			throw be;
+		}
+		try (Connection cnx = ConnectionProvider.getConnection()) 
+		{
+			try 
+			{
+				PreparedStatement pstmt;
+				
+				pstmt = cnx.prepareStatement(UPDATE_ARTICLE);
+				pstmt.setString(1, article.getNomArticle());
+				pstmt.setString(2, article.getDescription());
+				pstmt.setDate(3, convertJavaDateToSqlDate(article.getDateDebutEncheres()) );
+				pstmt.setDate(4, convertJavaDateToSqlDate(article.getDateFinEncheres()));
+				pstmt.setInt(5, article.getMiseAPrix());
+				pstmt.setInt(6, article.getCategorie().getNoCategorie());
+				pstmt.setInt(7, article.getRetrait().getNoAdresse());
+				pstmt.setInt(8, article.getNoArticle());
+
+				pstmt.executeUpdate();
+
+				pstmt.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				cnx.rollback();
+				be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE);
+				throw be;
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			be.ajouterErreur(CodesResultatDAL.INSERT_ARTICLE);
+			throw be;
+		}
+
+		return article;
 	}
 	
 	private static java.util.Date convertSQLDateToJAVADate(java.sql.Date sqlDate) {
@@ -220,4 +267,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
 	    return new java.sql.Date(date.getTime());
 	}
+
+	
 }
