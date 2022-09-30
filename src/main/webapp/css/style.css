@@ -227,7 +227,6 @@ section#connexion{
 }
 
 .products .search .cat{
-    height: 40px;
     border: var(--green) solid 1px;
     border-radius: 1rem;
     align-items: center;
