@@ -179,7 +179,7 @@
 									</div>
 									<div>
 										<c:if test="${user.noUtilisateur == article.getVendeur().getNoUtilisateur() }">
-											<a href="${pageContext.request.contextPath}/vente?noArticle=${article.noArticle}">Supprimer mon annonce</a>
+											<a href="${pageContext.request.contextPath}/vente?noArticle=${article.noArticle}">Modifier mon annonce</a>
 										</c:if>
 									</div>
 									
