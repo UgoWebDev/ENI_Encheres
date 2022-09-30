@@ -75,7 +75,7 @@ public class ServletGestionVente extends HttpServlet {
 		case "enregistrer":
 			try {
 				ArticleManager.getInstance().insertArticle(nomArticle, description, categorie, image, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville,(Utilisateur) request.getSession().getAttribute("user"));
-				response.sendRedirect("vente");
+				response.sendRedirect("accueil");
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
