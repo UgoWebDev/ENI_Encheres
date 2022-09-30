@@ -46,7 +46,7 @@
 							<c:if test="${!empty article}"> "${article.nomArticle }"</c:if>>
 							
                         <textarea rows="7" cols="40" name="description" placeholder="Décrivez votre article...">
-							<c:if test="${!empty article}"> "${article.description }"</c:if></textarea>
+							<c:if test="${!empty article}"> ${article.description }</c:if></textarea>
                     </div>
 
                     <div class="cat">
