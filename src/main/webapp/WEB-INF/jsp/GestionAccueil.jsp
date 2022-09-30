@@ -163,9 +163,7 @@
 								</div>
 								
 								<div class="content">
-								<c:if test="${user.noUtilisateur == article.getVendeur().getNoUtilisateur() }">
-									<a href="${pageContext.request.contextPath}/vente?noArticle=${article.noArticle}">Supprimer mon annonce</a>
-								</c:if>
+								
 								
 									<h3>${article.nomArticle}</h3>
 									
@@ -179,6 +177,12 @@
 											<c:if test="${empty user}">${article.getVendeur().getPseudo()}
 										</c:if>
 									</div>
+									<div>
+										<c:if test="${user.noUtilisateur == article.getVendeur().getNoUtilisateur() }">
+											<a href="${pageContext.request.contextPath}/vente?noArticle=${article.noArticle}">Supprimer mon annonce</a>
+										</c:if>
+									</div>
+									
 								</div>
 								</div>
 							</c:forEach>
