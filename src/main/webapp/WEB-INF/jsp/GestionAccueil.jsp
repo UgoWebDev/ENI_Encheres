@@ -26,7 +26,7 @@
 					
 					<div class="icons">
 						<a href="administration?profilPseudo=${user.pseudo}" class="fa-solid fa-computer icons"></a>
-						<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off"></a>
+						<a href="${pageContext.request.contextPath}/connexion" class="fa-solid fa-power-off" id="deconnexion"></a>
 					</div>
 				</header>
 			</c:if>
