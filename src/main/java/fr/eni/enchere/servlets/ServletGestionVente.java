@@ -1,6 +1,8 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.Utilitaires;
 import fr.eni.enchere.bll.AdresseManager;
 import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bo.Adresse;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Article.EtatsVente;
+import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -65,18 +71,31 @@ public class ServletGestionVente extends HttpServlet {
 		
 		
 		
-		
-//		int noArticle = Integer.parseInt(action.substring("annulerVente".length()));
-//		System.out.println(action + " : " + noArticle);
-//		action = action.substring(0, "annulerVente".length());
-//		System.out.println(action + " : " + noArticle);
-		
 		switch (action) {
 		case "enregistrer":
 			try {
-				ArticleManager.getInstance().insertArticle(nomArticle, description, categorie, image, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville,(Utilisateur) request.getSession().getAttribute("user"));
-				response.sendRedirect("accueil");
+				Article article =  ArticleManager.getInstance().insertArticle(nomArticle, description, categorie, null, miseAPrix, dateDebutEncheres, dateFinEncheres, rue, codePostal, ville,(Utilisateur) request.getSession().getAttribute("user"));
+				try {
+					
+					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+					request.setAttribute("article", article);
+				} catch (BusinessException e) {
+					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				}
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
+				Utilisateur user = (Utilisateur)request.getSession().getAttribute("user");
+				Categorie cat = CategorieManager.getInstance().getCategorieByNo(Integer.parseInt(categorie));
+				Adresse adresse = new Adresse(rue, codePostal, ville);
+				Article article = null;
+				try {
+					article = new Article(nomArticle, description, Utilitaires.parseDate(dateDebutEncheres), Utilitaires.parseDate(dateFinEncheres), Integer.parseInt(miseAPrix), 0, EtatsVente.CREATION, user, cat, null, adresse);
+				} catch (NumberFormatException | BusinessException e1) {
+					article = new Article(nomArticle, description, null, null, Integer.parseInt(miseAPrix), 0, EtatsVente.CREATION, user, cat, null, adresse);
+				}
+				request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+				request.setAttribute("article", article);
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionVente.jsp").forward(request, response);
 			}
@@ -94,7 +113,12 @@ public class ServletGestionVente extends HttpServlet {
 				String [] articleModifie = new String[] {nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, categorie};
 				article = ArticleManager.getInstance().updateArticle(article, articleModifie);
 				request.getSession().setAttribute("article", article);
-				
+				try {
+					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+				} catch (BusinessException e) {
+					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				}
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
@@ -109,7 +133,13 @@ public class ServletGestionVente extends HttpServlet {
 			try {
 				ArticleManager.getInstance().deleteArticle(article);
 				request.getSession().setAttribute("noArticle", null);
-				response.sendRedirect("vente");
+				try {
+					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+				} catch (BusinessException e) {
+					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				}
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
