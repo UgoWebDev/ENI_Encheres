@@ -66,7 +66,7 @@ public class ServletGestionVente extends HttpServlet {
 		
 		Integer noArticle = null;
 		Article article = null;
-		Adresse adresse = null;
+		Adresse retrait = null;
 //		int noArticle = Integer.parseInt(action.substring("annulerVente".length()));
 //		System.out.println(action + " : " + noArticle);
 //		action = action.substring(0, "annulerVente".length());
@@ -89,11 +89,11 @@ public class ServletGestionVente extends HttpServlet {
 		
 		case "modification":
 			try {
-				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
-				adresse = new Adresse(rue, codePostal, ville);
-				adresse = AdresseManager.getInstance().updateAdresse(adresse,userConnected.getAdresse());
-				article = new Article(nomArticle, description, null, null, 0, 0, null, userConnected, null, null, adresse);
-				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected);
+				Article articleEnModification = (Article) request.getSession().getAttribute("article");
+				retrait = new Adresse(rue, codePostal, ville);
+				retrait = AdresseManager.getInstance().updateAdresse(retrait, articleEnModification.getRetrait());
+				article = new Article(article.getNoArticle(), nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, prixVente, etatVente, vendeur.get, null, null, retrait);
+				article = ArticleManager.getInstance().updateArticle(article,articleEnModification);
 				request.getSession().setAttribute("article", article);
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {

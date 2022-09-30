@@ -43,10 +43,10 @@
 				<div class="description">
                         <label for="nomArticle">Article : </label>
                         <input type="text" name="nomArticle" id="article" maxlength="20" value=
-							<c:if test="${!empty article}"> ${article.nomArticle }</c:if>>
+							<c:if test="${!empty article}"> "${article.nomArticle }"</c:if>>
 							
                         <textarea rows="7" cols="40" name="description" placeholder="Décrivez votre article...">
-							<c:if test="${!empty article}"> ${article.description }</c:if></textarea>
+							<c:if test="${!empty article}"> "${article.description }"</c:if></textarea>
                     </div>
 
                     <div class="cat">
@@ -64,7 +64,7 @@
                     <div class="prix">
                             <label for="miseAPrix">Mise à  prix</label>
                             <input type="number" min="0" name="miseAPrix" id="prix" value=
-							<c:if test="${!empty article}"> ${article.miseAPrix }</c:if>>
+							<c:if test="${!empty article}"> "${article.miseAPrix }"</c:if>>
                     </div>
                     <div class="dateenchere">
                     	<p>
@@ -85,7 +85,7 @@
                             <legend>Retrait : </legend>
         
                                 <label for="rue">Rue</label>
-                                <input type="text" name="rue" id="rue" value= ${user.getAdresse().getRue() }/>
+                                <input type="text" name="rue" id="rue" value= "${user.getAdresse().getRue() }"/>
 																			
 
                                 <label for="codePostal">Code postal</label>
@@ -99,15 +99,21 @@
                         </fieldset>
         
                         <div class="enregistrer">
-                                <button class="btn" type="submit" name="action" value="enregistrer">Enregistrer</button>
-                                <button class="btn" type="submit" name="action" value="annuler">Annuler</button>
+                                <c:if test="${empty article}">
+                                     <button class="btn" type="submit" name="action" value="enregistrer">Enregistrer</button>
+                                </c:if>
                                 
                                
                                 <c:if test="${article.etatVente == 'CREATION' || article.etatVente == 'ENCOURS'}">
+                                    <button class="btn" type="submit" name="action" value="modification">Enregistrer</button>
+                                	
                                     <div class="bouton">
                                         <button type="submit" name="action" value="annulerVente" class="btn">Annuler la vente</button>
                                        </div>
+                                     
                                 </c:if>
+                                
+                                <button class="btn" type="submit" name="action" value="annuler">Annuler</button>
                             
                         </div>
         
