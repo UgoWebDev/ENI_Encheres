@@ -18,6 +18,7 @@ public class Article {
 	private List<Enchere>  encherisseurs;
 	private Adresse retrait;
 	
+	
 	public Article(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres,
 			int miseAPrix, int prixVente, Article.EtatsVente etatVente, Utilisateur vendeur, Categorie categorie,
 			List<Enchere> encherisseurs, Adresse retrait) {
@@ -40,6 +41,9 @@ public class Article {
 			int prixVente, Article.EtatsVente etatVente, Utilisateur vendeur, Categorie categorie, List<Enchere> encherisseurs, Adresse retrait) {
 		this( null ,nomArticle, description, dateDebutEncheres, dateFinEncheres , miseAPrix, prixVente , etatVente, vendeur, categorie, encherisseurs, retrait);
 	}
+
+
+	
 
 
 	public enum EtatsVente {

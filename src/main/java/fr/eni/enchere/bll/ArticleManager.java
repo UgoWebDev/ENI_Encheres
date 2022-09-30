@@ -70,12 +70,12 @@ public class ArticleManager {
 		return articleDAO.getArticles();
 	}
 	
-	public void deleteArticle(Integer noArticle) throws BusinessException {
+	public void deleteArticle(Article article) throws BusinessException {
 		BusinessException be = new BusinessException();
-		this.notExists(noArticle, be);
+		this.notExists(article, be);
 		if(!be.hasErreurs())
 		{
-			articleDAO.deleteArticle(noArticle);
+			articleDAO.deleteArticle(article);
 			System.out.println("deleteArticle OK");
 		}
 		else
@@ -84,11 +84,21 @@ public class ArticleManager {
 		}
 	}
 	
-	public Article updateArticle(Article article, Article articleOld) throws BusinessException{
+	public Article updateArticle(Article articleInitial, String[] modifications) throws BusinessException{
 		BusinessException be = new BusinessException();
 			
-		//Vérifier date de début supérieur à date de fin
-			this.valideArticle(article, be);
+		String nomArticle = modifications[0];
+		String description = modifications[1];
+		Date dateDebut = parseDate(modifications[2],be); 
+		Date dateFin = parseDate(modifications[3],be);
+		int miseAPrixInt = parseInt(modifications[4],be);
+		Categorie categorie = parseCategorie(modifications[5],be);
+		
+
+		this.compareDate(dateDebut, dateFin, be);
+		Article article = new Article(articleInitial.getNoArticle(), nomArticle, description, dateDebut, dateFin, miseAPrixInt, articleInitial.getPrixVente(), articleInitial.getEtatVente(), articleInitial.getVendeur(), categorie, null, articleInitial.getRetrait());
+		
+		this.valideArticle(article, be);
 			
 		if(!be.hasErreurs())
 		{
@@ -206,8 +216,8 @@ public class ArticleManager {
 		}
 	}
 
-	private void notExists(Integer noArticle, BusinessException be) throws BusinessException {
-		if(articleDAO.getArticleByNo(noArticle) == null) {
+	private void notExists(Article article, BusinessException be) throws BusinessException {
+		if(article == null) {
 			be.ajouterErreur(CodesResultatBLL.ARTICLE_NON_EXISTANT);
 		}
 	}
