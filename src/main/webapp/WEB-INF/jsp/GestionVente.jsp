@@ -78,34 +78,36 @@
 							<c:if test="${!empty article}">"${article.dateFinEncheres }"</c:if>/>
                         </p>
                     </div>
-          
-                        
-                        <fieldset>
-        
-                            <legend>Retrait : </legend>
-        
-                                <label for="rue">Rue</label>
-                                <input type="text" name="rue" id="rue" value= "${user.getAdresse().getRue() }"/>
-																			
 
-                                <label for="codePostal">Code postal</label>
-                                <input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value="${user.getAdresse().getCodePostal() }">
 
-                                <label for="ville">Ville</label>
-                                <input type="text" name="ville" id="ville" value="${user.getAdresse().getVille() }">
+				<fieldset>
 
-        
-        
-                        </fieldset>
-        
-                        <div class="enregistrer">
+					<legend>Retrait : </legend>
+					<div>
+						<label for="rue">Rue</label> 
+						<input type="text" name="rue" id="rue" value=<c:if test="${empty article}">"${user.getAdresse().getRue() }"</c:if>
+								 										<c:if test="${!empty article}"> "${article.getRetrait().getRue() }"</c:if>>
+
+						<label for="codePostal">Code postal</label> 
+						<input type="number" name="codePostal" id="codePostal" min="01000" max="99999" value=<c:if test="${empty article}">"${user.getAdresse().getCodePostal() }"</c:if>
+								 																				<c:if test="${!empty article}"> "${article.getRetrait().getCodePostal() }"</c:if>> 
+							
+						<label for="ville">Ville</label> 
+						<input type="text" name="ville" id="ville" value=<c:if test="${empty article}">"${user.getAdresse().getVille() }"</c:if>
+								 											<c:if test="${!empty article}"> "${article.getRetrait().getVille() }"</c:if>>
+					</div>
+
+
+				</fieldset>
+
+				<div class="enregistrer">
                                 <c:if test="${empty article}">
                                      <button class="btn" type="submit" name="action" value="enregistrer">Enregistrer</button>
                                 </c:if>
                                 
                                
                                 <c:if test="${article.etatVente == 'CREATION' || article.etatVente == 'ENCOURS'}">
-                                    <button class="btn" type="submit" name="action" value="modification">Enregistrer</button>
+                                    <button class="btn" type="submit" name="action" value="modification">Modifier</button>
                                 	
                                     <div class="bouton">
                                         <button type="submit" name="action" value="annulerVente" class="btn">Annuler la vente</button>

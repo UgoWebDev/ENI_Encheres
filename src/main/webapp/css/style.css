@@ -723,6 +723,11 @@ input[type=text], input[type=number], input[type=password]{
 	margin-bottom: 50px;
 }
 
+.retrait
+{
+	border: 1px solid black
+}
+
 
 
 /* media queries  */

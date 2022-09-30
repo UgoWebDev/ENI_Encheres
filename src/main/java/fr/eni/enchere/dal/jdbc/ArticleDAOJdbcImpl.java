@@ -29,7 +29,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE no_article = ?";
 	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES";
 	public static final String SELECT_ARTICLE_BY_NO 	= "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES WHERE no_article = ?";
-	public static final String UPDATE_ARTICLE = "UPDATE ARTICLE SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, no_categorie = ?, no_adresse = ? WHERE no_article = ?";
+	public static final String UPDATE_ARTICLE = "UPDATE ARTICLES SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, no_categorie = ?, no_adresse = ? WHERE no_article = ?";
 
 	
 	@Override

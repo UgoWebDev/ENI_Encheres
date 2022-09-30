@@ -1,21 +1,21 @@
 package fr.eni.enchere.bll;
 
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.Utilitaires;
 import fr.eni.enchere.bo.Adresse;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.DAOFactory;
-import fr.eni.enchere.Utilitaires;
 
 
 public class ArticleManager {
@@ -35,8 +35,11 @@ public class ArticleManager {
 		int miseAPrixInt = parseInt(miseAPrix,be);
 		Categorie categorieObj = parseCategorie(categorie,be);
 		Adresse adresse = parseAdresse(rue,codePostal,ville,be);
-
-		this.compareDate(dateDebut, dateFin, be);
+		
+		if(!be.hasErreurs())
+		{
+			this.compareDate(dateDebut, dateFin, be);
+		}	
 		
 		if(!be.hasErreurs())
 		{
@@ -51,6 +54,7 @@ public class ArticleManager {
 		return article;
 	}
 
+	
 	public ArticleManager() {
 		articleDAO = DAOFactory.getArticleDAO();
 	}
@@ -176,36 +180,6 @@ public class ArticleManager {
 		return categorie;
 	}
 
-	private Date parseDate(String dateString, BusinessException be) throws BusinessException {
-		String[] dateArray = dateString.split("-");
-		Date date = new Date();
-		int annee = 0, mois = 0, jour = 0;
-		try {
-			if (!StringUtils.isInteger(dateArray[0])) {
-				be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_ANNEE);
-			} else {
-				annee = Integer.parseInt(dateArray[0]);
-				}
-			if (!StringUtils.isInteger(dateArray[1])) {
-				be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_MOIS);
-			} else {
-				mois = Integer.parseInt(dateArray[1]);
-				}
-			if (!StringUtils.isInteger(dateArray[2])) {
-				be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_JOUR);
-			} else {
-				jour = Integer.parseInt(dateArray[2]);
-				}
-			
-			Calendar calendar = new GregorianCalendar(annee, mois-1, jour);
-			date = calendar.getTime();
-		} catch (Exception e) {
-			be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_DATE);
-		}
-		
-		return date;
-	}
-
 	
 	private void compareDate(Date dateDebut, Date dateFin, BusinessException be) throws BusinessException {
 
@@ -221,5 +195,19 @@ public class ArticleManager {
 			be.ajouterErreur(CodesResultatBLL.ARTICLE_NON_EXISTANT);
 		}
 	}
+	
+	private Date parseDate(String dateString, BusinessException be) {
+		Date date = null;
+		try {
+			date = Utilitaires.parseDate(dateString);
+		} catch (BusinessException e) {
+			List<Integer> erreurs = e.getListeCodesErreur();
+			for (Integer erreur : erreurs) {
+				be.ajouterErreur(erreur);
+			}
+		}
+		return date;
+	}
+
 	
 }

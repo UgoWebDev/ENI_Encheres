@@ -1,5 +1,13 @@
 package fr.eni.enchere;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import com.microsoft.sqlserver.jdbc.StringUtils;
+
+import fr.eni.enchere.bll.CodesResultatBLL;
+
 public class Utilitaires {
 
 	/**
@@ -30,6 +38,44 @@ public class Utilitaires {
 			chaine = chaine.replaceAll(html[i][0], html[i][1]);
 		}
 		return chaine;
+	}
+	
+	public static Date parseDate(String dateString) throws BusinessException{
+		String[] dateArray = dateString.split("-");
+		Date date = new Date();
+		int annee = 0, mois = 0, jour = 0;
+		BusinessException be = new BusinessException();
+		try {
+			if (!StringUtils.isInteger(dateArray[0])) {
+				be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_ANNEE);
+				throw be;
+			} else {
+				annee = Integer.parseInt(dateArray[0]);
+				}
+			if (!StringUtils.isInteger(dateArray[1])) {
+				be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_MOIS);
+				throw be;
+
+			} else {
+				mois = Integer.parseInt(dateArray[1]);
+				}
+			if (!StringUtils.isInteger(dateArray[2])) {
+				be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_JOUR);
+				throw be;
+
+			} else {
+				jour = Integer.parseInt(dateArray[2]);
+				}
+			
+			Calendar calendar = new GregorianCalendar(annee, mois-1, jour);
+			date = calendar.getTime();
+		} catch (Exception e) {
+			be.ajouterErreur(CodesResultatBLL.ARTICLE_CREATION_DATE);
+			throw be;
+
+		}
+		
+		return date;
 	}
 }
 
