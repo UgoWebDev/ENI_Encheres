@@ -723,11 +723,6 @@ input[type=text], input[type=number], input[type=password]{
 	margin-bottom: 50px;
 }
 
-.retrait
-{
-	border: 1px solid black
-}
-
 
 
 /* media queries  */
@@ -736,6 +731,10 @@ input[type=text], input[type=number], input[type=password]{
     html{
         font-size: 55%;
     }
+
+	body{
+	width: auto;
+	}
 
     header{
         padding:2rem;
@@ -752,10 +751,16 @@ input[type=text], input[type=number], input[type=password]{
     .home{
         background-position: left;
     }
+    
+    .products .box-container{
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	}
 
 }
 
-@media (max-width:991px){
+@media (max-width:890px){
     
     html{
         font-size: 55%;
@@ -793,9 +798,32 @@ input[type=text], input[type=number], input[type=password]{
         background-position: left;
     }
 
+	.products{
+	max-width: 890px;
+	}
+	
+	.box-container{
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	}
+
+	.footer {
+	display: flex;
+	}
+
+	.footer .box-container{
+	display: flex;
+	width: auto;
+	flex-direction: row;
+	}
+	
+	.footer .box{
+	width: 250px;
+	}
 }
 
-@media (max-width:950px){
+@media (max-width:767px){
 
     header .icons{
         display: block;
@@ -835,7 +863,7 @@ input[type=text], input[type=number], input[type=password]{
     
 }
 
-@media (max-width:450px){
+@media (max-width:425px){
     
     html{
         font-size: 50%;
