@@ -23,6 +23,10 @@ public abstract class CodesResultatBLL {
 	public static final int UTILISATEUR_MODIF_PSEUDO = 20015;
 	public static final int UTILISATEUR_MODIF_EMAIL = 20016;
 	public static final int UTILISATEUR_MODIF_PASSWORD = 20017;
+  	public static final int UTILISATEUR_CREATION_RUE = 20018;
+	public static final int UTILISATEUR_CREATION_CODE_POSTAL = 20019;
+	public static final int UTILISATEUR_CREATION_VILLE = 20020;
+	public static final int UTILISATEUR_CREATION_PSEUDO_ALPHA = 20021;	
 	
 	
 	

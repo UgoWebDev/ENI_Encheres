@@ -23,7 +23,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public static final String INSERT_ADRESSE 		= "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String INSERT_UTILISATEUR 	= "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,no_adresse,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?)";
 	public static final String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
-	public static final String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?,prenom = ?,telephone = ? WHERE no_utilisateur = ?";
+	public static final String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET nom = ?,prenom = ?,telephone = ?,pseudo=?,email=?,mot_de_passe=? WHERE no_utilisateur = ?";
 
 
 
@@ -128,12 +128,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public void deleteUtilisateurs(Utilisateur user) throws BusinessException {
 		BusinessException be = new BusinessException();
+
 		try (Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(DELETE_UTILISATEUR)
 				) {
 			pstmt.setInt(1, user.getNoUtilisateur());
-			try (ResultSet rs = pstmt.executeQuery()) {
-			}
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			be.ajouterErreur(CodesResultatDAL.DELETE_UTILISATEUR);
@@ -158,7 +158,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.setString(1, user.getNom());
 				pstmt.setString(2, user.getPrenom());
 				pstmt.setString(3, user.getTelephone());
-				pstmt.setInt(4, user.getNoUtilisateur());
+				pstmt.setString(4, user.getPseudo());
+				pstmt.setString(5, user.getEmail());
+				pstmt.setString(6, user.getMotDePasse());
+				pstmt.setInt(7, user.getNoUtilisateur());
 				pstmt.executeUpdate();
 				pstmt.close();
 			}

@@ -33,6 +33,10 @@
 					</ul>
 				</div>
 			</c:if>
+			<c:if test="${OK==1 }">
+				<h2> Modification du profil effectuée</h2>
+			</c:if>
+			
 			
 			<form method="post"  action="<%=request.getContextPath()%>/profil">
 				<div class="form">

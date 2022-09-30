@@ -1,6 +1,7 @@
 package fr.eni.enchere.bll;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.Utilitaires;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
@@ -52,7 +53,8 @@ public class UtilisateurManager {
 		BusinessException be = new BusinessException();
 		
 		this.compareMdp(user.getMotDePasse(), password, be);
-		this.exists(user.getPseudo(), user.getEmail(), be);
+		this.existsEmail(user.getEmail(), be);
+		this.existsLogin(user.getPseudo(), be);
 		this.valideUtilisateur(user,be);
 		
 		
@@ -74,6 +76,7 @@ public class UtilisateurManager {
 		if(!be.hasErreurs())
 		{
 			utilisateurDAO.deleteUtilisateurs(user);
+			ArticleManager.getInstance().getArticles(null, null);
 			System.out.println("deleteUtilisateur OK");
 		}
 		else
@@ -81,13 +84,20 @@ public class UtilisateurManager {
 			throw be;
 		}
 	}
-	public Utilisateur updateUtilisateur(Utilisateur user, Utilisateur userOld) throws BusinessException{
+	public Utilisateur updateUtilisateur(Utilisateur user, Utilisateur userOld, String password) throws BusinessException{
 		BusinessException be = new BusinessException();
+
+		if(!user.getPseudo().equals(userOld.getPseudo())) {
+			this.existsLogin(user.getPseudo(), be);
+		}
+		if(!user.getEmail().equals(userOld.getEmail())) {
+			this.existsEmail(user.getEmail(), be);
+		}
 		
-		this.valideChange(user,userOld,be);
+		this.compareMdp(user.getMotDePasse(), password, be);
 		this.valideUtilisateur(user,be);
-		
-		
+
+
 		if(!be.hasErreurs())
 		{
 			user = utilisateurDAO.updateUtilisateur(user);
@@ -100,17 +110,6 @@ public class UtilisateurManager {
 
 		return user;
 	}
-	private void valideChange(Utilisateur userNew, Utilisateur userOld, BusinessException be) {
-		if (userNew.getPseudo() != userOld.getPseudo() ) {
-			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_MODIF_PSEUDO);
-		}
-		if (userNew.getEmail() != userOld.getEmail() ) {
-			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_MODIF_EMAIL);
-		}
-		if (userNew.getMotDePasse() != userOld.getMotDePasse() ) {
-			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_MODIF_PASSWORD);
-		}		
-	}
 	/**
 	 * 
 	 * @param login
@@ -119,15 +118,18 @@ public class UtilisateurManager {
 	 * 
 	 * Vérifie l'unicité par email ou pseudo
 	 */
-	private void exists(String login, String email, BusinessException be) throws BusinessException {
+	private void existsLogin(String login, BusinessException be) throws BusinessException {
+
+		if (utilisateurDAO.getUtilisateurByPseudo(login)!=null) {
+			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO_DUP);
+		}
+	}
 	
+	private void existsEmail(String email, BusinessException be) throws BusinessException {
+
 		if (utilisateurDAO.getUtilisateurByMail(email)!=null) {
 			be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL_DUP);
-		} else {
-			if (utilisateurDAO.getUtilisateurByPseudo(login)!=null) {
-				be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO_DUP);
-			}
-		}
+		} 
 	}
 	private void compareMdp(String mdp, String password, BusinessException be) throws BusinessException {
 		
@@ -144,8 +146,12 @@ public class UtilisateurManager {
 		if (user.getNom() == null || user.getNom() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_NOM);}
 		if (user.getPrenom() == null || user.getPrenom() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PRENOM);}
 		if (user.getPseudo() == null || user.getPseudo() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO);}
+		if (!Utilitaires.isAlphaNumeric(user.getPseudo()) ) {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_PSEUDO_ALPHA);}
 		if (user.getEmail() == null || user.getEmail() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_EMAIL);}
 		if (user.getMotDePasse() == null || user.getMotDePasse() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_MOT_DE_PASSE);}
+		if (user.getAdresse().getRue() == null || user.getAdresse().getRue() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_RUE);}
+		if (user.getAdresse().getCodePostal() == null || user.getAdresse().getCodePostal() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_CODE_POSTAL);}
+		if (user.getAdresse().getVille() == null || user.getAdresse().getVille() == "") {be.ajouterErreur(CodesResultatBLL.UTILISATEUR_CREATION_VILLE);}
 	}
 	private void notExists(Utilisateur user, BusinessException be) {
 		if (user == null) {

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.AdresseManager;
+import fr.eni.enchere.bll.ArticleManager;
+import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Adresse;
 import fr.eni.enchere.bo.Utilisateur;
@@ -56,6 +58,12 @@ public class ServletGestionProfil extends HttpServlet {
 				user = new Utilisateur(pseudo, nom, prenom, email, tel, adresse, mdp, 100, false,null,null);
 				user = UtilisateurManager.getInstance().insertUtilisateur(user,password);
 				request.getSession().setAttribute("user", user);
+				try {
+					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+				} catch (BusinessException e) {
+					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				}
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
@@ -67,8 +75,14 @@ public class ServletGestionProfil extends HttpServlet {
 
 		case "suppression":
 			try {
-				UtilisateurManager.getInstance().deleteUtilisateur(user);
+				UtilisateurManager.getInstance().deleteUtilisateur((Utilisateur) request.getSession().getAttribute("user"));
 				request.getSession().setAttribute("user", null);
+				try {
+					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+				} catch (BusinessException e) {
+					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				}
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
@@ -84,10 +98,11 @@ public class ServletGestionProfil extends HttpServlet {
 				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
 				adresse = new Adresse(rue, codepostal, ville);
 				adresse = AdresseManager.getInstance().updateAdresse(adresse,userConnected.getAdresse());
-				user = new Utilisateur(pseudo, nom, prenom, email, tel, adresse, mdp, userConnected.getCredit(), false,null,null);
-				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected);
+				user = new Utilisateur(userConnected.getNoUtilisateur(), pseudo, nom, prenom, email, tel, adresse, mdp, userConnected.getCredit(), false,null,null);
+				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected,password);
 				request.getSession().setAttribute("user", user);
-				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
+				request.setAttribute("OK", 1);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.setAttribute("user", user);
