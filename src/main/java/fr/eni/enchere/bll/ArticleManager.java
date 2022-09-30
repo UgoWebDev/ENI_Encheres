@@ -4,8 +4,6 @@ package fr.eni.enchere.bll;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-
 import com.microsoft.sqlserver.jdbc.StringUtils;
 
 import fr.eni.enchere.BusinessException;

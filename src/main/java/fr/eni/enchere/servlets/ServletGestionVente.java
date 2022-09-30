@@ -1,8 +1,6 @@
 package fr.eni.enchere.servlets;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +17,6 @@ import fr.eni.enchere.bo.Adresse;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Article.EtatsVente;
 import fr.eni.enchere.bo.Categorie;
-import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
