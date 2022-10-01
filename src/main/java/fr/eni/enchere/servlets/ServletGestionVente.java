@@ -84,7 +84,7 @@ public class ServletGestionVente extends HttpServlet {
 			} catch (BusinessException e) {
 				Utilisateur user = (Utilisateur)request.getSession().getAttribute("user");
 				Categorie cat = CategorieManager.getInstance().getCategorieByNo(Integer.parseInt(categorie));
-				Adresse adresse = new Adresse(rue, codePostal, ville);
+				Adresse adresse = new Adresse(article.getRetrait().getNoAdresse(), rue, codePostal, ville);
 				Article article = null;
 				try {
 					article = new Article(nomArticle, description, Utilitaires.parseDate(dateDebutEncheres), Utilitaires.parseDate(dateFinEncheres), Integer.parseInt(miseAPrix), 0, EtatsVente.CREATION, user, cat, null, adresse);
@@ -98,10 +98,6 @@ public class ServletGestionVente extends HttpServlet {
 			}
 			break;
 			
-		case "annuler":
-			response.sendRedirect("accueil");	
-		break;
-		
 		case "modification":
 			try {
 				Adresse retrait = new Adresse(article.getRetrait().getNoAdresse(), rue, codePostal, ville);
@@ -145,6 +141,10 @@ public class ServletGestionVente extends HttpServlet {
 		break;
 
 		default:
+		break;
+		
+		case "annuler":
+			response.sendRedirect("accueil");	
 		break;
 		}
 	}
