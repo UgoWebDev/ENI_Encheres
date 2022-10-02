@@ -169,7 +169,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			{
 				e.printStackTrace();
 				cnx.rollback();
-				throw e;
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+				throw businessException;
 			}
 		}
 		catch(Exception e)

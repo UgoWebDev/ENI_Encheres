@@ -58,7 +58,6 @@ public class ServletGestionVente extends HttpServlet {
 		String nomArticle = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
 		String categorie = request.getParameter("categorie");
-		String image = request.getParameter("image");
 		String miseAPrix = request.getParameter("miseAPrix");
 		String dateDebutEncheres = request.getParameter("dateDebutEncheres");
 		String dateFinEncheres = request.getParameter("dateFinEncheres");
@@ -75,7 +74,7 @@ public class ServletGestionVente extends HttpServlet {
 				try {
 					
 					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
-					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null,null));
 					request.setAttribute("article", article);
 				} catch (BusinessException e) {
 					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
@@ -108,7 +107,7 @@ public class ServletGestionVente extends HttpServlet {
 				request.getSession().setAttribute("article", article);
 				try {
 					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
-					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null,null, null));
 				} catch (BusinessException e) {
 					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				}
@@ -128,7 +127,7 @@ public class ServletGestionVente extends HttpServlet {
 				request.getSession().setAttribute("noArticle", null);
 				try {
 					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
-					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null,null, null));
 				} catch (BusinessException e) {
 					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				}

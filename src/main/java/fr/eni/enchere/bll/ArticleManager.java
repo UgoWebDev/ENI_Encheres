@@ -68,8 +68,20 @@ public class ArticleManager {
 		return articleDAO.getArticleByNo(noArticle);
 	}
 	
-	public List<Article> getArticles(String categorie, String utilisateur) throws BusinessException  {
-		return articleDAO.getArticles();
+	public List<Article> getArticles(String noCategorieString, Utilisateur utilisateur,String recherche) throws BusinessException  {
+		Categorie categorie = null;
+		BusinessException be = new BusinessException();
+		
+		try {
+			if (noCategorieString != null) {
+				categorie = CategorieManager.getInstance().getCategorieByNo(Integer.parseInt(noCategorieString));
+			} 
+		} catch (Exception e) {
+			be.ajouterErreur(CodesResultatBLL.ARTICLE_RECHERCHE_CATEGORIE);
+			throw be;
+		}
+		
+		return articleDAO.getArticles(categorie,utilisateur,recherche);
 	}
 	
 	public void deleteArticle(Article article) throws BusinessException {

@@ -76,7 +76,7 @@ public class UtilisateurManager {
 		if(!be.hasErreurs())
 		{
 			utilisateurDAO.deleteUtilisateurs(user);
-			ArticleManager.getInstance().getArticles(null, null);
+			ArticleManager.getInstance().getArticles(null,null, null);
 			System.out.println("deleteUtilisateur OK");
 		}
 		else

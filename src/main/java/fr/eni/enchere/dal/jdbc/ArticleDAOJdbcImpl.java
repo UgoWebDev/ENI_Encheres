@@ -6,15 +6,17 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.AdresseManager;
 import fr.eni.enchere.bll.CategorieManager;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Article;
+import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.bo.Article.EtatsVente;
 import fr.eni.enchere.dal.ArticleDAO;
 import fr.eni.enchere.dal.CodesResultatDAL;
@@ -27,7 +29,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public static final String INSERT_ARTICLE = "INSERT INTO ARTICLES (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	public static final String INSERT_ADRESSE = "INSERT INTO ADRESSES (rue,code_postal,ville) VALUES (?,?,?)";
 	public static final String DELETE_ARTICLE = "DELETE FROM ARTICLES WHERE no_article = ?";
-	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES";
+	public static final String SELECT_ALL_ARTICLES = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES  ";
 	public static final String SELECT_ARTICLE_BY_NO 	= "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie, no_adresse FROM ARTICLES WHERE no_article = ?";
 	public static final String UPDATE_ARTICLE = "UPDATE ARTICLES SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, no_categorie = ?, no_adresse = ? WHERE no_article = ?";
 
@@ -121,13 +123,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	public Article getArticleByNo(Integer noArticle) throws BusinessException  {
 		BusinessException be = new BusinessException();
 		Article article = null;
-		try (Connection cnx = ConnectionProvider.getConnection();
+		try (
+				Connection cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_BY_NO)
 				) {
 			pstmt.setInt(1, noArticle);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
-					
+
 					article = new Article (
 							rs.getInt("no_article"),
 							rs.getString("nom_article"), 
@@ -158,16 +161,37 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	
-	public List<Article> getArticles()  throws BusinessException{
+
+	public List<Article> getArticles(Categorie categorie, Utilisateur utilisateur, String recherche)  throws BusinessException{
 		BusinessException be = new BusinessException();
 		ArrayList<Article> articles = new ArrayList<>(); 
+		String whereString[];
 
-		try
-		(Connection cnx = ConnectionProvider.getConnection(); Statement pstmt =
-		cnx.createStatement() ) {
+		whereString = construitWhere(categorie, utilisateur, recherche);
+		String selectAllArticles = SELECT_ALL_ARTICLES + whereString[0];
 
-			try (ResultSet rs = pstmt.executeQuery(SELECT_ALL_ARTICLES)) {
+		try (
+				Connection cnx = ConnectionProvider.getConnection(); 
+				PreparedStatement pstmt = cnx.prepareStatement(selectAllArticles)
+				) {
+			int i = 1;
+			if (whereString[1] == "CT") {
+				pstmt.setInt(1, categorie.getNoCategorie());
+				i++;
+			}
+			if (whereString[2] == "UT") {
+				pstmt.setInt(i, utilisateur.getNoUtilisateur());
+				i++;
+			}
+			if (whereString[3] == "RT") {
+				pstmt.setString(i, "%"+recherche+"%");
+				i++;
+			}
+			if (i == 1) {
+				pstmt.setInt(i, 0);
+			}
+
+			try (ResultSet rs = pstmt.executeQuery()) {
 				while (rs.next()){ 
 
 					articles.add(new Article(
@@ -193,8 +217,38 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		} 
 		return articles;
 	}
-	 
+
 	
+	private String[] construitWhere(Categorie categorie, Utilisateur utilisateur, String recherche) {
+		boolean existAvant  = false;
+		String[] whereTab = new String[] {" WHERE no_article != ?","CF","UF","RF"};
+
+		if (!(categorie==null && utilisateur==null && (recherche == null || recherche == ""))) {
+			whereTab[0] = " WHERE ";
+			if (categorie!=null) {
+				whereTab[0] += " no_categorie = ? ";
+				existAvant = true;
+				whereTab[1] = "CT";
+			}  	
+			if (utilisateur != null) {
+				if (existAvant) {
+					whereTab[0] += " AND ";
+				}
+				whereTab[0] += " no_utilisateur = ? ";
+				existAvant = true;
+				whereTab[2] = "UT";
+			}
+			if (recherche != null && recherche !="") {
+				if (existAvant) {
+					whereTab[0] += " AND ";
+				}
+				whereTab[0] += " nom_article LIKE ? ";
+				whereTab[3] = "RT";
+			}
+		}
+		return whereTab;
+	}
+
 	@Override
 	public void deleteArticle(Article article) throws BusinessException{
 		BusinessException be = new BusinessException();

@@ -128,7 +128,7 @@
 					<input name="chaineRecherche" type="text" class="search-input" placeholder="Chercher un article...">
 								
 					<select name="categorie" class="cat">
-						<option>--Catégories--</option>
+						<option value=0>--Catégories--</option>
                             <c:forEach var="choixCat" items="${listeCategories}">
                                 <option value="${choixCat.noCategorie}">${choixCat.libelleCategorie}</option>
                             </c:forEach>

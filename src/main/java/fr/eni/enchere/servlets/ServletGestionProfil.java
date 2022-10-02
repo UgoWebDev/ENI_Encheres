@@ -60,7 +60,7 @@ public class ServletGestionProfil extends HttpServlet {
 				request.getSession().setAttribute("user", user);
 				try {
 					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
-					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null,null));
 				} catch (BusinessException e) {
 					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				}
@@ -97,7 +97,7 @@ public class ServletGestionProfil extends HttpServlet {
 				request.getSession().setAttribute("user", null);
 				try {
 					request.setAttribute("listeCategories", CategorieManager.getInstance().getCategories());
-					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null, null));
+					request.setAttribute("listeArticle", ArticleManager.getInstance().getArticles(null,null, null));
 				} catch (BusinessException e) {
 					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				}
