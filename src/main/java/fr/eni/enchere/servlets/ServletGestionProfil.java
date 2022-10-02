@@ -72,6 +72,24 @@ public class ServletGestionProfil extends HttpServlet {
 			}
 			break;
 		
+		case "modification":
+			try {
+				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
+				adresse = new Adresse(rue, codepostal, ville);
+				adresse = AdresseManager.getInstance().updateAdresse(adresse,userConnected.getAdresse());
+				user = new Utilisateur(userConnected.getNoUtilisateur(), pseudo, nom, prenom, email, tel, adresse, mdp, userConnected.getCredit(), false,null,null);
+				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected,password);
+				request.getSession().setAttribute("user", user);
+				request.setAttribute("OK", 1);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			} catch (BusinessException e) {
+				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
+			}
+
+
+			break;
 
 		case "suppression":
 			try {
@@ -84,25 +102,6 @@ public class ServletGestionProfil extends HttpServlet {
 					request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				}
 				request.getRequestDispatcher("/WEB-INF/jsp/GestionAccueil.jsp").forward(request, response);
-			} catch (BusinessException e) {
-				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
-			}
-
-
-			break;
-			
-		case "modification":
-			try {
-				Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("user");
-				adresse = new Adresse(rue, codepostal, ville);
-				adresse = AdresseManager.getInstance().updateAdresse(adresse,userConnected.getAdresse());
-				user = new Utilisateur(userConnected.getNoUtilisateur(), pseudo, nom, prenom, email, tel, adresse, mdp, userConnected.getCredit(), false,null,null);
-				user = UtilisateurManager.getInstance().updateUtilisateur(user,userConnected,password);
-				request.getSession().setAttribute("user", user);
-				request.setAttribute("OK", 1);
-				request.getRequestDispatcher("/WEB-INF/jsp/GestionProfil.jsp").forward(request, response);
 			} catch (BusinessException e) {
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 				request.setAttribute("user", user);
